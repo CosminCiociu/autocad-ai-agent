@@ -27,3 +27,6 @@ Thumbs.db
 *.bak
 *.sv$
 *.ac$
+
+# Microsoft Word temporary lock files
+~$*.docx
