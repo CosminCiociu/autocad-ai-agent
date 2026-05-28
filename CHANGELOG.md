@@ -15,3 +15,7 @@ The format is based on Keep a Changelog principles.
   - `docs/`
 - Initial conventions document in `docs/CONVENTIONS.md`.
 - Initial task list in `TODO.md`.
+- FastAPI server scaffold in `ai-server/main.py` with `GET /health` and `POST /analyze`.
+- JSON Schema validation utility in `ai-server/schema_validation.py`.
+- Plugin-side schema validation helpers in `autocad-plugin/SchemaValidation/`.
+- Schema usage notes in `docs/SCHEMAS.md` and `autocad-plugin/README.md`.

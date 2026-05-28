@@ -25,8 +25,8 @@ Acest TODO operationalizeaza arhitectura din README in pasi concreti, executabil
   - [x] `update_attribute`
   - [x] `find_entities`
 - [x] Adauga versionare schema (`schema_version`).
-- [ ] Implementeaza validare JSON Schema in AI server.
-- [ ] Implementeaza validare JSON Schema in plugin (inainte de executie).
+- [x] Implementeaza validare JSON Schema in AI server.
+- [x] Implementeaza validare JSON Schema in plugin (inainte de executie).
 - [x] Defineste coduri standard de eroare pentru payload invalid.
 
 ## 2) AutoCAD Plugin (C#/.NET)
@@ -46,9 +46,9 @@ Acest TODO operationalizeaza arhitectura din README in pasi concreti, executabil
 
 ## 3) AI Server (Python/FastAPI)
 
-- [ ] Initializeaza API cu endpoint-uri:
-  - [ ] `POST /analyze`
-  - [ ] `GET /health`
+- [x] Initializeaza API cu endpoint-uri:
+  - [x] `POST /analyze`
+  - [x] `GET /health`
 - [ ] Integreaza model local prin Ollama.
 - [ ] Construieste prompt deterministic pentru tool calling.
 - [ ] Parseaza raspunsul modelului in JSON strict.
