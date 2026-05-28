@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# .NET
+bin/
+obj/
+*.user
+*.suo
+
+# Logs
+*.log
+logs/
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Local env
+.env
+.env.*
+
+# AutoCAD temporary/backup files (common)
+*.bak
+*.sv$
+*.ac$
