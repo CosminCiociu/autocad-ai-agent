@@ -1,0 +1,199 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://autocad-ai-agent.local/schemas/action-plan.schema.json",
+    "title": "Action Plan",
+    "description": "Validated action plan proposed by AI server for plugin execution.",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "schema_version",
+        "request_id",
+        "actions"
+    ],
+    "properties": {
+        "schema_version": {
+            "type": "string",
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "request_id": {
+            "type": "string",
+            "minLength": 1
+        },
+        "summary": {
+            "type": "string"
+        },
+        "needs_clarification": {
+            "type": "boolean",
+            "default": false
+        },
+        "clarification_question": {
+            "type": "string"
+        },
+        "actions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/action"
+            }
+        }
+    },
+    "$defs": {
+        "point2d": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "x",
+                "y"
+            ],
+            "properties": {
+                "x": {
+                    "type": "number"
+                },
+                "y": {
+                    "type": "number"
+                }
+            }
+        },
+        "action": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "id",
+                "type",
+                "args"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "insert_block",
+                        "create_polyline",
+                        "update_attribute",
+                        "find_entities"
+                    ]
+                },
+                "reason": {
+                    "type": "string"
+                },
+                "args": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/$defs/insertBlockArgs"
+                        },
+                        {
+                            "$ref": "#/$defs/createPolylineArgs"
+                        },
+                        {
+                            "$ref": "#/$defs/updateAttributeArgs"
+                        },
+                        {
+                            "$ref": "#/$defs/findEntitiesArgs"
+                        }
+                    ]
+                }
+            }
+        },
+        "insertBlockArgs": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "name",
+                "position"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "position": {
+                    "$ref": "#/$defs/point2d"
+                },
+                "layer": {
+                    "type": "string"
+                },
+                "rotation_deg": {
+                    "type": "number"
+                },
+                "scale": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                }
+            }
+        },
+        "createPolylineArgs": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "vertices"
+            ],
+            "properties": {
+                "vertices": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": {
+                        "$ref": "#/$defs/point2d"
+                    }
+                },
+                "layer": {
+                    "type": "string"
+                },
+                "closed": {
+                    "type": "boolean",
+                    "default": false
+                }
+            }
+        },
+        "updateAttributeArgs": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "target_handle",
+                "tag",
+                "value"
+            ],
+            "properties": {
+                "target_handle": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "tag": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "findEntitiesArgs": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "entity_type"
+            ],
+            "properties": {
+                "entity_type": {
+                    "type": "string",
+                    "enum": [
+                        "block",
+                        "text",
+                        "line",
+                        "polyline"
+                    ]
+                },
+                "layer": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "text_contains": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

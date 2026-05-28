@@ -1,0 +1,226 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://autocad-ai-agent.local/schemas/dwg-context.schema.json",
+    "title": "DWG Context",
+    "description": "Input context extracted from AutoCAD DWG for AI analysis.",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "schema_version",
+        "request_id",
+        "drawing",
+        "blocks",
+        "texts",
+        "lines",
+        "polylines"
+    ],
+    "properties": {
+        "schema_version": {
+            "type": "string",
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "request_id": {
+            "type": "string",
+            "minLength": 1
+        },
+        "drawing": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "name",
+                "units",
+                "coordinate_system"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "units": {
+                    "type": "string",
+                    "enum": [
+                        "unitless",
+                        "mm",
+                        "cm",
+                        "m",
+                        "inch",
+                        "foot"
+                    ]
+                },
+                "coordinate_system": {
+                    "type": "string",
+                    "enum": [
+                        "WCS",
+                        "UCS"
+                    ]
+                }
+            }
+        },
+        "blocks": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "handle",
+                    "name",
+                    "layer",
+                    "position"
+                ],
+                "properties": {
+                    "handle": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "layer": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "rotation_deg": {
+                        "type": "number"
+                    },
+                    "position": {
+                        "$ref": "#/$defs/point2d"
+                    },
+                    "attributes": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "tag",
+                                "value"
+                            ],
+                            "properties": {
+                                "tag": {
+                                    "type": "string",
+                                    "minLength": 1
+                                },
+                                "value": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "texts": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "handle",
+                    "value",
+                    "layer",
+                    "position"
+                ],
+                "properties": {
+                    "handle": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "layer": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "height": {
+                        "type": "number",
+                        "exclusiveMinimum": 0
+                    },
+                    "position": {
+                        "$ref": "#/$defs/point2d"
+                    }
+                }
+            }
+        },
+        "lines": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "handle",
+                    "layer",
+                    "start",
+                    "end"
+                ],
+                "properties": {
+                    "handle": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "layer": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "start": {
+                        "$ref": "#/$defs/point2d"
+                    },
+                    "end": {
+                        "$ref": "#/$defs/point2d"
+                    }
+                }
+            }
+        },
+        "polylines": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "handle",
+                    "layer",
+                    "vertices"
+                ],
+                "properties": {
+                    "handle": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "layer": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "closed": {
+                        "type": "boolean",
+                        "default": false
+                    },
+                    "vertices": {
+                        "type": "array",
+                        "minItems": 2,
+                        "items": {
+                            "$ref": "#/$defs/point2d"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "$defs": {
+        "point2d": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "x",
+                "y"
+            ],
+            "properties": {
+                "x": {
+                    "type": "number"
+                },
+                "y": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}

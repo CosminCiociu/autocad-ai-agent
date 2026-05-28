@@ -14,20 +14,20 @@ Acest TODO operationalizeaza arhitectura din README in pasi concreti, executabil
 
 ## 1) Contracte JSON si validare (M0)
 
-- [ ] Defineste schema pentru context DWG (input):
-  - [ ] metadata desen (units, UCS/WCS, versiune)
-  - [ ] blocks (handle, nume, pozitie, layer, atribute)
-  - [ ] texts (handle, continut, pozitie, layer)
-  - [ ] lines/polylines (handle, puncte, layer)
-- [ ] Defineste schema pentru actiuni AI (output):
-  - [ ] `insert_block`
-  - [ ] `create_polyline`
-  - [ ] `update_attribute`
-  - [ ] `find_entities`
-- [ ] Adauga versionare schema (`schema_version`).
+- [x] Defineste schema pentru context DWG (input):
+  - [x] metadata desen (units, UCS/WCS, versiune)
+  - [x] blocks (handle, nume, pozitie, layer, atribute)
+  - [x] texts (handle, continut, pozitie, layer)
+  - [x] lines/polylines (handle, puncte, layer)
+- [x] Defineste schema pentru actiuni AI (output):
+  - [x] `insert_block`
+  - [x] `create_polyline`
+  - [x] `update_attribute`
+  - [x] `find_entities`
+- [x] Adauga versionare schema (`schema_version`).
 - [ ] Implementeaza validare JSON Schema in AI server.
 - [ ] Implementeaza validare JSON Schema in plugin (inainte de executie).
-- [ ] Defineste coduri standard de eroare pentru payload invalid.
+- [x] Defineste coduri standard de eroare pentru payload invalid.
 
 ## 2) AutoCAD Plugin (C#/.NET)
 
