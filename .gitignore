@@ -13,6 +13,8 @@ obj/
 # Logs
 *.log
 logs/
+ai-server/logs/
+ai-server/replay/
 
 # OS / Editor
 .DS_Store
