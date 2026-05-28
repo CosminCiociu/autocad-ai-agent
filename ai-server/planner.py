@@ -1,9 +1,16 @@
 from __future__ import annotations
 
 import json
+from dataclasses import dataclass
 from typing import Any
 
 from ollama_client import OllamaClient
+
+
+@dataclass
+class PlanResult:
+    action_plan: dict[str, Any]
+    raw_response: str
 
 
 def _extract_json_object(text: str) -> dict[str, Any]:
@@ -42,7 +49,7 @@ class ActionPlanner:
     def __init__(self, ollama: OllamaClient) -> None:
         self.ollama = ollama
 
-    async def plan(self, context_payload: dict[str, Any], user_command: str) -> dict[str, Any]:
+    async def plan(self, context_payload: dict[str, Any], user_command: str) -> PlanResult:
         prompt = build_prompt(context_payload=context_payload, user_command=user_command)
         raw = await self.ollama.generate_json(prompt)
-        return _extract_json_object(raw)
+        return PlanResult(action_plan=_extract_json_object(raw), raw_response=raw)

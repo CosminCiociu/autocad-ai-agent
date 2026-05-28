@@ -76,15 +76,15 @@ Acest TODO operationalizeaza arhitectura din README in pasi concreti, executabil
 
 ## 6) Observabilitate si audit
 
-- [ ] Introdu `request_id` unic per comanda.
-- [ ] Logheaza evenimente structurate:
-  - [ ] input user
-  - [ ] context summary
-  - [ ] raspuns LLM
-  - [ ] rezultat validator
-  - [ ] rezultat executie
-- [ ] Stocheaza audit trail cu handles entitati modificate.
-- [ ] Creeaza mod replay pentru debugging.
+- [x] Introdu `request_id` unic per comanda.
+- [x] Logheaza evenimente structurate:
+  - [x] input user
+  - [x] context summary
+  - [x] raspuns LLM
+  - [x] rezultat validator
+  - [x] rezultat executie
+- [x] Stocheaza audit trail cu handles entitati modificate.
+- [x] Creeaza mod replay pentru debugging.
 
 ## 7) Fixture-uri DWG si teste de regresie
 

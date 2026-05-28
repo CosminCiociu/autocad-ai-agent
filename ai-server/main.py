@@ -1,11 +1,14 @@
 from __future__ import annotations
 
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+from uuid import uuid4
 
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
+from observability import ObservabilityStore
 from ollama_client import OllamaClient
 from planner import ActionPlanner
 from semantic_validation import SemanticValidator
@@ -22,6 +25,7 @@ app = FastAPI(title="AutoCAD AI Server", version="0.1.0")
 schemas = SchemaStore(SCHEMA_DIR)
 planner = ActionPlanner(ollama=OllamaClient())
 semantic_validator = SemanticValidator()
+observability = ObservabilityStore(BASE_DIR)
 
 
 def build_error(
@@ -46,9 +50,48 @@ def resolve_error_code(details: list[dict[str, Any]]) -> str:
     return "ACTION_ARGUMENT_INVALID"
 
 
+def summarize_context(payload: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "schema_version": payload.get("schema_version"),
+        "drawing": payload.get("drawing", {}).get("name"),
+        "counts": {
+            "blocks": len(payload.get("blocks", [])),
+            "texts": len(payload.get("texts", [])),
+            "lines": len(payload.get("lines", [])),
+            "polylines": len(payload.get("polylines", [])),
+        },
+    }
+
+
+def extract_audit_handles(action_plan: dict[str, Any]) -> list[str]:
+    handles: set[str] = set()
+    for action in action_plan.get("actions", []):
+        args = action.get("args", {}) if isinstance(action, dict) else {}
+        if isinstance(args, dict):
+            handle = args.get("target_handle")
+            if isinstance(handle, str) and handle.strip():
+                handles.add(handle)
+    return sorted(handles)
+
+
 @app.get("/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
+
+
+@app.get("/replay/{request_id}")
+def replay(request_id: str) -> JSONResponse:
+    payload = observability.load_replay(request_id)
+    if payload is None:
+        return JSONResponse(
+            status_code=404,
+            content=build_error(
+                request_id=request_id,
+                code="INTERNAL_ERROR",
+                message="Replay not found for request_id.",
+            ),
+        )
+    return JSONResponse(status_code=200, content=payload)
 
 
 def build_safe_clarification_plan(
@@ -91,12 +134,41 @@ async def validate_context(request: Request) -> JSONResponse:
 @app.post("/analyze")
 async def analyze(request: Request) -> JSONResponse:
     payload = await request.json()
-    request_id = str(payload.get("request_id", "unknown"))
+    request_id = str(payload.get("request_id", "")).strip() or f"req-{uuid4()}"
     schema_version = str(payload.get("schema_version", "1.0.0"))
+    payload["request_id"] = request_id
+
+    user_command = request.headers.get("x-user-command", "").strip()
+    observability.log_event(
+        event="input_received",
+        request_id=request_id,
+        data={
+            "user_command": user_command,
+            "context_summary": summarize_context(payload),
+        },
+    )
 
     context_issues = schemas.validate(CONTEXT_SCHEMA, payload)
     if context_issues:
         details = [{"path": i.path, "message": i.message} for i in context_issues]
+        observability.log_event(
+            event="context_schema_invalid",
+            request_id=request_id,
+            data={"details": details},
+        )
+        observability.save_replay(
+            request_id,
+            {
+                "request_id": request_id,
+                "created_at": datetime.now(timezone.utc).isoformat(),
+                "input": payload,
+                "user_command": user_command,
+                "model_raw_response": None,
+                "action_plan": None,
+                "validation": {"context_schema": details},
+                "execution_result": "not_executed_server_side",
+            },
+        )
         return JSONResponse(
             status_code=422,
             content=build_error(
@@ -107,7 +179,7 @@ async def analyze(request: Request) -> JSONResponse:
             ),
         )
 
-    user_command = request.headers.get("x-user-command", "").strip()
+    model_raw_response: str | None = None
     if not user_command:
         action_plan = build_safe_clarification_plan(
             request_id=request_id,
@@ -115,15 +187,32 @@ async def analyze(request: Request) -> JSONResponse:
             question="Ce actiune vrei sa execut pe desen?",
             summary="Comanda lipsa. Nu execut nimic pana la clarificare.",
         )
+        observability.log_event(
+            event="clarification_requested",
+            request_id=request_id,
+            data={"reason": "missing_user_command"},
+        )
     else:
         try:
-            action_plan = await planner.plan(context_payload=payload, user_command=user_command)
+            plan_result = await planner.plan(context_payload=payload, user_command=user_command)
+            action_plan = plan_result.action_plan
+            model_raw_response = plan_result.raw_response
+            observability.log_event(
+                event="llm_response_received",
+                request_id=request_id,
+                data={"raw_response": model_raw_response[:4000]},
+            )
         except Exception:
             action_plan = build_safe_clarification_plan(
                 request_id=request_id,
                 schema_version=schema_version,
                 question="Nu am putut genera un plan sigur. Reformuleaza comanda in pasi clari.",
                 summary="Model indisponibil sau raspuns invalid. Executie oprita preventiv.",
+            )
+            observability.log_event(
+                event="llm_failure_fallback",
+                request_id=request_id,
+                data={"reason": "model_unavailable_or_invalid_response"},
             )
 
     # Enforce request identity and schema version for consistency.
@@ -143,6 +232,24 @@ async def analyze(request: Request) -> JSONResponse:
     action_issues = schemas.validate(ACTION_SCHEMA, action_plan)
     if action_issues:
         details = [{"path": i.path, "message": i.message} for i in action_issues]
+        observability.log_event(
+            event="action_schema_invalid",
+            request_id=request_id,
+            data={"details": details},
+        )
+        observability.save_replay(
+            request_id,
+            {
+                "request_id": request_id,
+                "created_at": datetime.now(timezone.utc).isoformat(),
+                "input": payload,
+                "user_command": user_command,
+                "model_raw_response": model_raw_response,
+                "action_plan": action_plan,
+                "validation": {"action_schema": details},
+                "execution_result": "not_executed_server_side",
+            },
+        )
         return JSONResponse(
             status_code=422,
             content=build_error(
@@ -164,6 +271,24 @@ async def analyze(request: Request) -> JSONResponse:
             }
             for i in semantic_issues
         ]
+        observability.log_event(
+            event="semantic_validation_failed",
+            request_id=request_id,
+            data={"details": details},
+        )
+        observability.save_replay(
+            request_id,
+            {
+                "request_id": request_id,
+                "created_at": datetime.now(timezone.utc).isoformat(),
+                "input": payload,
+                "user_command": user_command,
+                "model_raw_response": model_raw_response,
+                "action_plan": action_plan,
+                "validation": {"semantic": details},
+                "execution_result": "not_executed_server_side",
+            },
+        )
         return JSONResponse(
             status_code=422,
             content=build_error(
@@ -173,5 +298,29 @@ async def analyze(request: Request) -> JSONResponse:
                 details=details,
             ),
         )
+
+    observability.log_event(
+        event="validation_passed",
+        request_id=request_id,
+        data={
+            "action_count": len(action_plan.get("actions", [])),
+            "planned_audit_handles": extract_audit_handles(action_plan),
+            "execution_result": "not_executed_server_side",
+        },
+    )
+    observability.save_replay(
+        request_id,
+        {
+            "request_id": request_id,
+            "created_at": datetime.now(timezone.utc).isoformat(),
+            "input": payload,
+            "user_command": user_command,
+            "model_raw_response": model_raw_response,
+            "action_plan": action_plan,
+            "validation": {"context_schema": "ok", "action_schema": "ok", "semantic": "ok"},
+            "planned_audit_handles": extract_audit_handles(action_plan),
+            "execution_result": "not_executed_server_side",
+        },
+    )
 
     return JSONResponse(status_code=200, content=action_plan)

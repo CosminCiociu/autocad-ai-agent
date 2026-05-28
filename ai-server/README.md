@@ -23,6 +23,10 @@ FastAPI orchestrator for schema validation and local LLM planning.
   - Returns safe clarification response if command is missing, ambiguous, or model output is invalid.
   - Returns 422 with per-action validation report when semantic rules fail.
 
+- `GET /replay/{request_id}`:
+  - Returns saved replay artifact for debugging.
+  - Includes input payload, user command, model raw response, validation results, and action plan.
+
 ## Local run
 
 1. Install dependencies:
@@ -46,3 +50,10 @@ uvicorn main:app --reload --host 127.0.0.1 --port 8000
 
 - `POST /analyze` expects context JSON body conforming to `shared/schemas/dwg-context.schema.json`.
 - Send natural language command in HTTP header `x-user-command`.
+
+## Observability
+
+- `request_id` is guaranteed for every analyze call (generated if missing).
+- Structured events are appended to `ai-server/logs/events.jsonl`.
+- Replay artifacts are stored in `ai-server/replay/{request_id}.json`.
+- Current server scope is planning/validation only, so `execution_result` is recorded as `not_executed_server_side`.
