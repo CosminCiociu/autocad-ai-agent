@@ -32,13 +32,44 @@ FastAPI orchestrator for schema validation and local LLM planning.
 1. Install dependencies:
 
 ```bash
+python -m venv .venv
+# Activate the virtualenv (Windows PowerShell)
+& .venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
 2. Optional env config:
 
-- Copy `.env.example` and adjust values.
-- Default model: `qwen2.5:7b`
+- Copy `.env.example` to `.env` and adjust values (OLLAMA_HOST, MODEL_NAME, etc.).
+- Default model: `qwen2.5:7b` (change in `.env` if needed).
+
+3. Ollama (local LLM runtime):
+
+- This project uses a local Ollama instance by default. Install Ollama from https://ollama.com and run the daemon locally, or configure `OLLAMA_HOST` in `.env` to point to your Ollama server.
+
+4. Start API:
+
+```bash
+uvicorn main:app --reload --host 127.0.0.1 --port 8000
+```
+
+5. Quick verification:
+
+- Run the validator test to ensure JSON schema and server libs work:
+
+```bash
+python -c "from jsonschema import validate; import json; print('jsonschema OK')"
+```
+
+6. Fixtures and testing:
+
+- If you want to test with local DWG fixtures, we provide simple extractors that generate context JSON placeholders in `fixtures/dwg/exports/`. These are ignored by git by default. To regenerate:
+
+```bash
+python fixtures/dwg/extract_contexts.py
+python fixtures/dwg/validate_fixtures.py
+```
 
 3. Start API:
 
