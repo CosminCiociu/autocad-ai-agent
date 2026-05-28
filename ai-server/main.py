@@ -6,6 +6,8 @@ from typing import Any
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
+from ollama_client import OllamaClient
+from planner import ActionPlanner
 from schema_validation import SchemaStore
 
 
@@ -17,6 +19,7 @@ ACTION_SCHEMA = "action-plan.schema.json"
 
 app = FastAPI(title="AutoCAD AI Server", version="0.1.0")
 schemas = SchemaStore(SCHEMA_DIR)
+planner = ActionPlanner(ollama=OllamaClient())
 
 
 def build_error(
@@ -37,6 +40,22 @@ def build_error(
 @app.get("/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
+
+
+def build_safe_clarification_plan(
+    request_id: str,
+    schema_version: str,
+    question: str,
+    summary: str,
+) -> dict[str, Any]:
+    return {
+        "schema_version": schema_version,
+        "request_id": request_id,
+        "summary": summary,
+        "needs_clarification": True,
+        "clarification_question": question,
+        "actions": [],
+    }
 
 
 @app.post("/validate/context")
@@ -64,6 +83,7 @@ async def validate_context(request: Request) -> JSONResponse:
 async def analyze(request: Request) -> JSONResponse:
     payload = await request.json()
     request_id = str(payload.get("request_id", "unknown"))
+    schema_version = str(payload.get("schema_version", "1.0.0"))
 
     context_issues = schemas.validate(CONTEXT_SCHEMA, payload)
     if context_issues:
@@ -78,24 +98,47 @@ async def analyze(request: Request) -> JSONResponse:
             ),
         )
 
-    # Placeholder planner: returns a safe clarification until model/tool-calling is wired.
-    action_plan: dict[str, Any] = {
-        "schema_version": payload["schema_version"],
-        "request_id": request_id,
-        "summary": "Schema valid. Waiting for tool-calling integration.",
-        "needs_clarification": True,
-        "clarification_question": "Ce actiune vrei sa execut pe desen?",
-        "actions": [],
-    }
+    user_command = request.headers.get("x-user-command", "").strip()
+    if not user_command:
+        action_plan = build_safe_clarification_plan(
+            request_id=request_id,
+            schema_version=schema_version,
+            question="Ce actiune vrei sa execut pe desen?",
+            summary="Comanda lipsa. Nu execut nimic pana la clarificare.",
+        )
+    else:
+        try:
+            action_plan = await planner.plan(context_payload=payload, user_command=user_command)
+        except Exception:
+            action_plan = build_safe_clarification_plan(
+                request_id=request_id,
+                schema_version=schema_version,
+                question="Nu am putut genera un plan sigur. Reformuleaza comanda in pasi clari.",
+                summary="Model indisponibil sau raspuns invalid. Executie oprita preventiv.",
+            )
+
+    # Enforce request identity and schema version for consistency.
+    action_plan["request_id"] = request_id
+    action_plan["schema_version"] = schema_version
+
+    if not isinstance(action_plan.get("needs_clarification"), bool):
+        action_plan["needs_clarification"] = True
+
+    if action_plan["needs_clarification"]:
+        action_plan["actions"] = []
+        if not isinstance(action_plan.get("clarification_question"), str) or not action_plan[
+            "clarification_question"
+        ].strip():
+            action_plan["clarification_question"] = "Te rog clarifica exact actiunea dorita."
 
     action_issues = schemas.validate(ACTION_SCHEMA, action_plan)
     if action_issues:
         details = [{"path": i.path, "message": i.message} for i in action_issues]
         return JSONResponse(
-            status_code=500,
+            status_code=422,
             content=build_error(
                 request_id=request_id,
-                code="INTERNAL_ERROR",
+                code="SCHEMA_INVALID",
                 message="Generated action plan failed schema validation.",
                 details=details,
             ),

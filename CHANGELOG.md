@@ -19,3 +19,7 @@ The format is based on Keep a Changelog principles.
 - JSON Schema validation utility in `ai-server/schema_validation.py`.
 - Plugin-side schema validation helpers in `autocad-plugin/SchemaValidation/`.
 - Schema usage notes in `docs/SCHEMAS.md` and `autocad-plugin/README.md`.
+- Ollama client integration in `ai-server/ollama_client.py`.
+- Deterministic planning flow with strict JSON parsing in `ai-server/planner.py`.
+- Safe fallback behavior in `POST /analyze` for missing/ambiguous commands and model failures.
+- AI server run and usage notes in `ai-server/README.md`.

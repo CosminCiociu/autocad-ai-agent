@@ -49,12 +49,12 @@ Acest TODO operationalizeaza arhitectura din README in pasi concreti, executabil
 - [x] Initializeaza API cu endpoint-uri:
   - [x] `POST /analyze`
   - [x] `GET /health`
-- [ ] Integreaza model local prin Ollama.
-- [ ] Construieste prompt deterministic pentru tool calling.
-- [ ] Parseaza raspunsul modelului in JSON strict.
-- [ ] Adauga fallback controlat:
-  - [ ] cand input e ambiguu -> cere clarificare
-  - [ ] cand modelul e nesigur -> nu propune executie
+- [x] Integreaza model local prin Ollama.
+- [x] Construieste prompt deterministic pentru tool calling.
+- [x] Parseaza raspunsul modelului in JSON strict.
+- [x] Adauga fallback controlat:
+  - [x] cand input e ambiguu -> cere clarificare
+  - [x] cand modelul e nesigur -> nu propune executie
 
 ## 4) Validation Gate (obligatoriu inainte de executie)
 
