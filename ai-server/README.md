@@ -15,7 +15,13 @@ FastAPI orchestrator for schema validation and local LLM planning.
   - Reads user command from `x-user-command` header.
   - Calls local Ollama model for action planning.
   - Validates generated action plan against `action-plan.schema.json`.
+  - Runs semantic validation gate before returning executable actions:
+    - block existence checks
+    - layer checks
+    - coordinate range checks
+    - attribute target/tag checks
   - Returns safe clarification response if command is missing, ambiguous, or model output is invalid.
+  - Returns 422 with per-action validation report when semantic rules fail.
 
 ## Local run
 

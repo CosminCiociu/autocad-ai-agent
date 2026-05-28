@@ -58,13 +58,13 @@ Acest TODO operationalizeaza arhitectura din README in pasi concreti, executabil
 
 ## 4) Validation Gate (obligatoriu inainte de executie)
 
-- [ ] Implementeaza validare semantica pentru fiecare actiune:
-  - [ ] block exista in librarie
-  - [ ] layer permis
-  - [ ] coordonate in limite
-  - [ ] valori atribute conforme
-- [ ] Blocheaza actiuni nepermise cu motive explicite.
-- [ ] Returneaza raport de validare per actiune.
+- [x] Implementeaza validare semantica pentru fiecare actiune:
+  - [x] block exista in librarie
+  - [x] layer permis
+  - [x] coordonate in limite
+  - [x] valori atribute conforme
+- [x] Blocheaza actiuni nepermise cu motive explicite.
+- [x] Returneaza raport de validare per actiune.
 
 ## 5) Flux cap-coada Plugin <-> AI
 

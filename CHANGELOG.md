@@ -23,3 +23,4 @@ The format is based on Keep a Changelog principles.
 - Deterministic planning flow with strict JSON parsing in `ai-server/planner.py`.
 - Safe fallback behavior in `POST /analyze` for missing/ambiguous commands and model failures.
 - AI server run and usage notes in `ai-server/README.md`.
+- Semantic validation gate in `ai-server/semantic_validation.py` with per-action error reporting.

@@ -8,6 +8,7 @@ from fastapi.responses import JSONResponse
 
 from ollama_client import OllamaClient
 from planner import ActionPlanner
+from semantic_validation import SemanticValidator
 from schema_validation import SchemaStore
 
 
@@ -20,6 +21,7 @@ ACTION_SCHEMA = "action-plan.schema.json"
 app = FastAPI(title="AutoCAD AI Server", version="0.1.0")
 schemas = SchemaStore(SCHEMA_DIR)
 planner = ActionPlanner(ollama=OllamaClient())
+semantic_validator = SemanticValidator()
 
 
 def build_error(
@@ -35,6 +37,13 @@ def build_error(
     if details:
         payload["error"]["details"] = details
     return payload
+
+
+def resolve_error_code(details: list[dict[str, Any]]) -> str:
+    codes = {str(item.get("code", "")) for item in details if item.get("code")}
+    if len(codes) == 1:
+        return next(iter(codes))
+    return "ACTION_ARGUMENT_INVALID"
 
 
 @app.get("/health")
@@ -140,6 +149,27 @@ async def analyze(request: Request) -> JSONResponse:
                 request_id=request_id,
                 code="SCHEMA_INVALID",
                 message="Generated action plan failed schema validation.",
+                details=details,
+            ),
+        )
+
+    semantic_issues = semantic_validator.validate(context_payload=payload, action_plan=action_plan)
+    if semantic_issues:
+        details = [
+            {
+                "action_id": i.action_id,
+                "path": i.path,
+                "code": i.code,
+                "message": i.message,
+            }
+            for i in semantic_issues
+        ]
+        return JSONResponse(
+            status_code=422,
+            content=build_error(
+                request_id=request_id,
+                code=resolve_error_code(details),
+                message="Action plan failed semantic validation.",
                 details=details,
             ),
         )
