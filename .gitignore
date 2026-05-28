@@ -32,3 +32,6 @@ Thumbs.db
 
 # Microsoft Word temporary lock files
 ~$*.docx
+
+# Fixtures (DWG test data)
+fixtures/
