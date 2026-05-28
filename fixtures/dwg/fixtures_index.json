@@ -1,0 +1,1331 @@
+{
+  "count": 78,
+  "entries": [
+    {
+      "dwg": "dwg\\edge\\01-04-2026\\ICS03_Plan sonorizare_KFL Chitila_rev 5.dwg",
+      "meta_path": "dwg\\edge\\01-04-2026\\ICS03_Plan sonorizare_KFL Chitila_rev 5.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "ICS03_Plan sonorizare_KFL Chitila_rev 5.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\01-04-2026\\ICS03_Plan sonorizare_KFL Chitila_rev 5.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\01-04-2026\\ICS09_Schema bloc_ Instalatie de control acces si antiefractie_Kaufland Chitila_rev 5.dwg",
+      "meta_path": "dwg\\edge\\01-04-2026\\ICS09_Schema bloc_ Instalatie de control acces si antiefractie_Kaufland Chitila_rev 5.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "ICS09_Schema bloc_ Instalatie de control acces si antiefractie_Kaufland Chitila_rev 5.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\01-04-2026\\ICS09_Schema bloc_ Instalatie de control acces si antiefractie_Kaufland Chitila_rev 5.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\03-04-2026\\NAVI RELEVEU + PROPUNERE REV 03_30.03.2026.dwg",
+      "meta_path": "dwg\\edge\\03-04-2026\\NAVI RELEVEU + PROPUNERE REV 03_30.03.2026.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "NAVI RELEVEU + PROPUNERE REV 03_30.03.2026.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\03-04-2026\\NAVI RELEVEU + PROPUNERE REV 03_30.03.2026.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\03-04-2026\\NAVI RELEVEU + PROPUNERE REV 03_30.03.2026_gri.dwg",
+      "meta_path": "dwg\\edge\\03-04-2026\\NAVI RELEVEU + PROPUNERE REV 03_30.03.2026_gri.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "NAVI RELEVEU + PROPUNERE REV 03_30.03.2026_gri.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\03-04-2026\\NAVI RELEVEU + PROPUNERE REV 03_30.03.2026_gri.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\05-02-2026\\Sectiune A-A.dwg",
+      "meta_path": "dwg\\edge\\05-02-2026\\Sectiune A-A.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "Sectiune A-A.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\05-02-2026\\Sectiune A-A.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\05-02-2026\\Sectiune B-B.dwg",
+      "meta_path": "dwg\\edge\\05-02-2026\\Sectiune B-B.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "Sectiune B-B.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\05-02-2026\\Sectiune B-B.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\05-02-2026\\Sectiune C-C.dwg",
+      "meta_path": "dwg\\edge\\05-02-2026\\Sectiune C-C.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "Sectiune C-C.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\05-02-2026\\Sectiune C-C.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\05-02-2026\\Sectiune D-D.dwg",
+      "meta_path": "dwg\\edge\\05-02-2026\\Sectiune D-D.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "Sectiune D-D.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\05-02-2026\\Sectiune D-D.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\10-02-2026\\backup.dwg",
+      "meta_path": "dwg\\edge\\10-02-2026\\backup.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "backup.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\10-02-2026\\backup.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\10-02-2026\\backup_recover.dwg",
+      "meta_path": "dwg\\edge\\10-02-2026\\backup_recover.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "backup_recover.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\10-02-2026\\backup_recover.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.15 - Mioveni pdf\\01.DWG+OFFICE\\02.Parte_desenata\\ICS01_ICS02_Plan detectie de incendiu_rev 0.dwg",
+      "meta_path": "dwg\\edge\\2026.05.15 - Mioveni pdf\\01.DWG+OFFICE\\02.Parte_desenata\\ICS01_ICS02_Plan detectie de incendiu_rev 0.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "ICS01_ICS02_Plan detectie de incendiu_rev 0.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.15 - Mioveni pdf\\01.DWG+OFFICE\\02.Parte_desenata\\ICS01_ICS02_Plan detectie de incendiu_rev 0.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.15 - Mioveni pdf\\De uploadat\\04.Instalatii_Curenti_Slabi\\01.DWG+OFFICE\\02.Parte_desenata\\ICS01_ICS02_Plan detectie de incendiu.dwg",
+      "meta_path": "dwg\\edge\\2026.05.15 - Mioveni pdf\\De uploadat\\04.Instalatii_Curenti_Slabi\\01.DWG+OFFICE\\02.Parte_desenata\\ICS01_ICS02_Plan detectie de incendiu.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "ICS01_ICS02_Plan detectie de incendiu.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.15 - Mioveni pdf\\De uploadat\\04.Instalatii_Curenti_Slabi\\01.DWG+OFFICE\\02.Parte_desenata\\ICS01_ICS02_Plan detectie de incendiu.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.18\\FD_030 - ARRANGEMENT PLAN_gri.dwg",
+      "meta_path": "dwg\\edge\\2026.05.18\\FD_030 - ARRANGEMENT PLAN_gri.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "FD_030 - ARRANGEMENT PLAN_gri.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.18\\FD_030 - ARRANGEMENT PLAN_gri.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.18\\FD_030 - ARRANGEMENT PLAN_rev1.dwg",
+      "meta_path": "dwg\\edge\\2026.05.18\\FD_030 - ARRANGEMENT PLAN_rev1.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "FD_030 - ARRANGEMENT PLAN_rev1.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.18\\FD_030 - ARRANGEMENT PLAN_rev1.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.25\\ICS03_Plan supraveghere video.dwg",
+      "meta_path": "dwg\\edge\\2026.05.25\\ICS03_Plan supraveghere video.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "ICS03_Plan supraveghere video.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.25\\ICS03_Plan supraveghere video.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.25\\OCH\\Arhitectura - 07.05.26.dwg",
+      "meta_path": "dwg\\edge\\2026.05.25\\OCH\\Arhitectura - 07.05.26.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "Arhitectura - 07.05.26.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.25\\OCH\\Arhitectura - 07.05.26.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.25\\OCH\\ICS01......ICS07_Instalatie de incendiu_rev 0.dwg",
+      "meta_path": "dwg\\edge\\2026.05.25\\OCH\\ICS01......ICS07_Instalatie de incendiu_rev 0.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "ICS01......ICS07_Instalatie de incendiu_rev 0.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.25\\OCH\\ICS01......ICS07_Instalatie de incendiu_rev 0.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.25\\OCH\\ICS08_ICS12_Instalatie de televiziuen cu circuti inchis_rev 0.dwg",
+      "meta_path": "dwg\\edge\\2026.05.25\\OCH\\ICS08_ICS12_Instalatie de televiziuen cu circuti inchis_rev 0.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "ICS08_ICS12_Instalatie de televiziuen cu circuti inchis_rev 0.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.25\\OCH\\ICS08_ICS12_Instalatie de televiziuen cu circuti inchis_rev 0.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.25\\OCH\\ICS13...ICS18_Instalatie de control acces_rev 0.dwg",
+      "meta_path": "dwg\\edge\\2026.05.25\\OCH\\ICS13...ICS18_Instalatie de control acces_rev 0.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "ICS13...ICS18_Instalatie de control acces_rev 0.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.25\\OCH\\ICS13...ICS18_Instalatie de control acces_rev 0.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.25\\OCH\\ICS19...ICS24_Cablare structurata, telefonie  si prize TV_rev 0.dwg",
+      "meta_path": "dwg\\edge\\2026.05.25\\OCH\\ICS19...ICS24_Cablare structurata, telefonie  si prize TV_rev 0.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "ICS19...ICS24_Cablare structurata, telefonie  si prize TV_rev 0.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.25\\OCH\\ICS19...ICS24_Cablare structurata, telefonie  si prize TV_rev 0.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.25\\OCH\\ICS25....ICS30_Apelare medicala_rev 0.dwg",
+      "meta_path": "dwg\\edge\\2026.05.25\\OCH\\ICS25....ICS30_Apelare medicala_rev 0.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "ICS25....ICS30_Apelare medicala_rev 0.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.25\\OCH\\ICS25....ICS30_Apelare medicala_rev 0.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.26\\00_26-05-14_ACTION STEFANESTI_PLAN DE SITUATIE - MASTERPLAN.dwg",
+      "meta_path": "dwg\\edge\\2026.05.26\\00_26-05-14_ACTION STEFANESTI_PLAN DE SITUATIE - MASTERPLAN.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "00_26-05-14_ACTION STEFANESTI_PLAN DE SITUATIE - MASTERPLAN.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.26\\00_26-05-14_ACTION STEFANESTI_PLAN DE SITUATIE - MASTERPLAN.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.26\\00_26-05-14_ACTION STEFANESTI_PLAN SISTEMATIZARE.dwg",
+      "meta_path": "dwg\\edge\\2026.05.26\\00_26-05-14_ACTION STEFANESTI_PLAN SISTEMATIZARE.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "00_26-05-14_ACTION STEFANESTI_PLAN SISTEMATIZARE.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.26\\00_26-05-14_ACTION STEFANESTI_PLAN SISTEMATIZARE.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.26\\01_26-05-22_ACTION STEFANESTI_PLAN PARTER HALA DEPOZITARE -  STORAGE WAREHOUSE GROUND FLOOR PLAN.dwg",
+      "meta_path": "dwg\\edge\\2026.05.26\\01_26-05-22_ACTION STEFANESTI_PLAN PARTER HALA DEPOZITARE -  STORAGE WAREHOUSE GROUND FLOOR PLAN.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "01_26-05-22_ACTION STEFANESTI_PLAN PARTER HALA DEPOZITARE -  STORAGE WAREHOUSE GROUND FLOOR PLAN.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.26\\01_26-05-22_ACTION STEFANESTI_PLAN PARTER HALA DEPOZITARE -  STORAGE WAREHOUSE GROUND FLOOR PLAN.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.26\\02_26-05-14_ACTION STEFANESTI_ PLAN PARTER HALA DEPOZITARE - ZONA BIROURI -  STORAGE WAREHOUSE GROUND FLOOR PLAN - OFFICE AREA.dwg",
+      "meta_path": "dwg\\edge\\2026.05.26\\02_26-05-14_ACTION STEFANESTI_ PLAN PARTER HALA DEPOZITARE - ZONA BIROURI -  STORAGE WAREHOUSE GROUND FLOOR PLAN - OFFICE AREA.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "02_26-05-14_ACTION STEFANESTI_ PLAN PARTER HALA DEPOZITARE - ZONA BIROURI -  STORAGE WAREHOUSE GROUND FLOOR PLAN - OFFICE AREA.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.26\\02_26-05-14_ACTION STEFANESTI_ PLAN PARTER HALA DEPOZITARE - ZONA BIROURI -  STORAGE WAREHOUSE GROUND FLOOR PLAN - OFFICE AREA.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.26\\03_26-05-14_ACTION STEFANESTI_PLAN PARTER HALA DEPOZITARE - COMPARTIMENTARI -  STORAGE WAREHOUSE GROUND FLOOR PARTITIONS PLAN.dwg",
+      "meta_path": "dwg\\edge\\2026.05.26\\03_26-05-14_ACTION STEFANESTI_PLAN PARTER HALA DEPOZITARE - COMPARTIMENTARI -  STORAGE WAREHOUSE GROUND FLOOR PARTITIONS PLAN.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "03_26-05-14_ACTION STEFANESTI_PLAN PARTER HALA DEPOZITARE - COMPARTIMENTARI -  STORAGE WAREHOUSE GROUND FLOOR PARTITIONS PLAN.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.26\\03_26-05-14_ACTION STEFANESTI_PLAN PARTER HALA DEPOZITARE - COMPARTIMENTARI -  STORAGE WAREHOUSE GROUND FLOOR PARTITIONS PLAN.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.26\\04_26-05-14_ACTION STEFANESTI_PLAN PARDOSELI PARTER - GF FLOOR FINISH PLAN.dwg",
+      "meta_path": "dwg\\edge\\2026.05.26\\04_26-05-14_ACTION STEFANESTI_PLAN PARDOSELI PARTER - GF FLOOR FINISH PLAN.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "04_26-05-14_ACTION STEFANESTI_PLAN PARDOSELI PARTER - GF FLOOR FINISH PLAN.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.26\\04_26-05-14_ACTION STEFANESTI_PLAN PARDOSELI PARTER - GF FLOOR FINISH PLAN.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.26\\05_26-05-14_ACTION STEFANESTI_ PLAN PLAFOANE PARTER - GROUND FLOOR CEILING PLAN.dwg",
+      "meta_path": "dwg\\edge\\2026.05.26\\05_26-05-14_ACTION STEFANESTI_ PLAN PLAFOANE PARTER - GROUND FLOOR CEILING PLAN.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "05_26-05-14_ACTION STEFANESTI_ PLAN PLAFOANE PARTER - GROUND FLOOR CEILING PLAN.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.26\\05_26-05-14_ACTION STEFANESTI_ PLAN PLAFOANE PARTER - GROUND FLOOR CEILING PLAN.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.26\\06_26-05-22_ACTION STEFANESTI_PLAN MEZANIN HALA DEPOZITARE - STORAGE WAREHOUSE FIRST FLOOR PLAN.dwg",
+      "meta_path": "dwg\\edge\\2026.05.26\\06_26-05-22_ACTION STEFANESTI_PLAN MEZANIN HALA DEPOZITARE - STORAGE WAREHOUSE FIRST FLOOR PLAN.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "06_26-05-22_ACTION STEFANESTI_PLAN MEZANIN HALA DEPOZITARE - STORAGE WAREHOUSE FIRST FLOOR PLAN.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.26\\06_26-05-22_ACTION STEFANESTI_PLAN MEZANIN HALA DEPOZITARE - STORAGE WAREHOUSE FIRST FLOOR PLAN.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.26\\07_26-05-14_ACTION STEFANESTI_PLAN MEZANIN HALA DEPOZITARE - ZONA BIROURI - STORAGE WAREHOUSE FIRST FLOOR PLAN - OFFICE AREA.dwg",
+      "meta_path": "dwg\\edge\\2026.05.26\\07_26-05-14_ACTION STEFANESTI_PLAN MEZANIN HALA DEPOZITARE - ZONA BIROURI - STORAGE WAREHOUSE FIRST FLOOR PLAN - OFFICE AREA.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "07_26-05-14_ACTION STEFANESTI_PLAN MEZANIN HALA DEPOZITARE - ZONA BIROURI - STORAGE WAREHOUSE FIRST FLOOR PLAN - OFFICE AREA.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.26\\07_26-05-14_ACTION STEFANESTI_PLAN MEZANIN HALA DEPOZITARE - ZONA BIROURI - STORAGE WAREHOUSE FIRST FLOOR PLAN - OFFICE AREA.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.26\\08_26-05-14_ACTION STEFANESTI_PLAN MEZANIN HALA DEPOZITARE - COMPARTIMENTARI - STORAGE WAREHOUSE FIRST FLOOR PARTITIONS PLAN.dwg",
+      "meta_path": "dwg\\edge\\2026.05.26\\08_26-05-14_ACTION STEFANESTI_PLAN MEZANIN HALA DEPOZITARE - COMPARTIMENTARI - STORAGE WAREHOUSE FIRST FLOOR PARTITIONS PLAN.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "08_26-05-14_ACTION STEFANESTI_PLAN MEZANIN HALA DEPOZITARE - COMPARTIMENTARI - STORAGE WAREHOUSE FIRST FLOOR PARTITIONS PLAN.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.26\\08_26-05-14_ACTION STEFANESTI_PLAN MEZANIN HALA DEPOZITARE - COMPARTIMENTARI - STORAGE WAREHOUSE FIRST FLOOR PARTITIONS PLAN.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.26\\09_26-05-14_ACTION STEFANESTI_PLAN PARDOSELI MEZANIN - 1F FLOOR FINISH PLAN.dwg",
+      "meta_path": "dwg\\edge\\2026.05.26\\09_26-05-14_ACTION STEFANESTI_PLAN PARDOSELI MEZANIN - 1F FLOOR FINISH PLAN.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "09_26-05-14_ACTION STEFANESTI_PLAN PARDOSELI MEZANIN - 1F FLOOR FINISH PLAN.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.26\\09_26-05-14_ACTION STEFANESTI_PLAN PARDOSELI MEZANIN - 1F FLOOR FINISH PLAN.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.26\\10_26-05-22_ACTION STEFANESTI_PLAN PLAFOANE MEZANIN - FIRST FLOOR CEILING PLAN.dwg",
+      "meta_path": "dwg\\edge\\2026.05.26\\10_26-05-22_ACTION STEFANESTI_PLAN PLAFOANE MEZANIN - FIRST FLOOR CEILING PLAN.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "10_26-05-22_ACTION STEFANESTI_PLAN PLAFOANE MEZANIN - FIRST FLOOR CEILING PLAN.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.26\\10_26-05-22_ACTION STEFANESTI_PLAN PLAFOANE MEZANIN - FIRST FLOOR CEILING PLAN.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.26\\11_26-05-22_ACTION STEFANESTI_PLAN INVELITOARE HALA DEPOZITARE - STORAGE WAREHOUSE ROOF PLAN.dwg",
+      "meta_path": "dwg\\edge\\2026.05.26\\11_26-05-22_ACTION STEFANESTI_PLAN INVELITOARE HALA DEPOZITARE - STORAGE WAREHOUSE ROOF PLAN.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "11_26-05-22_ACTION STEFANESTI_PLAN INVELITOARE HALA DEPOZITARE - STORAGE WAREHOUSE ROOF PLAN.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.26\\11_26-05-22_ACTION STEFANESTI_PLAN INVELITOARE HALA DEPOZITARE - STORAGE WAREHOUSE ROOF PLAN.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.26\\11_26-05-22_ACTION STEFANESTI_PLAN INVELITOARE HALA DEPOZITARE_GRI.dwg",
+      "meta_path": "dwg\\edge\\2026.05.26\\11_26-05-22_ACTION STEFANESTI_PLAN INVELITOARE HALA DEPOZITARE_GRI.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "11_26-05-22_ACTION STEFANESTI_PLAN INVELITOARE HALA DEPOZITARE_GRI.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.26\\11_26-05-22_ACTION STEFANESTI_PLAN INVELITOARE HALA DEPOZITARE_GRI.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.26\\12_26-05-14_ACTION STEFANESTI_SECTIUNE A-A HALA DEPOZITARE SI SECTIUNE B-B ZONA ADMINISTRATIVA - STORAGE WAREHOUSE A-A & B-B SECTIONS.dwg",
+      "meta_path": "dwg\\edge\\2026.05.26\\12_26-05-14_ACTION STEFANESTI_SECTIUNE A-A HALA DEPOZITARE SI SECTIUNE B-B ZONA ADMINISTRATIVA - STORAGE WAREHOUSE A-A & B-B SECTIONS.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "12_26-05-14_ACTION STEFANESTI_SECTIUNE A-A HALA DEPOZITARE SI SECTIUNE B-B ZONA ADMINISTRATIVA - STORAGE WAREHOUSE A-A & B-B SECTIONS.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.26\\12_26-05-14_ACTION STEFANESTI_SECTIUNE A-A HALA DEPOZITARE SI SECTIUNE B-B ZONA ADMINISTRATIVA - STORAGE WAREHOUSE A-A & B-B SECTIONS.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.26\\13_26-05-14_ACTION STEFANESTI_SECTIUNI C-C SI D-D HALA DEPOZITARE - STORAGE WAREHOUSE C-C & D-D SECTIONS.dwg",
+      "meta_path": "dwg\\edge\\2026.05.26\\13_26-05-14_ACTION STEFANESTI_SECTIUNI C-C SI D-D HALA DEPOZITARE - STORAGE WAREHOUSE C-C & D-D SECTIONS.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "13_26-05-14_ACTION STEFANESTI_SECTIUNI C-C SI D-D HALA DEPOZITARE - STORAGE WAREHOUSE C-C & D-D SECTIONS.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.26\\13_26-05-14_ACTION STEFANESTI_SECTIUNI C-C SI D-D HALA DEPOZITARE - STORAGE WAREHOUSE C-C & D-D SECTIONS.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.26\\14_26-05-22_ACTION STEFANESTI_SECTIUNI - SECTIONS.dwg",
+      "meta_path": "dwg\\edge\\2026.05.26\\14_26-05-22_ACTION STEFANESTI_SECTIUNI - SECTIONS.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "14_26-05-22_ACTION STEFANESTI_SECTIUNI - SECTIONS.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.26\\14_26-05-22_ACTION STEFANESTI_SECTIUNI - SECTIONS.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.26\\15_26-05-14_ACTION STEFANESTI_FATADE GENERALE HALA DEPOZITARE - STORAGE WAREHOUSE GENERAL ELEVATIONS.dwg",
+      "meta_path": "dwg\\edge\\2026.05.26\\15_26-05-14_ACTION STEFANESTI_FATADE GENERALE HALA DEPOZITARE - STORAGE WAREHOUSE GENERAL ELEVATIONS.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "15_26-05-14_ACTION STEFANESTI_FATADE GENERALE HALA DEPOZITARE - STORAGE WAREHOUSE GENERAL ELEVATIONS.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.26\\15_26-05-14_ACTION STEFANESTI_FATADE GENERALE HALA DEPOZITARE - STORAGE WAREHOUSE GENERAL ELEVATIONS.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.26\\16_26-05-14_ACTION STEFANESTI_CASA POARTA - GATE HOUSE.dwg",
+      "meta_path": "dwg\\edge\\2026.05.26\\16_26-05-14_ACTION STEFANESTI_CASA POARTA - GATE HOUSE.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "16_26-05-14_ACTION STEFANESTI_CASA POARTA - GATE HOUSE.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.26\\16_26-05-14_ACTION STEFANESTI_CASA POARTA - GATE HOUSE.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.26\\17_26-05-14_ACTION STEFANESTI_GOSPODARIE DE INCENDIU - PUMP HOUSE.dwg",
+      "meta_path": "dwg\\edge\\2026.05.26\\17_26-05-14_ACTION STEFANESTI_GOSPODARIE DE INCENDIU - PUMP HOUSE.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "17_26-05-14_ACTION STEFANESTI_GOSPODARIE DE INCENDIU - PUMP HOUSE.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.26\\17_26-05-14_ACTION STEFANESTI_GOSPODARIE DE INCENDIU - PUMP HOUSE.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.26\\instalatii\\VOCE DATE, CONTROL ACCES, SECURITATE_11.05.2026.dwg",
+      "meta_path": "dwg\\edge\\2026.05.26\\instalatii\\VOCE DATE, CONTROL ACCES, SECURITATE_11.05.2026.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "VOCE DATE, CONTROL ACCES, SECURITATE_11.05.2026.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.26\\instalatii\\VOCE DATE, CONTROL ACCES, SECURITATE_11.05.2026.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\2026.05.26\\instalatii\\VOCE DATE, CONTROL ACCES, SECURITATE_11.05.2026_rev3.dwg",
+      "meta_path": "dwg\\edge\\2026.05.26\\instalatii\\VOCE DATE, CONTROL ACCES, SECURITATE_11.05.2026_rev3.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "VOCE DATE, CONTROL ACCES, SECURITATE_11.05.2026_rev3.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.05.26\\instalatii\\VOCE DATE, CONTROL ACCES, SECURITATE_11.05.2026_rev3.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\31-03-2026\\ICS07_Schema bloc instalatie de detectie incendiu Kaufland Chitila_rev 5.dwg",
+      "meta_path": "dwg\\edge\\31-03-2026\\ICS07_Schema bloc instalatie de detectie incendiu Kaufland Chitila_rev 5.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "ICS07_Schema bloc instalatie de detectie incendiu Kaufland Chitila_rev 5.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\31-03-2026\\ICS07_Schema bloc instalatie de detectie incendiu Kaufland Chitila_rev 5.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Milea-arch\\04.Instalatii_Curenti slabi\\01.DWG&OFFICE\\02.Partea desenata\\01.Detectie incendiu\\01.OCH_CpD_30.01.26_Incendiu.dwg",
+      "meta_path": "dwg\\edge\\Milea-arch\\04.Instalatii_Curenti slabi\\01.DWG&OFFICE\\02.Partea desenata\\01.Detectie incendiu\\01.OCH_CpD_30.01.26_Incendiu.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "01.OCH_CpD_30.01.26_Incendiu.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Milea-arch\\04.Instalatii_Curenti slabi\\01.DWG&OFFICE\\02.Partea desenata\\01.Detectie incendiu\\01.OCH_CpD_30.01.26_Incendiu.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Milea-arch\\04.Instalatii_Curenti slabi\\01.DWG&OFFICE\\02.Partea desenata\\02.Supraveghere-video\\01.OCH_CpD_30.01.26_CCTV.dwg",
+      "meta_path": "dwg\\edge\\Milea-arch\\04.Instalatii_Curenti slabi\\01.DWG&OFFICE\\02.Partea desenata\\02.Supraveghere-video\\01.OCH_CpD_30.01.26_CCTV.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "01.OCH_CpD_30.01.26_CCTV.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Milea-arch\\04.Instalatii_Curenti slabi\\01.DWG&OFFICE\\02.Partea desenata\\02.Supraveghere-video\\01.OCH_CpD_30.01.26_CCTV.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Milea-arch\\04.Instalatii_Curenti slabi\\01.DWG&OFFICE\\02.Partea desenata\\03.Control-acces\\01.OCH_CpD_30.01.26_CA.dwg",
+      "meta_path": "dwg\\edge\\Milea-arch\\04.Instalatii_Curenti slabi\\01.DWG&OFFICE\\02.Partea desenata\\03.Control-acces\\01.OCH_CpD_30.01.26_CA.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "01.OCH_CpD_30.01.26_CA.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Milea-arch\\04.Instalatii_Curenti slabi\\01.DWG&OFFICE\\02.Partea desenata\\03.Control-acces\\01.OCH_CpD_30.01.26_CA.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Milea-arch\\04.Instalatii_Curenti slabi\\01.DWG&OFFICE\\02.Partea desenata\\04.Voce-date\\01.OCH_CpD_30.01.26_Voce-date.dwg",
+      "meta_path": "dwg\\edge\\Milea-arch\\04.Instalatii_Curenti slabi\\01.DWG&OFFICE\\02.Partea desenata\\04.Voce-date\\01.OCH_CpD_30.01.26_Voce-date.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "01.OCH_CpD_30.01.26_Voce-date.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Milea-arch\\04.Instalatii_Curenti slabi\\01.DWG&OFFICE\\02.Partea desenata\\04.Voce-date\\01.OCH_CpD_30.01.26_Voce-date.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Milea-arch\\04.Instalatii_Curenti slabi\\01.DWG&OFFICE\\02.Partea desenata\\05.Apelare medicala\\01.OCH_CpD_30.01.26_Apelare medicala.dwg",
+      "meta_path": "dwg\\edge\\Milea-arch\\04.Instalatii_Curenti slabi\\01.DWG&OFFICE\\02.Partea desenata\\05.Apelare medicala\\01.OCH_CpD_30.01.26_Apelare medicala.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "01.OCH_CpD_30.01.26_Apelare medicala.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Milea-arch\\04.Instalatii_Curenti slabi\\01.DWG&OFFICE\\02.Partea desenata\\05.Apelare medicala\\01.OCH_CpD_30.01.26_Apelare medicala.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Milea-arch\\old\\rtbp\\01.OCH_CpD_30.01.26_Apelare medicala.dwg",
+      "meta_path": "dwg\\edge\\Milea-arch\\old\\rtbp\\01.OCH_CpD_30.01.26_Apelare medicala.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "01.OCH_CpD_30.01.26_Apelare medicala.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Milea-arch\\old\\rtbp\\01.OCH_CpD_30.01.26_Apelare medicala.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Milea-arch\\old\\rtbp\\01.OCH_CpD_30.01.26_CA.dwg",
+      "meta_path": "dwg\\edge\\Milea-arch\\old\\rtbp\\01.OCH_CpD_30.01.26_CA.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "01.OCH_CpD_30.01.26_CA.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Milea-arch\\old\\rtbp\\01.OCH_CpD_30.01.26_CA.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Milea-arch\\old\\rtbp\\01.OCH_CpD_30.01.26_CCTV.dwg",
+      "meta_path": "dwg\\edge\\Milea-arch\\old\\rtbp\\01.OCH_CpD_30.01.26_CCTV.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "01.OCH_CpD_30.01.26_CCTV.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Milea-arch\\old\\rtbp\\01.OCH_CpD_30.01.26_CCTV.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Milea-arch\\old\\rtbp\\01.OCH_CpD_30.01.26_Incendiu.dwg",
+      "meta_path": "dwg\\edge\\Milea-arch\\old\\rtbp\\01.OCH_CpD_30.01.26_Incendiu.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "01.OCH_CpD_30.01.26_Incendiu.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Milea-arch\\old\\rtbp\\01.OCH_CpD_30.01.26_Incendiu.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Milea-arch\\old\\rtbp\\01.OCH_CpD_30.01.26_Voce-date.dwg",
+      "meta_path": "dwg\\edge\\Milea-arch\\old\\rtbp\\01.OCH_CpD_30.01.26_Voce-date.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "01.OCH_CpD_30.01.26_Voce-date.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Milea-arch\\old\\rtbp\\01.OCH_CpD_30.01.26_Voce-date.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Milea-arch\\old\\rtbp\\ICS07_Plan instalatii de securitate demisol.dwg",
+      "meta_path": "dwg\\edge\\Milea-arch\\old\\rtbp\\ICS07_Plan instalatii de securitate demisol.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "ICS07_Plan instalatii de securitate demisol.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Milea-arch\\old\\rtbp\\ICS07_Plan instalatii de securitate demisol.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A101 - Plan de situatie_06.11.2025 Rev.4.dwg",
+      "meta_path": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A101 - Plan de situatie_06.11.2025 Rev.4.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "4020 KFL Chitila - A101 - Plan de situatie_06.11.2025 Rev.4.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Old\\01. Editabil\\4020 KFL Chitila - A101 - Plan de situatie_06.11.2025 Rev.4.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A101.3 - Plan de trasare.dwg",
+      "meta_path": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A101.3 - Plan de trasare.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "4020 KFL Chitila - A101.3 - Plan de trasare.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Old\\01. Editabil\\4020 KFL Chitila - A101.3 - Plan de trasare.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A102 - PLAN PARTER, PLAN ETAJ PARTIAL_rev.2.dwg",
+      "meta_path": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A102 - PLAN PARTER, PLAN ETAJ PARTIAL_rev.2.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "4020 KFL Chitila - A102 - PLAN PARTER, PLAN ETAJ PARTIAL_rev.2.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Old\\01. Editabil\\4020 KFL Chitila - A102 - PLAN PARTER, PLAN ETAJ PARTIAL_rev.2.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A102 - PLAN PARTER, PLAN ETAJ PARTIAL_rev.2_GRI.dwg",
+      "meta_path": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A102 - PLAN PARTER, PLAN ETAJ PARTIAL_rev.2_GRI.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "4020 KFL Chitila - A102 - PLAN PARTER, PLAN ETAJ PARTIAL_rev.2_GRI.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Old\\01. Editabil\\4020 KFL Chitila - A102 - PLAN PARTER, PLAN ETAJ PARTIAL_rev.2_GRI.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A103 - PLAN ETAJ TEHNIC rev.2.dwg",
+      "meta_path": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A103 - PLAN ETAJ TEHNIC rev.2.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "4020 KFL Chitila - A103 - PLAN ETAJ TEHNIC rev.2.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Old\\01. Editabil\\4020 KFL Chitila - A103 - PLAN ETAJ TEHNIC rev.2.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A104 - PLAN ACOPERIS rev.2.dwg",
+      "meta_path": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A104 - PLAN ACOPERIS rev.2.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "4020 KFL Chitila - A104 - PLAN ACOPERIS rev.2.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Old\\01. Editabil\\4020 KFL Chitila - A104 - PLAN ACOPERIS rev.2.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A104 - PLAN ACOPERIS rev.2_GRI.dwg",
+      "meta_path": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A104 - PLAN ACOPERIS rev.2_GRI.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "4020 KFL Chitila - A104 - PLAN ACOPERIS rev.2_GRI.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Old\\01. Editabil\\4020 KFL Chitila - A104 - PLAN ACOPERIS rev.2_GRI.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A105 - STEREOTOMII TAVANE rev.2.dwg",
+      "meta_path": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A105 - STEREOTOMII TAVANE rev.2.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "4020 KFL Chitila - A105 - STEREOTOMII TAVANE rev.2.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Old\\01. Editabil\\4020 KFL Chitila - A105 - STEREOTOMII TAVANE rev.2.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A106 - STEREOTOMIE PARDOSELI_rev.1.dwg",
+      "meta_path": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A106 - STEREOTOMIE PARDOSELI_rev.1.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "4020 KFL Chitila - A106 - STEREOTOMIE PARDOSELI_rev.1.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Old\\01. Editabil\\4020 KFL Chitila - A106 - STEREOTOMIE PARDOSELI_rev.1.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A107 - PLAN PROTECTII.dwg",
+      "meta_path": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A107 - PLAN PROTECTII.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "4020 KFL Chitila - A107 - PLAN PROTECTII.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Old\\01. Editabil\\4020 KFL Chitila - A107 - PLAN PROTECTII.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A108 - PLAN FINISAJE.dwg",
+      "meta_path": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A108 - PLAN FINISAJE.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "4020 KFL Chitila - A108 - PLAN FINISAJE.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Old\\01. Editabil\\4020 KFL Chitila - A108 - PLAN FINISAJE.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A109 - BRUTARIE.dwg",
+      "meta_path": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A109 - BRUTARIE.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "4020 KFL Chitila - A109 - BRUTARIE.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Old\\01. Editabil\\4020 KFL Chitila - A109 - BRUTARIE.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A110 - VANZARE ASISTATA.dwg",
+      "meta_path": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A110 - VANZARE ASISTATA.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "4020 KFL Chitila - A110 - VANZARE ASISTATA.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Old\\01. Editabil\\4020 KFL Chitila - A110 - VANZARE ASISTATA.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A111 - CONCESIONAR SINSAY rev.2.dwg",
+      "meta_path": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A111 - CONCESIONAR SINSAY rev.2.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "4020 KFL Chitila - A111 - CONCESIONAR SINSAY rev.2.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Old\\01. Editabil\\4020 KFL Chitila - A111 - CONCESIONAR SINSAY rev.2.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A201 - FATADE rev.2.dwg",
+      "meta_path": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A201 - FATADE rev.2.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "4020 KFL Chitila - A201 - FATADE rev.2.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Old\\01. Editabil\\4020 KFL Chitila - A201 - FATADE rev.2.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A301 - SECTIUNI.dwg",
+      "meta_path": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A301 - SECTIUNI.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "4020 KFL Chitila - A301 - SECTIUNI.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Old\\01. Editabil\\4020 KFL Chitila - A301 - SECTIUNI.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A400_A500 - Tablou tamplarii.dwg",
+      "meta_path": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A400_A500 - Tablou tamplarii.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "4020 KFL Chitila - A400_A500 - Tablou tamplarii.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Old\\01. Editabil\\4020 KFL Chitila - A400_A500 - Tablou tamplarii.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A601-602 - Tablou tamplarie PRF2, Detaliu montaj.dwg",
+      "meta_path": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A601-602 - Tablou tamplarie PRF2, Detaliu montaj.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "4020 KFL Chitila - A601-602 - Tablou tamplarie PRF2, Detaliu montaj.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Old\\01. Editabil\\4020 KFL Chitila - A601-602 - Tablou tamplarie PRF2, Detaliu montaj.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A701 - Panotaj alucobond.dwg",
+      "meta_path": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - A701 - Panotaj alucobond.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "4020 KFL Chitila - A701 - Panotaj alucobond.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Old\\01. Editabil\\4020 KFL Chitila - A701 - Panotaj alucobond.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - B101 - Obiectiv 2 - Container Imbiss.dwg",
+      "meta_path": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - B101 - Obiectiv 2 - Container Imbiss.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "4020 KFL Chitila - B101 - Obiectiv 2 - Container Imbiss.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Old\\01. Editabil\\4020 KFL Chitila - B101 - Obiectiv 2 - Container Imbiss.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - B102 - Obiectiv 3 - Cort Imbiss.dwg",
+      "meta_path": "dwg\\edge\\Old\\01. Editabil\\4020 KFL Chitila - B102 - Obiectiv 3 - Cort Imbiss.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "4020 KFL Chitila - B102 - Obiectiv 3 - Cort Imbiss.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Old\\01. Editabil\\4020 KFL Chitila - B102 - Obiectiv 3 - Cort Imbiss.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\edge\\Old\\Tutu test 1.dwg",
+      "meta_path": "dwg\\edge\\Old\\Tutu test 1.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "Tutu test 1.dwg",
+        "description": "Imported from Projectare",
+        "tags": [
+          "edge",
+          "imported"
+        ],
+        "units": "unitless",
+        "coordinate_system": "WCS",
+        "source_path": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\Old\\Tutu test 1.dwg"
+      },
+      "meta_errors": []
+    },
+    {
+      "dwg": "dwg\\smoke\\Legenda_incendiu.dwg",
+      "meta_path": "dwg\\smoke\\Legenda_incendiu.dwg.meta.json",
+      "has_meta": true,
+      "meta": {
+        "filename": "Legenda_incendiu.dwg",
+        "description": "Smoke test: legenda incendiu (exemplu)",
+        "tags": [
+          "smoke",
+          "legend"
+        ],
+        "units": "mm",
+        "coordinate_system": "WCS",
+        "notes": "Metadata generata automat de assistant; ajusteaza daca e nevoie."
+      },
+      "meta_errors": []
+    }
+  ]
+}

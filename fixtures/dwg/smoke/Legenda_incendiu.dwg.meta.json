@@ -1,0 +1,11 @@
+{
+    "filename": "Legenda_incendiu.dwg",
+    "description": "Smoke test: legenda incendiu (exemplu)",
+    "tags": [
+        "smoke",
+        "legend"
+    ],
+    "units": "mm",
+    "coordinate_system": "WCS",
+    "notes": "Metadata generata automat de assistant; ajusteaza daca e nevoie."
+}
