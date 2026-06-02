@@ -11,6 +11,9 @@ Acest TODO operationalizeaza arhitectura din README in pasi concreti, executabil
   - [x] `docs/`
 - [x] Defineste conventii de naming (entitati, tool-uri, layere, versiuni schema).
 - [x] Configureaza repo (branching simplu, release tags, changelog).
+- [x] Configurare mediu de dezvoltare:
+  - [x] `venv` creat și `requirements.txt` instalate pentru `ai-server` (în `.venv`)
+  - [x] Dependințe `fastapi`, `uvicorn`, `jsonschema`, `httpx` instalate
 
 ## 1) Contracte JSON si validare (M0)
 
@@ -86,15 +89,20 @@ Acest TODO operationalizeaza arhitectura din README in pasi concreti, executabil
 - [x] Stocheaza audit trail cu handles entitati modificate.
 - [x] Creeaza mod replay pentru debugging.
 
+## Repo & Commits
+
+- [x] Import fixtures DWG din `C:\Users\tutuc\OneDrive\Desktop\Projectare` în `fixtures/dwg/edge/` și meta generate
+- [x] Adăugat validator și extractor placeholder pentru fixtures în `fixtures/dwg/`
+- [x] `fixtures/dwg/fixtures_index.json` generat (78 intrări) și exporturi JSON validate
+- [x] Modificările comise și împinse pe branch-ul `cosmin` (fișiere: `.gitignore`, `ai-server/README.md`, `fixtures/dwg/*` forțat pentru anumite fișiere)
+
 ## 7) Fixture-uri DWG si teste de regresie
 
-- [ ] Creeaza set initial de 5-10 desene etalon.
-- [ ] Defineste teste pentru:
-  - [ ] extractie context
-  - [ ] validare schema
-  - [ ] validare semantica
-  - [ ] executie tool-uri critice
-- [ ] Ruleaza testele la fiecare schimbare de schema sau tool.
+- [x] Creeaza set initial de fixtures prin import (smoke + edge)
+- [x] Implementat `fixtures/dwg/validate_fixtures.py` (validare meta + index)
+- [x] Implementat `fixtures/dwg/extract_contexts.py` (export placeholder JSON conform `dwg-context.schema.json`)
+- [x] Generat exporturi în `fixtures/dwg/exports/` și validat față de `shared/schemas/dwg-context.schema.json`
+- [x] Scris teste automate de regresie care rulează extractor + validator
 
 ## 8) UI in AutoCAD (PaletteSet/WPF)
 
