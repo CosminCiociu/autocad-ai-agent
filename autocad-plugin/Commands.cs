@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Threading.Tasks;
 
 // This is a lightweight scaffold for an AutoCAD plugin command that
 // extracts drawing context and writes it to a JSON file. Replace the
@@ -10,8 +9,15 @@ namespace AutoCADPlugin
 {
     public static class Commands
     {
+        // Entry point called by user: AI_PING
+        public static int AiPing()
+        {
+            Console.WriteLine("AI plugin alive and ready.");
+            return 0;
+        }
+
         // Entry point called by user: AI_EXTRACT
-        // Example usage (pseudo): (command) AI_EXTRACT C:\temp\out.json
+        // Example usage (pseudo): AI_EXTRACT C:\temp\out.json
         public static int AiExtract(string outPath)
         {
             try

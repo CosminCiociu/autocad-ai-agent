@@ -15,22 +15,34 @@ namespace AutoCADPlugin
 
     public record PolylineEntity(string Handle, string Layer, bool Closed, List<Point2D> Vertices);
 
+    public record DwgDrawing(string Name, string Units, string CoordinateSystem);
+
+    public record DwgContext(
+        string SchemaVersion,
+        string RequestId,
+        DwgDrawing Drawing,
+        List<BlockRef> Blocks,
+        List<TextEntity> Texts,
+        List<LineEntity> Lines,
+        List<PolylineEntity> Polylines
+    );
+
     public static class BlockReader
     {
-        // TODO: Replace placeholder logic with AutoCAD API calls (Application.DocumentManager, Transaction, BlockTableRecord, DBObject casts etc.)
-        public static object ExtractContext()
+        // TODO: Replace placeholder logic with AutoCAD API calls.
+        // In AutoCAD .NET, use Transaction, BlockTable, BlockTableRecord, BlockReference,
+        // DBText/MText, Line, Polyline, and transformation to WCS.
+        public static DwgContext ExtractContext()
         {
-            // Return an anonymous object matching shared/schemas/dwg-context.schema.json
-            var ctx = new
-            {
-                schema_version = "1.0.0",
-                request_id = Guid.NewGuid().ToString(),
-                drawing = new { name = "unknown", units = "unitless", coordinate_system = "WCS" },
-                blocks = new List<object>(),
-                texts = new List<object>(),
-                lines = new List<object>(),
-                polylines = new List<object>()
-            };
+            var ctx = new DwgContext(
+                SchemaVersion: "1.0.0",
+                RequestId: Guid.NewGuid().ToString(),
+                Drawing: new DwgDrawing(Name: "unknown", Units: "unitless", CoordinateSystem: "WCS"),
+                Blocks: new List<BlockRef>(),
+                Texts: new List<TextEntity>(),
+                Lines: new List<LineEntity>(),
+                Polylines: new List<PolylineEntity>()
+            );
 
             return ctx;
         }
