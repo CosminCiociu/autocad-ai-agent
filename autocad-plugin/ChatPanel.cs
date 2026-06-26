@@ -164,6 +164,11 @@ namespace AutoCADPlugin
 
         private void LogChatMessage(string sender, string message)
         {
+            if (message == null)
+            {
+                message = string.Empty;
+            }
+
             var chatMessage = new ChatMessage(sender, message, DateTime.Now);
             _messages.Add(chatMessage);
             AppendMessage(chatMessage);
@@ -186,7 +191,7 @@ namespace AutoCADPlugin
 
         private void ProcessPrompt(string? prompt)
         {
-            if (string.IsNullOrWhiteSpace(prompt))
+            if (prompt is null || string.IsNullOrWhiteSpace(prompt))
             {
                 return;
             }
@@ -200,8 +205,7 @@ namespace AutoCADPlugin
                 return;
             }
 
-            var ctx = BlockReader.ExtractContext();
-            var response = SendChatRequest(serverUrl, ctx);
+            var response = SendChatRequest(serverUrl, prompt);
             if (response != null)
             {
                 _lastActionPlan = response.ActionPlan;
@@ -355,16 +359,21 @@ namespace AutoCADPlugin
             return null;
         }
 
-        private ChatResponse? SendChatRequest(string serverUrl, DwgContext context)
+        private ChatResponse? SendChatRequest(string serverUrl, string prompt)
         {
             try
             {
+                var ctx = BlockReader.ExtractContext();
+                LogSystemMessage("Extracted DWG context for AI request.");
+
                 using var client = new AiServerClient(serverUrl);
                 var history = _messages
                     .Where(m => m.Role == "user" || m.Role == "assistant" || m.Role == "system")
                     .Select(m => new ChatHistoryEntry(m.Role, m.Content))
                     .ToList();
-                return client.Chat(context, history);
+                history.Add(new ChatHistoryEntry("user", prompt ?? string.Empty));
+
+                return client.Chat(ctx, history);
             }
             catch (Exception ex)
             {

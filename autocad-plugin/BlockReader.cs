@@ -13,13 +13,18 @@ namespace AutoCADPlugin
         [property: JsonProperty("y")] double Y
     );
 
+    public record BlockAttribute(
+        [property: JsonProperty("tag")] string Tag,
+        [property: JsonProperty("value")] string Value
+    );
+
     public record BlockRef(
         [property: JsonProperty("handle")] string Handle,
         [property: JsonProperty("name")] string Name,
         [property: JsonProperty("layer")] string Layer,
         [property: JsonProperty("position")] Point2D Position,
         [property: JsonProperty("rotation_deg")] double RotationDeg,
-        [property: JsonProperty("attributes")] Dictionary<string, string>? Attributes
+        [property: JsonProperty("attributes")] List<BlockAttribute>? Attributes
     );
 
     public record TextEntity(
@@ -162,37 +167,20 @@ namespace AutoCADPlugin
                 UnitsValue.Millimeters => "mm",
                 UnitsValue.Centimeters => "cm",
                 UnitsValue.Meters => "m",
-                UnitsValue.Miles => "mile",
-                UnitsValue.Kilometers => "km",
-                UnitsValue.Microns => "micron",
-                UnitsValue.Nanometers => "nm",
-                UnitsValue.Mils => "mil",
-                UnitsValue.Yards => "yard",
-                UnitsValue.Decimeters => "dm",
-                UnitsValue.Dekameters => "dam",
-                UnitsValue.Hectometers => "hm",
-                UnitsValue.Gigameters => "Gm",
-                UnitsValue.Astronomical => "AU",
-                UnitsValue.LightYears => "ly",
-                UnitsValue.Parsecs => "pc",
-                UnitsValue.USSurveyFeet => "foot_survey",
-                UnitsValue.USSurveyInch => "inch_survey",
-                UnitsValue.USSurveyYard => "yard_survey",
-                UnitsValue.USSurveyMile => "mile_survey",
                 _ => "unitless",
             };
         }
 
         private static BlockRef BuildBlockRef(BlockReference blockRef, Transaction tr)
         {
-            var attributes = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            var attributes = new List<BlockAttribute>();
             if (blockRef.AttributeCollection != null)
             {
                 foreach (ObjectId attId in blockRef.AttributeCollection)
                 {
                     var att = tr.GetObject(attId, OpenMode.ForRead) as AttributeReference;
                     if (att == null) continue;
-                    attributes[att.Tag] = att.TextString;
+                    attributes.Add(new BlockAttribute(Tag: att.Tag, Value: att.TextString));
                 }
             }
 
