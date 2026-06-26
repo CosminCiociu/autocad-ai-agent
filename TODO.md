@@ -34,7 +34,8 @@ Acest TODO operationalizeaza arhitectura din README in pasi concreti, executabil
 
 ## 2) AutoCAD Plugin (C#/.NET)
 
-- [ ] Creeaza comanda de test in AutoCAD (ex: `AI_PING`).
+- [x] Creeaza comanda de test in AutoCAD (ex: `AI_PING`).
+- [x] Creeaza comenzi plugin: `AI_PING`, `AI_EXTRACT`, `AI_ANALYZE`, `AI_EXECUTE`.
 - [ ] Implementeaza extractor DWG:
   - [ ] citire block references
   - [ ] citire texte
@@ -43,9 +44,11 @@ Acest TODO operationalizeaza arhitectura din README in pasi concreti, executabil
 - [ ] Normalizeaza coordonate (WCS) in payload.
 - [ ] Serializeaza context in JSON conform schemei.
 - [ ] Implementeaza executor de actiuni:
-  - [ ] mapare action type -> handler
+  - [x] mapare action type -> handler
   - [ ] tranzactii AutoCAD cu rollback la eroare
-  - [ ] jurnalizare per entitate (before/after)
+  - [x] jurnalizare per entitate (before/after)
+  - [x] preview/execution report structurat
+  - [x] `find_entities` pe contextul extras
 
 ## 3) AI Server (Python/FastAPI)
 
@@ -71,7 +74,7 @@ Acest TODO operationalizeaza arhitectura din README in pasi concreti, executabil
 
 ## 5) Flux cap-coada Plugin <-> AI
 
-- [ ] Plugin trimite context JSON la `POST /analyze`.
+- [x] Plugin trimite context JSON la `POST /analyze`.
 - [ ] AI server returneaza lista de actiuni + justificare scurta.
 - [ ] Plugin ruleaza preview (highlight) inainte de commit.
 - [ ] Utilizatorul confirma executia.

@@ -1,30 +1,61 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 // Placeholder extractor: populate these objects by integrating with AutoCAD's .NET API.
 
 namespace AutoCADPlugin
 {
-    public record Point2D(double X, double Y);
+    public record Point2D(
+        [property: JsonProperty("x")] double X,
+        [property: JsonProperty("y")] double Y
+    );
 
-    public record BlockRef(string Handle, string Name, string Layer, Point2D Position, double RotationDeg, Dictionary<string, string>? Attributes);
+    public record BlockRef(
+        [property: JsonProperty("handle")] string Handle,
+        [property: JsonProperty("name")] string Name,
+        [property: JsonProperty("layer")] string Layer,
+        [property: JsonProperty("position")] Point2D Position,
+        [property: JsonProperty("rotation_deg")] double RotationDeg,
+        [property: JsonProperty("attributes")] Dictionary<string, string>? Attributes
+    );
 
-    public record TextEntity(string Handle, string Value, string Layer, Point2D Position, double? Height);
+    public record TextEntity(
+        [property: JsonProperty("handle")] string Handle,
+        [property: JsonProperty("value")] string Value,
+        [property: JsonProperty("layer")] string Layer,
+        [property: JsonProperty("position")] Point2D Position,
+        [property: JsonProperty("height")] double? Height
+    );
 
-    public record LineEntity(string Handle, string Layer, Point2D Start, Point2D End);
+    public record LineEntity(
+        [property: JsonProperty("handle")] string Handle,
+        [property: JsonProperty("layer")] string Layer,
+        [property: JsonProperty("start")] Point2D Start,
+        [property: JsonProperty("end")] Point2D End
+    );
 
-    public record PolylineEntity(string Handle, string Layer, bool Closed, List<Point2D> Vertices);
+    public record PolylineEntity(
+        [property: JsonProperty("handle")] string Handle,
+        [property: JsonProperty("layer")] string Layer,
+        [property: JsonProperty("closed")] bool Closed,
+        [property: JsonProperty("vertices")] List<Point2D> Vertices
+    );
 
-    public record DwgDrawing(string Name, string Units, string CoordinateSystem);
+    public record DwgDrawing(
+        [property: JsonProperty("name")] string Name,
+        [property: JsonProperty("units")] string Units,
+        [property: JsonProperty("coordinate_system")] string CoordinateSystem
+    );
 
     public record DwgContext(
-        string SchemaVersion,
-        string RequestId,
-        DwgDrawing Drawing,
-        List<BlockRef> Blocks,
-        List<TextEntity> Texts,
-        List<LineEntity> Lines,
-        List<PolylineEntity> Polylines
+        [property: JsonProperty("schema_version")] string SchemaVersion,
+        [property: JsonProperty("request_id")] string RequestId,
+        [property: JsonProperty("drawing")] DwgDrawing Drawing,
+        [property: JsonProperty("blocks")] List<BlockRef> Blocks,
+        [property: JsonProperty("texts")] List<TextEntity> Texts,
+        [property: JsonProperty("lines")] List<LineEntity> Lines,
+        [property: JsonProperty("polylines")] List<PolylineEntity> Polylines
     );
 
     public static class BlockReader

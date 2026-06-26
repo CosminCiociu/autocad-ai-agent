@@ -1,0 +1,18 @@
+{
+    "schema_version": "1.0.0",
+    "request_id": "sample-001",
+    "summary": "Test find_entities action",
+    "needs_clarification": false,
+    "actions": [
+        {
+            "id": "action-1",
+            "type": "find_entities",
+            "reason": "Search for text entities on layer A",
+            "args": {
+                "entity_type": "text",
+                "layer": "A",
+                "text_contains": "door"
+            }
+        }
+    ]
+}

@@ -1,9 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <!-- Note: Adjust TargetFramework to the one required by your AutoCAD version (e.g. net48) -->
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net48</TargetFramework>
         <OutputType>Library</OutputType>
+        <PlatformTarget>x64</PlatformTarget>
+        <LangVersion>latest</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
@@ -11,6 +12,29 @@
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
         <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.16" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="System.Net.Http" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="test-runner\**\*.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="AcCoreMgd">
+            <HintPath>C:\Program Files\Autodesk\AutoCAD 2024\accoremgd.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="AcDbMgd">
+            <HintPath>C:\Program Files\Autodesk\AutoCAD 2024\acdbmgd.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="AcMgd">
+            <HintPath>C:\Program Files\Autodesk\AutoCAD 2024\acmgd.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
     </ItemGroup>
 
 </Project>
