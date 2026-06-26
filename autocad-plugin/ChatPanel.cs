@@ -21,6 +21,8 @@ namespace AutoCADPlugin
         private readonly RichTextBox _historyBox;
         private readonly TextBox _serverUrlBox;
         private readonly TextBox _schemaDirBox;
+        private readonly Button _healthButton;
+        private readonly Label _statusLabel;
         private readonly List<ChatMessage> _messages;
         private readonly string _sessionPath;
         private ActionPlan? _lastActionPlan;
@@ -109,6 +111,16 @@ namespace AutoCADPlugin
             _executeButton.Click += ExecuteButton_Click;
             Controls.Add(_executeButton);
 
+            _healthButton = new Button
+            {
+                Text = "Health",
+                Location = new Point(540, 436),
+                Size = new Size(112, 26),
+                Anchor = AnchorStyles.Bottom | AnchorStyles.Right
+            };
+            _healthButton.Click += HealthButton_Click;
+            Controls.Add(_healthButton);
+
             var serverLabel = new Label
             {
                 Text = "AI Server URL:",
@@ -116,6 +128,15 @@ namespace AutoCADPlugin
                 AutoSize = true
             };
             Controls.Add(serverLabel);
+
+            _statusLabel = new Label
+            {
+                Text = "Server status: unknown",
+                Location = new Point(12, 400),
+                Size = new Size(520, 20),
+                Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right
+            };
+            Controls.Add(_statusLabel);
 
             var schemaLabel = new Label
             {
@@ -128,6 +149,7 @@ namespace AutoCADPlugin
             _messages = new List<ChatMessage>();
             _sessionPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ai_chat_session.json");
             LoadSession();
+            UpdateServerStatus("unknown");
         }
 
         private void LogMessage(string sender, string message)
@@ -209,6 +231,44 @@ namespace AutoCADPlugin
             catch
             {
                 // ignore save failures for now
+            }
+        }
+
+        private void UpdateServerStatus(string status)
+        {
+            _statusLabel.Text = $"Server status: {status}";
+            _statusLabel.ForeColor = status == "ok" ? Color.Green : Color.Red;
+        }
+
+        private async void HealthButton_Click(object sender, EventArgs e)
+        {
+            var serverUrl = _serverUrlBox.Text?.Trim() ?? string.Empty;
+            if (string.IsNullOrWhiteSpace(serverUrl))
+            {
+                MessageBox.Show("Introduceți URL-ul serverului AI.", "Atenție", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                using var client = new HttpClient();
+                var response = await client.GetAsync(new Uri(new Uri(serverUrl), "/health"));
+                if (response.IsSuccessStatusCode)
+                {
+                    UpdateServerStatus("ok");
+                    LogMessage("System", "Server health OK.");
+                }
+                else
+                {
+                    UpdateServerStatus("unhealthy");
+                    LogMessage("System", $"Server health failed: {response.StatusCode}");
+                }
+            }
+            catch (Exception ex)
+            {
+                UpdateServerStatus("offline");
+                MessageBox.Show($"Nu se poate accesa serverul AI: {ex.Message}", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LogMessage("System", $"Server health error: {ex.Message}");
             }
         }
 
