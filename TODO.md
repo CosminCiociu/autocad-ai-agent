@@ -107,15 +107,37 @@ Acest TODO operationalizeaza arhitectura din README in pasi concreti, executabil
 - [x] Generat exporturi în `fixtures/dwg/exports/` și validat față de `shared/schemas/dwg-context.schema.json`
 - [x] Scris teste automate de regresie care rulează extractor + validator
 
-## 8) UI in AutoCAD (PaletteSet/WPF)
+## 8) UI in AutoCAD (PaletteSet/WPF) - Chat-first, reusable
 
-- [ ] Creeaza panel minim de chat/comenzi.
-- [ ] Afiseaza:
-  - [ ] ce a inteles AI
-  - [ ] ce actiuni propune
-  - [ ] ce a blocat validatorul
-  - [ ] ce s-a executat efectiv
-- [ ] Adauga butoane `Preview`, `Execute`, `Undo last`.
+- [x] Creeaza un panel de chat AutoCAD reutilizabil pentru multiple versiuni.
+- [ ] Defineste un `PaletteSet` / `UserControl` generic cu:
+  - [x] text de intrare pentru prompt user
+  - [ ] zona de istoric chat (mesaje user + AI)
+  - [ ] afisare stare server/health
+  - [x] lista de actiuni propuse si recomandari de executie
+  - [x] butoane `Trimite`, `Analizeaza`, `Preview`, `Executa`, `Inchide`
+- [x] Adauga optiuni pentru configurarea URL-ului serverului AI si a directorului de scheme JSON.
+- [x] Implementeaza un command `AI_CHAT` sau `AI_OPEN_CHAT` care deschide panelul din AutoCAD.
+- [x] Construieste un flux de chat care poate trimite:
+  - [x] mesajul userului
+  - [x] context DWG extras
+  - [x] istoric de conversatie scurt
+- [x] Adauga operațiuni rapide din chat:
+  - [x] generare plan `Analyze`
+  - [x] preview `Preview`
+  - [x] execuție `Execute`
+- [x] Salveaza sesiunea de chat local în `ai_chat_session.json`.
+- [ ] Păstrează pluginul reutilizabil pentru alte versiuni AutoCAD prin:
+  - [ ] abstractizarea API-ului AutoCAD într-un strat de integrare
+  - [ ] minimizarea codului specific `AcMgd/AcDbMgd` în logica de chat
+  - [ ] configurare externă a cailor de referință și a versiunii runtime
+- [ ] Documentează schema de mesaje chat și contractul endpoint-ului AI.
+
+### Chat UI imediat
+
+- [x] implementare minimă WinForms pentru chat.
+- [x] comandă `AI_CHAT` / `AI_OPEN_CHAT`.
+- [ ] urmează: istoric conversație și sesiune chat persistată.
 
 ## 9) Definition of Done MVP
 

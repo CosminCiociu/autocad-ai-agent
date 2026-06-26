@@ -18,6 +18,7 @@ Construirea unui sistem care poate:
 - AI Orchestrator: Python + FastAPI (coordoneaza context, validari, plan de actiuni)
 - LLM local: Ollama + Qwen2.5 (7B pentru MVP, 14B pentru calitate mai buna)
 - Protocol comunicare: HTTP + JSON
+- Chat UI AutoCAD: `AI_CHAT` pentru lansarea unui panel de chat intern
 
 Flux:
 
@@ -197,11 +198,14 @@ Criteriu de acceptare:
 
 Scop:
 
-- interfata de utilizare in AutoCAD (PaletteSet/WPF).
+- interfata de utilizare in AutoCAD (PaletteSet/WPF / WinForms).
 
 Livrabil:
 
 - panou chat pentru cereri, status si rezultate.
+- comanda AutoCAD `AI_CHAT` / `AI_OPEN_CHAT`.
+- lansare prompt + analiza + preview + executie din același panel.
+- sesiune persistată local în `ai_chat_session.json`.
 
 Durata estimata:
 
