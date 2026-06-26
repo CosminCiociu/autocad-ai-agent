@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Windows.Forms;
@@ -9,7 +10,16 @@ using Newtonsoft.Json;
 
 namespace AutoCADPlugin
 {
-    public sealed record ChatMessage(string Sender, string Content, DateTime Timestamp);
+    public sealed record ChatMessage(string Sender, string Content, DateTime Timestamp)
+    {
+        [JsonIgnore]
+        public string Role => Sender switch
+        {
+            "User" => "user",
+            "AI" => "assistant",
+            _ => "system",
+        };
+    }
 
     public class ChatPanel : Form
     {
@@ -152,11 +162,19 @@ namespace AutoCADPlugin
             UpdateServerStatus("unknown");
         }
 
-        private void LogMessage(string sender, string message)
+        private void LogChatMessage(string sender, string message)
         {
             var chatMessage = new ChatMessage(sender, message, DateTime.Now);
             _messages.Add(chatMessage);
             AppendMessage(chatMessage);
+            SaveSession();
+        }
+
+        private void LogSystemMessage(string message)
+        {
+            var systemMessage = new ChatMessage("System", message, DateTime.Now);
+            _messages.Add(systemMessage);
+            AppendMessage(systemMessage);
             SaveSession();
         }
 
@@ -166,9 +184,14 @@ namespace AutoCADPlugin
             _historyBox.ScrollToCaret();
         }
 
-        private void ProcessPrompt(string prompt)
+        private void ProcessPrompt(string? prompt)
         {
-            LogMessage("User", prompt);
+            if (string.IsNullOrWhiteSpace(prompt))
+            {
+                return;
+            }
+
+            LogChatMessage("User", prompt);
 
             var serverUrl = _serverUrlBox.Text?.Trim() ?? string.Empty;
             if (string.IsNullOrWhiteSpace(serverUrl))
@@ -178,17 +201,17 @@ namespace AutoCADPlugin
             }
 
             var ctx = BlockReader.ExtractContext();
-            var plan = SendAnalyzeRequest(serverUrl, ctx, prompt);
-            if (plan != null)
+            var response = SendChatRequest(serverUrl, ctx);
+            if (response != null)
             {
-                _lastActionPlan = plan;
-                var planText = JsonConvert.SerializeObject(plan, Formatting.Indented) ?? string.Empty;
-                LogMessage("AI", $"Plan generat: {plan.Actions.Count} acțiuni");
-                LogMessage("AI", planText);
+                _lastActionPlan = response.ActionPlan;
+                LogChatMessage("AI", response.AssistantMessage ?? "");
+                LogSystemMessage($"Plan generat: {_lastActionPlan.Actions.Count} acțiuni");
+                LogSystemMessage(JsonConvert.SerializeObject(_lastActionPlan, Formatting.Indented) ?? string.Empty);
 
-                if (plan.NeedsClarification)
+                if (_lastActionPlan.NeedsClarification)
                 {
-                    LogMessage("AI", plan.ClarificationQuestion ?? "AI cere clarificare.");
+                    LogChatMessage("AI", _lastActionPlan.ClarificationQuestion ?? "AI cere clarificare.");
                 }
             }
         }
@@ -256,19 +279,19 @@ namespace AutoCADPlugin
                 if (response.IsSuccessStatusCode)
                 {
                     UpdateServerStatus("ok");
-                    LogMessage("System", "Server health OK.");
+                    LogSystemMessage("Server health OK.");
                 }
                 else
                 {
                     UpdateServerStatus("unhealthy");
-                    LogMessage("System", $"Server health failed: {response.StatusCode}");
+                    LogSystemMessage($"Server health failed: {response.StatusCode}");
                 }
             }
             catch (Exception ex)
             {
                 UpdateServerStatus("offline");
                 MessageBox.Show($"Nu se poate accesa serverul AI: {ex.Message}", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                LogMessage("System", $"Server health error: {ex.Message}");
+                LogSystemMessage($"Server health error: {ex.Message}");
             }
         }
 
@@ -308,8 +331,8 @@ namespace AutoCADPlugin
 
             var ctx = BlockReader.ExtractContext();
             var report = ActionExecutor.ExecuteActionPlan(_lastActionPlan, ctx, previewOnly: true);
-            LogMessage("System", "Preview generat.");
-            LogMessage("System", JsonConvert.SerializeObject(report, Formatting.Indented) ?? string.Empty);
+            LogSystemMessage("Preview generat.");
+            LogSystemMessage(JsonConvert.SerializeObject(report, Formatting.Indented) ?? string.Empty);
         }
 
         private void ExecuteButton_Click(object sender, EventArgs e)
@@ -322,8 +345,8 @@ namespace AutoCADPlugin
 
             var ctx = BlockReader.ExtractContext();
             var report = ActionExecutor.ExecuteActionPlan(_lastActionPlan, ctx, previewOnly: false);
-            LogMessage("System", "Execuție completă generată.");
-            LogMessage("System", JsonConvert.SerializeObject(report, Formatting.Indented) ?? string.Empty);
+            LogSystemMessage("Execuție completă generată.");
+            LogSystemMessage(JsonConvert.SerializeObject(report, Formatting.Indented) ?? string.Empty);
         }
 
         private ActionPlan? LoadActionPlanFromPrompt()
@@ -332,16 +355,20 @@ namespace AutoCADPlugin
             return null;
         }
 
-        private ActionPlan? SendAnalyzeRequest(string serverUrl, DwgContext context, string prompt)
+        private ChatResponse? SendChatRequest(string serverUrl, DwgContext context)
         {
             try
             {
                 using var client = new AiServerClient(serverUrl);
-                return client.Analyze(context, prompt);
+                var history = _messages
+                    .Where(m => m.Role == "user" || m.Role == "assistant" || m.Role == "system")
+                    .Select(m => new ChatHistoryEntry(m.Role, m.Content))
+                    .ToList();
+                return client.Chat(context, history);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Eroare la analiză: {ex.Message}", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Eroare la chat: {ex.Message}", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
