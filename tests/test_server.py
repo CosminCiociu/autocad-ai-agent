@@ -66,3 +66,48 @@ def test_analyze_with_mocked_planner(monkeypatch):
     body = resp.json()
     assert body.get("needs_clarification") is False
     assert isinstance(body.get("actions"), list)
+
+
+def test_chat_with_mocked_planner(monkeypatch):
+    ctx = make_minimal_context()
+    messages = [
+        {"role": "user", "content": "insereaza un bloc"},
+    ]
+
+    async def fake_plan(context_payload, user_command):
+        action_plan = {
+            "schema_version": "1.0.0",
+            "request_id": context_payload.get("request_id", "test-req-1"),
+            "summary": "Insert block",
+            "needs_clarification": False,
+            "actions": [
+                {
+                    "id": "a1",
+                    "type": "insert_block",
+                    "args": {"name": "AMP", "position": {"x": 0, "y": 0}},
+                }
+            ],
+        }
+        return type("PR", (), {"action_plan": action_plan, "raw_response": json.dumps(action_plan)})()
+
+    server_main.planner.plan = fake_plan
+
+    ctx["blocks"] = [
+        {
+            "handle": "h1",
+            "name": "AMP",
+            "layer": "0",
+            "position": {"x": 0, "y": 0},
+        }
+    ]
+
+    client = TestClient(server_main.app)
+    payload = {"context": ctx, "messages": messages}
+    resp = client.post("/chat", json=payload)
+    assert resp.status_code == 200
+
+    body = resp.json()
+    assert "assistant_message" in body
+    assert "action_plan" in body
+    assert body["action_plan"].get("needs_clarification") is False
+    assert isinstance(body["action_plan"].get("actions"), list)
