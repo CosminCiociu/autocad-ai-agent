@@ -24,7 +24,7 @@ namespace AutoCADPlugin
         [property: JsonProperty("layer")] string Layer,
         [property: JsonProperty("position")] Point2D Position,
         [property: JsonProperty("rotation_deg")] double RotationDeg,
-        [property: JsonProperty("attributes")] List<BlockAttribute>? Attributes
+        [property: JsonProperty("attributes")] List<BlockAttribute> Attributes
     );
 
     public record TextEntity(
@@ -190,7 +190,7 @@ namespace AutoCADPlugin
                 Layer: blockRef.Layer,
                 Position: ToPoint2D(blockRef.Position),
                 RotationDeg: blockRef.Rotation * (180.0 / Math.PI),
-                Attributes: attributes.Count > 0 ? attributes : null
+                Attributes: attributes
             );
         }
 

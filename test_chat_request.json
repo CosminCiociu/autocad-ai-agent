@@ -1,0 +1,58 @@
+{
+    "context": {
+        "schema_version": "1.0.0",
+        "drawing": {
+            "name": "test.dwg"
+        },
+        "blocks": [
+            {
+                "name": "TEST",
+                "handle": "1",
+                "insertion_point": {
+                    "x": 0,
+                    "y": 0
+                }
+            }
+        ],
+        "texts": [
+            {
+                "content": "hello",
+                "position": {
+                    "x": 0,
+                    "y": 0
+                },
+                "handle": "2"
+            }
+        ],
+        "lines": [
+            {
+                "start": {
+                    "x": 0,
+                    "y": 0
+                },
+                "end": {
+                    "x": 10,
+                    "y": 10
+                },
+                "handle": "3"
+            }
+        ],
+        "polylines": [
+            {
+                "vertices": [
+                    {
+                        "x": 0,
+                        "y": 0
+                    }
+                ],
+                "handle": "4"
+            }
+        ]
+    },
+    "messages": [
+        {
+            "role": "user",
+            "content": "Identifica obiectele din desen"
+        }
+    ]
+}

@@ -13,7 +13,7 @@ class ObservabilityStore:
         self.replay_dir = self.base_dir / "replay"
         self.log_dir.mkdir(parents=True, exist_ok=True)
         self.replay_dir.mkdir(parents=True, exist_ok=True)
-        self.events_path = self.log_dir / "events.jsonl"
+        self.events_path = self.log_dir / "events.json"
 
     def log_event(self, event: str, request_id: str, data: dict[str, Any]) -> None:
         payload: dict[str, Any] = {

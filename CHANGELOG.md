@@ -24,5 +24,5 @@ The format is based on Keep a Changelog principles.
 - Safe fallback behavior in `POST /analyze` for missing/ambiguous commands and model failures.
 - AI server run and usage notes in `ai-server/README.md`.
 - Semantic validation gate in `ai-server/semantic_validation.py` with per-action error reporting.
-- Structured observability events in `ai-server/logs/events.jsonl`.
+- Structured observability events in `ai-server/logs/events.json`.
 - Replay persistence and retrieval endpoint `GET /replay/{request_id}`.

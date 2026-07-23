@@ -51,7 +51,7 @@ pip install -r requirements.txt
 4. Start API:
 
 ```bash
-uvicorn main:app --reload --host 127.0.0.1 --port 8000
+uvicorn main:app --reload --host 127.0.0.1 --port 8001
 ```
 
 5. Quick verification:
@@ -74,7 +74,7 @@ python fixtures/dwg/validate_fixtures.py
 3. Start API:
 
 ```bash
-uvicorn main:app --reload --host 127.0.0.1 --port 8000
+uvicorn main:app --reload --host 127.0.0.1 --port 8001
 ```
 
 ## Request notes
@@ -85,6 +85,9 @@ uvicorn main:app --reload --host 127.0.0.1 --port 8000
 ## Observability
 
 - `request_id` is guaranteed for every analyze call (generated if missing).
-- Structured events are appended to `ai-server/logs/events.jsonl`.
+- Structured events are appended to `ai-server/logs/events.json`.
 - Replay artifacts are stored in `ai-server/replay/{request_id}.json`.
 - Current server scope is planning/validation only, so `execution_result` is recorded as `not_executed_server_side`.
+
+#Uselfull commands
+Set-Location 'E:\Ai agent'; dotnet build "e:\Ai agent\autocad-plugin\AutocadPlugin.csproj" -p:OutputPath='E:\AiAgentBuild\' -p:AppendTargetFrameworkToOutputPath=false

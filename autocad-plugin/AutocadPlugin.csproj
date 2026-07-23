@@ -10,6 +10,11 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <!-- Post-build event to auto-reload plugin in AutoCAD -->
+    <Target Name="PostBuildReload" AfterTargets="Build">
+        <Exec Command="powershell.exe -NoProfile -ExecutionPolicy Bypass -File &quot;$(ProjectDir)reload-plugin.ps1&quot; -DllPath &quot;$(OutputPath)AutocadPlugin.dll&quot;" IgnoreExitCode="true" />
+    </Target>
+
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
         <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.16" />

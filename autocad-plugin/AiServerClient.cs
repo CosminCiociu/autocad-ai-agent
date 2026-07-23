@@ -42,7 +42,8 @@ namespace AutoCADPlugin
 
         public ActionPlan Analyze(DwgContext context, string userCommand)
         {
-            var content = new StringContent(JsonConvert.SerializeObject(context), Encoding.UTF8, "application/json");
+            var json = JsonConvert.SerializeObject(context, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
             var url = new Uri(new Uri(_baseUrl), "/analyze");
             using var request = new HttpRequestMessage(HttpMethod.Post, url)
             {
@@ -64,7 +65,8 @@ namespace AutoCADPlugin
                 context,
                 messages = history
             };
-            var content = new StringContent(JsonConvert.SerializeObject(requestPayload), Encoding.UTF8, "application/json");
+            var json = JsonConvert.SerializeObject(requestPayload, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
             var url = new Uri(new Uri(_baseUrl), "/chat");
             using var request = new HttpRequestMessage(HttpMethod.Post, url)
             {
@@ -72,7 +74,11 @@ namespace AutoCADPlugin
             };
 
             var response = _httpClient.SendAsync(request).GetAwaiter().GetResult();
-            response.EnsureSuccessStatusCode();
+            if (!response.IsSuccessStatusCode)
+            {
+                var errorBody = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                throw new InvalidOperationException($"Server returned {response.StatusCode}: {errorBody}");
+            }
 
             var body = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             return JsonConvert.DeserializeObject<ChatResponse>(body) ?? throw new InvalidOperationException("Could not deserialize chat response.");

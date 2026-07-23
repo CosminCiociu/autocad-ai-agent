@@ -17,9 +17,13 @@ from schema_validation import SchemaStore
 
 BASE_DIR = Path(__file__).resolve().parent
 SCHEMA_DIR = BASE_DIR.parent / "shared" / "schemas"
+PAYLOADS_DIR = BASE_DIR / "payloads"
 
 CONTEXT_SCHEMA = "dwg-context.schema.json"
 ACTION_SCHEMA = "action-plan.schema.json"
+
+# Create payloads directory if it doesn't exist
+PAYLOADS_DIR.mkdir(exist_ok=True)
 
 app = FastAPI(title="AutoCAD AI Server", version="0.1.0")
 schemas = SchemaStore(SCHEMA_DIR)
@@ -41,6 +45,25 @@ def build_error(
     if details:
         payload["error"]["details"] = details
     return payload
+
+
+def save_payload(payload_type: str, request_id: str, payload: Any) -> None:
+    """Save incoming or outgoing payloads to disk for audit trail."""
+    try:
+        timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d_%H-%M-%S-%f")[:-3]
+        filename = f"{timestamp}_{request_id}_{payload_type}.json"
+        filepath = PAYLOADS_DIR / filename
+        
+        import json
+        with open(filepath, "w") as f:
+            json.dump(payload, f, indent=2, default=str)
+    except Exception as e:
+        # Log but don't fail the request
+        observability.log_event(
+            event="payload_save_error",
+            request_id=request_id,
+            data={"error": str(e), "type": payload_type},
+        )
 
 
 def resolve_error_code(details: list[dict[str, Any]]) -> str:
@@ -332,6 +355,16 @@ async def chat(request: Request) -> JSONResponse:
     request_id = str(payload.get("request_id", "")).strip() or f"req-{uuid4()}"
     schema_version = str(payload.get("schema_version", "1.0.0"))
     context_payload = payload.get("context")
+    
+    # Save incoming request payload
+    save_payload("request", request_id, {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "request_id": request_id,
+        "schema_version": schema_version,
+        "context": context_payload,
+        "messages": payload.get("messages"),
+    })
+    
     if not isinstance(context_payload, dict):
         return JSONResponse(
             status_code=422,
@@ -412,7 +445,7 @@ async def chat(request: Request) -> JSONResponse:
         )
     else:
         try:
-            plan_result = await planner.plan(context_payload=context_payload, user_command=user_command)
+            plan_result = await planner.plan(context_payload=context_payload, user_command=user_command, messages=messages)
             action_plan = plan_result.action_plan
             model_raw_response = plan_result.raw_response
             observability.log_event(
@@ -549,11 +582,16 @@ async def chat(request: Request) -> JSONResponse:
     if not isinstance(assistant_message, str) or not assistant_message.strip():
         assistant_message = "Am generat un plan."
 
+    # Save outgoing response payload
+    response_content = {
+        "request_id": request_id,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "assistant_message": assistant_message,
+        "action_plan": action_plan,
+    }
+    save_payload("response", request_id, response_content)
+
     return JSONResponse(
         status_code=200,
-        content={
-            "request_id": request_id,
-            "assistant_message": assistant_message,
-            "action_plan": action_plan,
-        },
+        content=response_content,
     )

@@ -41,7 +41,7 @@ Example usage:
 ```csharp
 Commands.AiPing();
 Commands.AiExtract(@"C:\temp\dwg_context.json", @"..\shared\schemas");
-Commands.AiAnalyze("http://127.0.0.1:8000", "insert block on layer A", @"C:\temp\action_plan.json", @"..\shared\schemas");
+Commands.AiAnalyze("http://127.0.0.1:8001", "insert block on layer A", @"C:\temp\action_plan.json", @"..\shared\schemas");
 Commands.AiExecute(@"C:\temp\action_plan.json", @"..\shared\schemas", previewOnly: true, reportPath: @"C:\temp\execution_report.json");
 ```
 

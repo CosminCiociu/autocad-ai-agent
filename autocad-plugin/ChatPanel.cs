@@ -28,6 +28,7 @@ namespace AutoCADPlugin
         private readonly Button _analyzeButton;
         private readonly Button _previewButton;
         private readonly Button _executeButton;
+        private readonly Button _copyButton;
         private readonly RichTextBox _historyBox;
         private readonly TextBox _serverUrlBox;
         private readonly TextBox _schemaDirBox;
@@ -77,7 +78,7 @@ namespace AutoCADPlugin
             {
                 Location = new Point(12, 340),
                 Size = new Size(520, 24),
-                Text = "http://127.0.0.1:8000",
+                Text = "http://127.0.0.1:8001",
                 Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right
             };
             Controls.Add(_serverUrlBox);
@@ -121,10 +122,20 @@ namespace AutoCADPlugin
             _executeButton.Click += ExecuteButton_Click;
             Controls.Add(_executeButton);
 
+            _copyButton = new Button
+            {
+                Text = "📋 Copy",
+                Location = new Point(540, 436),
+                Size = new Size(112, 26),
+                Anchor = AnchorStyles.Bottom | AnchorStyles.Right
+            };
+            _copyButton.Click += CopyButton_Click;
+            Controls.Add(_copyButton);
+
             _healthButton = new Button
             {
                 Text = "Health",
-                Location = new Point(540, 436),
+                Location = new Point(540, 468),
                 Size = new Size(112, 26),
                 Anchor = AnchorStyles.Bottom | AnchorStyles.Right
             };
@@ -185,8 +196,46 @@ namespace AutoCADPlugin
 
         private void AppendMessage(ChatMessage message)
         {
-            _historyBox.AppendText($"[{message.Timestamp:HH:mm:ss}] {message.Sender}: {message.Content}" + Environment.NewLine);
+            // Use colored formatting based on sender
+            if (message.Sender == "User")
+            {
+                AppendColoredText($"[{message.Timestamp:HH:mm:ss}] ", Color.Gray);
+                AppendColoredText("👤 User: ", Color.Blue, bold: true);
+                AppendColoredText(message.Content + Environment.NewLine, Color.Blue);
+            }
+            else if (message.Sender == "AI")
+            {
+                AppendColoredText($"[{message.Timestamp:HH:mm:ss}] ", Color.Gray);
+                AppendColoredText("🤖 AI: ", Color.Green, bold: true);
+                AppendColoredText(message.Content + Environment.NewLine, Color.Green);
+                AppendColoredText(new string('—', 80) + Environment.NewLine, Color.LightGray);
+            }
+            else if (message.Sender == "System")
+            {
+                AppendColoredText($"[{message.Timestamp:HH:mm:ss}] ", Color.Gray);
+                AppendColoredText("⚙️ System: ", Color.Gray, bold: false, italic: true);
+                AppendColoredText(message.Content + Environment.NewLine, Color.DarkGray, italic: true);
+            }
             _historyBox.ScrollToCaret();
+        }
+
+        private void AppendColoredText(string text, Color color, bool bold = false, bool italic = false)
+        {
+            int startIndex = _historyBox.Text.Length;
+            _historyBox.AppendText(text);
+            int endIndex = _historyBox.Text.Length;
+
+            _historyBox.Select(startIndex, endIndex - startIndex);
+            _historyBox.SelectionColor = color;
+            if (bold)
+            {
+                _historyBox.SelectionFont = new Font(_historyBox.Font, FontStyle.Bold);
+            }
+            if (italic)
+            {
+                _historyBox.SelectionFont = new Font(_historyBox.Font, FontStyle.Italic);
+            }
+            _historyBox.Select(_historyBox.Text.Length, 0);
         }
 
         private void ProcessPrompt(string? prompt)
@@ -209,8 +258,10 @@ namespace AutoCADPlugin
             if (response != null)
             {
                 _lastActionPlan = response.ActionPlan;
+                LogSystemMessage($"✓ Request sent to: {NormalizeServerUrl(serverUrl)}/chat");
                 LogChatMessage("AI", response.AssistantMessage ?? "");
-                LogSystemMessage($"Plan generat: {_lastActionPlan.Actions.Count} acțiuni");
+                string actionIcon = _lastActionPlan.Actions.Count > 0 ? "📋" : "ℹ️";
+                LogSystemMessage($"{actionIcon} Plan generat: {_lastActionPlan.Actions.Count} acțiuni");
                 LogSystemMessage(JsonConvert.SerializeObject(_lastActionPlan, Formatting.Indented) ?? string.Empty);
 
                 if (_lastActionPlan.NeedsClarification)
@@ -261,15 +312,38 @@ namespace AutoCADPlugin
             }
         }
 
+        private static string NormalizeServerUrl(string? rawUrl)
+        {
+            if (string.IsNullOrWhiteSpace(rawUrl))
+            {
+                return string.Empty;
+            }
+
+            var normalized = rawUrl!.Trim().TrimEnd('/');
+            if (normalized.EndsWith("/chat", StringComparison.OrdinalIgnoreCase))
+            {
+                normalized = normalized.Substring(0, normalized.Length - "/chat".Length);
+            }
+
+            return normalized;
+        }
+
         private void UpdateServerStatus(string status)
         {
-            _statusLabel.Text = $"Server status: {status}";
+            string emoji = status switch
+            {
+                "ok" => "✅",
+                "offline" => "❌",
+                _ => "❓"
+            };
+            _statusLabel.Text = $"{emoji} Server status: {status}";
             _statusLabel.ForeColor = status == "ok" ? Color.Green : Color.Red;
+            _statusLabel.Font = new Font(_statusLabel.Font, FontStyle.Bold);
         }
 
         private async void HealthButton_Click(object sender, EventArgs e)
         {
-            var serverUrl = _serverUrlBox.Text?.Trim() ?? string.Empty;
+            var serverUrl = NormalizeServerUrl(_serverUrlBox.Text);
             if (string.IsNullOrWhiteSpace(serverUrl))
             {
                 MessageBox.Show("Introduceți URL-ul serverului AI.", "Atenție", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -283,19 +357,19 @@ namespace AutoCADPlugin
                 if (response.IsSuccessStatusCode)
                 {
                     UpdateServerStatus("ok");
-                    LogSystemMessage("Server health OK.");
+                    LogSystemMessage("✅ Server is responsive.");
                 }
                 else
                 {
-                    UpdateServerStatus("unhealthy");
-                    LogSystemMessage($"Server health failed: {response.StatusCode}");
+                    UpdateServerStatus("offline");
+                    LogSystemMessage($"❌ Server health failed: {response.StatusCode}");
                 }
             }
             catch (Exception ex)
             {
                 UpdateServerStatus("offline");
                 MessageBox.Show($"Nu se poate accesa serverul AI: {ex.Message}", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                LogSystemMessage($"Server health error: {ex.Message}");
+                LogSystemMessage($"❌ Server health error: {ex.Message}");
             }
         }
 
@@ -323,6 +397,26 @@ namespace AutoCADPlugin
 
             ProcessPrompt(prompt);
             _inputBox.Clear();
+        }
+
+        private void CopyButton_Click(object sender, EventArgs e)
+        {
+            var lastAiMessage = _messages.LastOrDefault(m => m.Sender == "AI");
+            if (lastAiMessage == null)
+            {
+                MessageBox.Show("Nu este niciun răspuns AI de copiat.", "Atenție", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            try
+            {
+                Clipboard.SetText(lastAiMessage.Content);
+                LogSystemMessage("✅ Răspunsul AI a fost copiat în clipboard.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Eroare la copiere: {ex.Message}", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void PreviewButton_Click(object sender, EventArgs e)
@@ -359,21 +453,74 @@ namespace AutoCADPlugin
             return null;
         }
 
+        private void SavePayload(string payloadType, string requestId, object payload)
+        {
+            try
+            {
+                var payloadDir = @"E:\Ai agent\ai-server\payloads";
+                if (!Directory.Exists(payloadDir))
+                {
+                    Directory.CreateDirectory(payloadDir);
+                }
+
+                var timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss-fff");
+                var filename = $"{timestamp}_{requestId}_{payloadType}.json";
+                var filepath = Path.Combine(payloadDir, filename);
+
+                var json = JsonConvert.SerializeObject(payload, Formatting.Indented);
+                File.WriteAllText(filepath, json);
+            }
+            catch (Exception ex)
+            {
+                LogSystemMessage($"⚠️ Failed to save payload: {ex.Message}");
+            }
+        }
+
         private ChatResponse? SendChatRequest(string serverUrl, string prompt)
         {
             try
             {
+                var normalizedServerUrl = NormalizeServerUrl(serverUrl);
+                LogSystemMessage($"Calling AI server at: {normalizedServerUrl}/chat");
+
                 var ctx = BlockReader.ExtractContext();
                 LogSystemMessage("Extracted DWG context for AI request.");
 
-                using var client = new AiServerClient(serverUrl);
+                using var client = new AiServerClient(normalizedServerUrl);
                 var history = _messages
                     .Where(m => m.Role == "user" || m.Role == "assistant" || m.Role == "system")
                     .Select(m => new ChatHistoryEntry(m.Role, m.Content))
                     .ToList();
                 history.Add(new ChatHistoryEntry("user", prompt ?? string.Empty));
 
-                return client.Chat(ctx, history);
+                // Save request payload
+                var requestPayload = new
+                {
+                    request_id = ctx.RequestId,
+                    timestamp = DateTime.Now.ToString("o"),
+                    schema_version = ctx.SchemaVersion,
+                    context = ctx,
+                    messages = history
+                };
+                SavePayload("request", ctx.RequestId, requestPayload);
+
+                var response = client.Chat(ctx, history);
+
+                if (response != null)
+                {
+                    // Save response payload
+                    var responsePayload = new
+                    {
+                        request_id = response.RequestId,
+                        timestamp = DateTime.Now.ToString("o"),
+                        assistant_message = response.AssistantMessage,
+                        action_plan = response.ActionPlan
+                    };
+                    SavePayload("response", response.RequestId, responsePayload);
+                    LogSystemMessage($"📁 Payloads saved to: E:\\Ai agent\\ai-server\\payloads\\");
+                }
+
+                return response;
             }
             catch (Exception ex)
             {

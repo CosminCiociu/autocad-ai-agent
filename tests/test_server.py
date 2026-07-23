@@ -111,3 +111,76 @@ def test_chat_with_mocked_planner(monkeypatch):
     assert "action_plan" in body
     assert body["action_plan"].get("needs_clarification") is False
     assert isinstance(body["action_plan"].get("actions"), list)
+
+
+def test_planner_strips_unexpected_top_level_fields():
+    raw_text = json.dumps(
+        {
+            "schema_version": "1.0.0",
+            "request_id": "req-1",
+            "summary": "Identify objects in the drawing.",
+            "needs_clarification": False,
+            "actions": [],
+            "drawing_elements": [],
+            "text_elements": [],
+            "polylines": [],
+        }
+    )
+
+    sanitized = server_main.ActionPlanner._sanitize_action_plan(json.loads(raw_text))
+
+    assert sanitized["schema_version"] == "1.0.0"
+    assert sanitized["needs_clarification"] is False
+    assert sanitized["actions"] == []
+    assert "drawing_elements" not in sanitized
+    assert "text_elements" not in sanitized
+    assert "polylines" not in sanitized
+
+
+def test_planner_normalizes_incomplete_actions():
+    raw_text = json.dumps(
+        {
+            "schema_version": "1.0.0",
+            "request_id": "req-1",
+            "summary": "Identify objects in the drawing.",
+            "needs_clarification": False,
+            "actions": [
+                {
+                    "type": "find_entities",
+                    "args": {"entity_type": "text"},
+                }
+            ],
+        }
+    )
+
+    sanitized = server_main.ActionPlanner._sanitize_action_plan(json.loads(raw_text))
+
+    assert sanitized["needs_clarification"] is False
+    assert len(sanitized["actions"]) == 1
+    assert sanitized["actions"][0]["id"] == "action-1"
+    assert sanitized["actions"][0]["type"] == "find_entities"
+    assert sanitized["actions"][0]["args"] == {"entity_type": "text"}
+
+
+def test_identification_prompt_builds_real_find_entities_actions():
+    ctx = make_minimal_context()
+    ctx["blocks"] = [{"handle": "b1", "name": "AMP", "layer": "0", "position": {"x": 0, "y": 0}}]
+    ctx["texts"] = [{"handle": "t1", "value": "TEXT", "layer": "0", "position": {"x": 1, "y": 1}, "height": 2.5}]
+    ctx["lines"] = [{"handle": "l1", "layer": "0", "start": {"x": 0, "y": 0}, "end": {"x": 5, "y": 0}}]
+    ctx["polylines"] = [{"handle": "p1", "layer": "0", "closed": False, "vertices": [{"x": 0, "y": 0}, {"x": 1, "y": 1}]}]
+
+    fallback = server_main.ActionPlanner._build_identification_plan(ctx, "Identifica obiectele din desen")
+
+    assert fallback["needs_clarification"] is False
+    assert [action["type"] for action in fallback["actions"]] == [
+        "find_entities",
+        "find_entities",
+        "find_entities",
+        "find_entities",
+    ]
+    assert {action["args"]["entity_type"] for action in fallback["actions"]} == {
+        "block",
+        "text",
+        "line",
+        "polyline",
+    }

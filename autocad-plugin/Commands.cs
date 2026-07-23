@@ -30,7 +30,7 @@ namespace AutoCADPlugin
                 }
 
                 var ctx = BlockReader.ExtractContext();
-                var json = JsonConvert.SerializeObject(ctx, Formatting.Indented);
+                var json = JsonConvert.SerializeObject(ctx, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
                 if (!string.IsNullOrWhiteSpace(schemaDirectory))
                 {
@@ -55,13 +55,13 @@ namespace AutoCADPlugin
         }
 
         // Entry point called by user: AI_ANALYZE
-        // Example usage (pseudo): AI_ANALYZE http://127.0.0.1:8000 x-user-command="insert block"
+        // Example usage (pseudo): AI_ANALYZE http://127.0.0.1:8001 x-user-command="insert block"
         public static int AiAnalyze(string serverBaseUrl, string userCommand, string? outputPath = null, string? schemaDirectory = null)
         {
             try
             {
                 var ctx = BlockReader.ExtractContext();
-                var json = JsonConvert.SerializeObject(ctx, Formatting.Indented);
+                var json = JsonConvert.SerializeObject(ctx, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
                 if (!string.IsNullOrWhiteSpace(schemaDirectory))
                 {
