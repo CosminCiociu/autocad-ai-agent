@@ -11,6 +11,9 @@ Acest TODO operationalizeaza arhitectura din README in pasi concreti, executabil
   - [x] `docs/`
 - [x] Defineste conventii de naming (entitati, tool-uri, layere, versiuni schema).
 - [x] Configureaza repo (branching simplu, release tags, changelog).
+- [x] Configurare mediu de dezvoltare:
+  - [x] `venv` creat și `requirements.txt` instalate pentru `ai-server` (în `.venv`)
+  - [x] Dependințe `fastapi`, `uvicorn`, `jsonschema`, `httpx` instalate
 
 ## 1) Contracte JSON si validare (M0)
 
@@ -31,7 +34,8 @@ Acest TODO operationalizeaza arhitectura din README in pasi concreti, executabil
 
 ## 2) AutoCAD Plugin (C#/.NET)
 
-- [ ] Creeaza comanda de test in AutoCAD (ex: `AI_PING`).
+- [x] Creeaza comanda de test in AutoCAD (ex: `AI_PING`).
+- [x] Creeaza comenzi plugin: `AI_PING`, `AI_EXTRACT`, `AI_ANALYZE`, `AI_EXECUTE`.
 - [ ] Implementeaza extractor DWG:
   - [ ] citire block references
   - [ ] citire texte
@@ -40,35 +44,37 @@ Acest TODO operationalizeaza arhitectura din README in pasi concreti, executabil
 - [ ] Normalizeaza coordonate (WCS) in payload.
 - [ ] Serializeaza context in JSON conform schemei.
 - [ ] Implementeaza executor de actiuni:
-  - [ ] mapare action type -> handler
+  - [x] mapare action type -> handler
   - [ ] tranzactii AutoCAD cu rollback la eroare
-  - [ ] jurnalizare per entitate (before/after)
+  - [x] jurnalizare per entitate (before/after)
+  - [x] preview/execution report structurat
+  - [x] `find_entities` pe contextul extras
 
 ## 3) AI Server (Python/FastAPI)
 
 - [x] Initializeaza API cu endpoint-uri:
   - [x] `POST /analyze`
   - [x] `GET /health`
-- [ ] Integreaza model local prin Ollama.
-- [ ] Construieste prompt deterministic pentru tool calling.
-- [ ] Parseaza raspunsul modelului in JSON strict.
-- [ ] Adauga fallback controlat:
-  - [ ] cand input e ambiguu -> cere clarificare
-  - [ ] cand modelul e nesigur -> nu propune executie
+- [x] Integreaza model local prin Ollama.
+- [x] Construieste prompt deterministic pentru tool calling.
+- [x] Parseaza raspunsul modelului in JSON strict.
+- [x] Adauga fallback controlat:
+  - [x] cand input e ambiguu -> cere clarificare
+  - [x] cand modelul e nesigur -> nu propune executie
 
 ## 4) Validation Gate (obligatoriu inainte de executie)
 
-- [ ] Implementeaza validare semantica pentru fiecare actiune:
-  - [ ] block exista in librarie
-  - [ ] layer permis
-  - [ ] coordonate in limite
-  - [ ] valori atribute conforme
-- [ ] Blocheaza actiuni nepermise cu motive explicite.
-- [ ] Returneaza raport de validare per actiune.
+- [x] Implementeaza validare semantica pentru fiecare actiune:
+  - [x] block exista in librarie
+  - [x] layer permis
+  - [x] coordonate in limite
+  - [x] valori atribute conforme
+- [x] Blocheaza actiuni nepermise cu motive explicite.
+- [x] Returneaza raport de validare per actiune.
 
 ## 5) Flux cap-coada Plugin <-> AI
 
-- [ ] Plugin trimite context JSON la `POST /analyze`.
+- [x] Plugin trimite context JSON la `POST /analyze`.
 - [ ] AI server returneaza lista de actiuni + justificare scurta.
 - [ ] Plugin ruleaza preview (highlight) inainte de commit.
 - [ ] Utilizatorul confirma executia.
@@ -76,35 +82,57 @@ Acest TODO operationalizeaza arhitectura din README in pasi concreti, executabil
 
 ## 6) Observabilitate si audit
 
-- [ ] Introdu `request_id` unic per comanda.
-- [ ] Logheaza evenimente structurate:
-  - [ ] input user
-  - [ ] context summary
-  - [ ] raspuns LLM
-  - [ ] rezultat validator
-  - [ ] rezultat executie
-- [ ] Stocheaza audit trail cu handles entitati modificate.
-- [ ] Creeaza mod replay pentru debugging.
+- [x] Introdu `request_id` unic per comanda.
+- [x] Logheaza evenimente structurate:
+  - [x] input user
+  - [x] context summary
+  - [x] raspuns LLM
+  - [x] rezultat validator
+  - [x] rezultat executie
+- [x] Stocheaza audit trail cu handles entitati modificate.
+- [x] Creeaza mod replay pentru debugging.
+
+## Repo & Commits
+
+- [x] Import fixtures DWG din `C:\Users\tutuc\OneDrive\Desktop\Projectare` în `fixtures/dwg/edge/` și meta generate
+- [x] Adăugat validator și extractor placeholder pentru fixtures în `fixtures/dwg/`
+- [x] `fixtures/dwg/fixtures_index.json` generat (78 intrări) și exporturi JSON validate
+- [x] Modificările comise și împinse pe branch-ul `cosmin` (fișiere: `.gitignore`, `ai-server/README.md`, `fixtures/dwg/*` forțat pentru anumite fișiere)
 
 ## 7) Fixture-uri DWG si teste de regresie
 
-- [ ] Creeaza set initial de 5-10 desene etalon.
-- [ ] Defineste teste pentru:
-  - [ ] extractie context
-  - [ ] validare schema
-  - [ ] validare semantica
-  - [ ] executie tool-uri critice
-- [ ] Ruleaza testele la fiecare schimbare de schema sau tool.
+- [x] Creeaza set initial de fixtures prin import (smoke + edge)
+- [x] Implementat `fixtures/dwg/validate_fixtures.py` (validare meta + index)
+- [x] Implementat `fixtures/dwg/extract_contexts.py` (export placeholder JSON conform `dwg-context.schema.json`)
+- [x] Generat exporturi în `fixtures/dwg/exports/` și validat față de `shared/schemas/dwg-context.schema.json`
+- [x] Scris teste automate de regresie care rulează extractor + validator
 
-## 8) UI in AutoCAD (PaletteSet/WPF)
+## 8) UI in AutoCAD (PaletteSet/WPF) - Chat-first, reusable
 
-- [ ] Creeaza panel minim de chat/comenzi.
-- [ ] Afiseaza:
-  - [ ] ce a inteles AI
-  - [ ] ce actiuni propune
-  - [ ] ce a blocat validatorul
-  - [ ] ce s-a executat efectiv
-- [ ] Adauga butoane `Preview`, `Execute`, `Undo last`.
+- [x] Creeaza un panel de chat AutoCAD reutilizabil pentru multiple versiuni.
+- [ ] Defineste un `PaletteSet` / `UserControl` generic cu:
+  - [x] text de intrare pentru prompt user
+  - [ ] zona de istoric chat (mesaje user + AI)
+  - [ ] afisare stare server/health
+  - [x] lista de actiuni propuse si recomandari de executie
+  - [x] butoane `Trimite`, `Analizeaza`, `Preview`, `Executa`, `Inchide`
+- [x] Adauga optiuni pentru configurarea URL-ului serverului AI si a directorului de scheme JSON.
+- [x] Implementeaza un command `AI_CHAT` sau `AI_OPEN_CHAT` care deschide panelul din AutoCAD.
+- [x] Construieste un flux de chat care poate trimite:
+  - [x] mesajul userului
+  - [x] context DWG extras
+  - [x] istoric de conversatie scurt
+- [x] Adauga operațiuni rapide din chat:
+  - [x] generare plan `Analyze`
+  - [x] preview `Preview`
+  - [x] execuție `Execute`
+- [x] Salveaza sesiunea de chat local în `ai_chat_session.json`.
+
+### Chat UI imediat
+
+- [x] implementare minimă WinForms pentru chat.
+- [x] comandă `AI_CHAT` / `AI_OPEN_CHAT`.
+- [ ] urmează: istoric conversație și sesiune chat persistată.
 
 ## 9) Definition of Done MVP
 

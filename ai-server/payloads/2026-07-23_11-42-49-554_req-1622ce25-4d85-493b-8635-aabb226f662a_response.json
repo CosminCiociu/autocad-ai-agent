@@ -1,0 +1,13 @@
+{
+  "request_id": "req-1622ce25-4d85-493b-8635-aabb226f662a",
+  "timestamp": "2026-07-23T11:42:49.554052+00:00",
+  "assistant_message": "Te rog clarifica exact actiunea dorita.",
+  "action_plan": {
+    "schema_version": "1.0.0",
+    "request_id": "req-1622ce25-4d85-493b-8635-aabb226f662a",
+    "summary": "Summary unavailable.",
+    "needs_clarification": true,
+    "actions": [],
+    "clarification_question": "Te rog clarifica exact actiunea dorita."
+  }
+}

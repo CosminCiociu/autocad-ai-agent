@@ -53,6 +53,68 @@
                         "WCS",
                         "UCS"
                     ]
+                },
+                "extents": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "min": {
+                            "$ref": "#/$defs/point2d"
+                        },
+                        "max": {
+                            "$ref": "#/$defs/point2d"
+                        }
+                    }
+                },
+                "layers": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "minLength": 1
+                            },
+                            "color_index": {
+                                "type": "integer"
+                            },
+                            "on": {
+                                "type": "boolean"
+                            },
+                            "frozen": {
+                                "type": "boolean"
+                            },
+                            "locked": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                },
+                "block_definitions": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "minLength": 1
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "is_dynamic": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
                 }
             }
         },
@@ -82,6 +144,18 @@
                     },
                     "rotation_deg": {
                         "type": "number"
+                    },
+                    "scale": {
+                        "type": "number"
+                    },
+                    "color_index": {
+                        "type": "integer"
+                    },
+                    "is_dynamic": {
+                        "type": "boolean"
+                    },
+                    "description": {
+                        "type": "string"
                     },
                     "position": {
                         "$ref": "#/$defs/point2d"
@@ -128,6 +202,9 @@
                     "value": {
                         "type": "string"
                     },
+                    "value_plain": {
+                        "type": "string"
+                    },
                     "layer": {
                         "type": "string",
                         "minLength": 1
@@ -135,6 +212,12 @@
                     "height": {
                         "type": "number",
                         "exclusiveMinimum": 0
+                    },
+                    "style": {
+                        "type": "string"
+                    },
+                    "color_index": {
+                        "type": "integer"
                     },
                     "position": {
                         "$ref": "#/$defs/point2d"
@@ -167,6 +250,16 @@
                     },
                     "end": {
                         "$ref": "#/$defs/point2d"
+                    },
+                    "length": {
+                        "type": "number",
+                        "minimum": 0
+                    },
+                    "color_index": {
+                        "type": "integer"
+                    },
+                    "linetype": {
+                        "type": "string"
                     }
                 }
             }
@@ -193,6 +286,16 @@
                     "closed": {
                         "type": "boolean",
                         "default": false
+                    },
+                    "area": {
+                        "type": "number",
+                        "minimum": 0
+                    },
+                    "color_index": {
+                        "type": "integer"
+                    },
+                    "linetype": {
+                        "type": "string"
                     },
                     "vertices": {
                         "type": "array",

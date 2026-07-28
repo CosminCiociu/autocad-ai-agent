@@ -1,0 +1,16 @@
+{
+  "RequestId": "sample-001",
+  "PreviewOnly": true,
+  "Actions": [
+    {
+      "ActionId": "action-1",
+      "ActionType": "find_entities",
+      "Success": true,
+      "PreviewOnly": true,
+      "Message": "Preview only: find_entities not executed.",
+      "TargetHandle": null,
+      "ResultHandle": null,
+      "MatchedHandles": null
+    }
+  ]
+}

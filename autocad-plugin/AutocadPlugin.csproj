@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net48</TargetFramework>
+        <OutputType>Library</OutputType>
+        <PlatformTarget>x64</PlatformTarget>
+        <LangVersion>latest</LangVersion>
+        <UseWindowsForms>true</UseWindowsForms>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <!-- Post-build event to auto-reload plugin in AutoCAD -->
+    <Target Name="PostBuildReload" AfterTargets="Build" Condition="'$(SkipPostBuildReload)' != 'true'">
+        <Exec Command="powershell.exe -NoProfile -ExecutionPolicy Bypass -File &quot;$(ProjectDir)reload-plugin.ps1&quot; -SkipBuild -DllPath &quot;$(OutputPath)AutocadPlugin.dll&quot;" IgnoreExitCode="true" />
+    </Target>
+
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.16" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="System.Net.Http" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="test-runner\**\*.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="AcCoreMgd">
+            <HintPath>C:\Program Files\Autodesk\AutoCAD 2024\accoremgd.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="AcDbMgd">
+            <HintPath>C:\Program Files\Autodesk\AutoCAD 2024\acdbmgd.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="AcMgd">
+            <HintPath>C:\Program Files\Autodesk\AutoCAD 2024\acmgd.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,2992 @@
+{
+  "timestamp": "2026-07-23T11:41:03.742691+00:00",
+  "request_id": "req-d7c7f7d7-b798-4f51-ad89-2c8734733c31",
+  "schema_version": "1.0.0",
+  "context": {
+    "schema_version": "1.0.0",
+    "request_id": "d3f91d51-6bb4-4ca9-9bbb-77e8cb61ecfe",
+    "drawing": {
+      "name": "C:\\Users\\tutuc\\OneDrive\\Desktop\\Projectare\\2026.07.22\\ICS01_ICS02_Plan incendiu.dwg",
+      "units": "m",
+      "coordinate_system": "WCS"
+    },
+    "blocks": [
+      {
+        "handle": "2E85A2",
+        "name": "FA-D1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 329.9833233993132,
+          "y": 146.9297172881729
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "2E85A5",
+        "name": "Senz fum in plafon",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 329.9820816225368,
+          "y": 146.35288106232832
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "2E85A8",
+        "name": "A$C0CD3339F",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 330.4544001349188,
+          "y": 144.40152635995113
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "2E85AB",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 329.9879724865288,
+          "y": 143.09656912835666
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "2E85AE",
+        "name": "Sursa 24Vdc",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 330.23096912664533,
+          "y": 139.94906631055446
+        },
+        "rotation_deg": 0.0,
+        "attributes": []
+      },
+      {
+        "handle": "2E85B0",
+        "name": "Centrala detectie incendiu",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 330.7163524658668,
+          "y": 147.5914714671554
+        },
+        "rotation_deg": 0.0,
+        "attributes": []
+      },
+      {
+        "handle": "2E85B1",
+        "name": "Motor jaluzea fatada 48Vdc",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": -8196.659056504028,
+          "y": -8332.852047144423
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "2E85B7",
+        "name": "Detector liniar de temperatura",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 245.03183141060066,
+          "y": 40.64820665544053
+        },
+        "rotation_deg": 0.0,
+        "attributes": []
+      },
+      {
+        "handle": "2E85C5",
+        "name": "Buton urgenta",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 330.77191046206127,
+          "y": 136.95029763841765
+        },
+        "rotation_deg": 0.0,
+        "attributes": []
+      },
+      {
+        "handle": "2E85C6",
+        "name": "BUTON_DESCHIDERE_DE_URGENT",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 330.32314125861654,
+          "y": 137.6895915549721
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "2E85CC",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 329.90152263777765,
+          "y": 142.6705508884548
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "2E85EB",
+        "name": "detector tubulatura CTA",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 1011.5129696346983,
+          "y": -851.9474307178577
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "2E85EF",
+        "name": "A$C7CEE074B",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 330.02474290401636,
+          "y": 148.65323351165907
+        },
+        "rotation_deg": 0.0,
+        "attributes": []
+      },
+      {
+        "handle": "2E85F2",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": -110.86523157513466,
+          "y": -1293.1617655790203
+        },
+        "rotation_deg": 90.0,
+        "attributes": []
+      },
+      {
+        "handle": "2E85F3",
+        "name": "Modul adresabil",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 329.528202107617,
+          "y": 140.93694607710222
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "2E85F6",
+        "name": "sirena cu flash",
+        "layer": "GI_Detectie incendiu",
+        "position": {
+          "x": 1055.2556432311587,
+          "y": -338.06881840506514
+        },
+        "rotation_deg": 90.0,
+        "attributes": []
+      },
+      {
+        "handle": "2E9B06",
+        "name": "DF usa",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 87.45657486712099,
+          "y": 95.35784015472254
+        },
+        "rotation_deg": 0.0,
+        "attributes": []
+      },
+      {
+        "handle": "2E9F7A",
+        "name": "Buton Desfumare",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": -21.239440172415186,
+          "y": 44.873030030926785
+        },
+        "rotation_deg": 0.0,
+        "attributes": []
+      },
+      {
+        "handle": "398C71",
+        "name": "Arh_Parter hala B_09.07.2026",
+        "layer": "Arhitectura",
+        "position": {
+          "x": -1032.9582251344978,
+          "y": -563.8319172508365
+        },
+        "rotation_deg": 0.0,
+        "attributes": []
+      },
+      {
+        "handle": "39C165",
+        "name": "2026.07.20 - PLAN MEZANIN",
+        "layer": "Arhitectura",
+        "position": {
+          "x": -822.0187320699513,
+          "y": -363.65583699498245
+        },
+        "rotation_deg": 0.0,
+        "attributes": []
+      },
+      {
+        "handle": "39ED06",
+        "name": "2026.07.21 - GRINZI 1",
+        "layer": "GRINZI",
+        "position": {
+          "x": -1032.9582251343095,
+          "y": -669.4180142678001
+        },
+        "rotation_deg": 0.0,
+        "attributes": []
+      },
+      {
+        "handle": "39ED07",
+        "name": "GRINZI B",
+        "layer": "GRINZI",
+        "position": {
+          "x": -280.4954268694644,
+          "y": 1469.802382561866
+        },
+        "rotation_deg": 270.0,
+        "attributes": []
+      },
+      {
+        "handle": "39ED1B",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 182.56512406659078,
+          "y": 104.58690145693885
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED1E",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 182.55903286784948,
+          "y": 104.39659111088974
+        },
+        "rotation_deg": 270.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED28",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 180.93105065355715,
+          "y": 104.58690145693885
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED2B",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 180.92495945481585,
+          "y": 104.39659111088974
+        },
+        "rotation_deg": 270.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED33",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 200.53706324914177,
+          "y": 104.58690145693885
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED36",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 200.53097205040046,
+          "y": 104.39659111088974
+        },
+        "rotation_deg": 270.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED3E",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 210.92879168421726,
+          "y": 104.58690145693885
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED41",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 210.92270048547596,
+          "y": 104.39659111088974
+        },
+        "rotation_deg": 270.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED49",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 224.52864139063107,
+          "y": 104.58690145693885
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED4C",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 224.52255019188976,
+          "y": 104.39659111088974
+        },
+        "rotation_deg": 270.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED54",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 230.58169025814507,
+          "y": 104.58690145693885
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED57",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 230.57559905940377,
+          "y": 104.39659111088974
+        },
+        "rotation_deg": 270.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED5F",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 248.53983451888837,
+          "y": 104.58690145287954
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED62",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 248.53374332014707,
+          "y": 104.39659110683044
+        },
+        "rotation_deg": 270.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED6A",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 254.5355612491984,
+          "y": 104.58690142968061
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED6D",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 254.5294700504571,
+          "y": 104.3965910836315
+        },
+        "rotation_deg": 270.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED75",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 272.5388560972066,
+          "y": 104.58690142984216
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED78",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 272.5327648984653,
+          "y": 104.39659108379306
+        },
+        "rotation_deg": 270.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED80",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 278.5355804015277,
+          "y": 104.58690145103395
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED83",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 278.5294892027864,
+          "y": 104.39659110498485
+        },
+        "rotation_deg": 270.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED8B",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 278.57962713077757,
+          "y": 56.08451727491333
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED8E",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 278.5739366015357,
+          "y": 56.73366938884473
+        },
+        "rotation_deg": 89.99999999999999,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED96",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 272.58267261706385,
+          "y": 56.08451727496847
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39ED99",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 272.576982087822,
+          "y": 56.73366938889987
+        },
+        "rotation_deg": 89.99999999999999,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39EDA1",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 254.54300468602776,
+          "y": 56.084517275134225
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39EDA4",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 254.5373141567859,
+          "y": 56.733669389065625
+        },
+        "rotation_deg": 89.99999999999999,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39EDAC",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 248.54712448277894,
+          "y": 56.084517275929805
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39EDAF",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 248.54143395353708,
+          "y": 56.733669389861205
+        },
+        "rotation_deg": 89.99999999999999,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39EDB7",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 230.5391487105959,
+          "y": 56.084517275768484
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39EDBA",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 230.53345818135404,
+          "y": 56.733669389699884
+        },
+        "rotation_deg": 89.99999999999999,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39EDC2",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 224.53574833406321,
+          "y": 56.084517275904794
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39EDC5",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 224.53005780482135,
+          "y": 56.733669389836194
+        },
+        "rotation_deg": 89.99999999999999,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39EDCD",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 206.53774830194072,
+          "y": 56.08451727574302
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39EDD0",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 206.53205777269886,
+          "y": 56.73366938967442
+        },
+        "rotation_deg": 89.99999999999999,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39EDD8",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 200.53764759328635,
+          "y": 56.08451727590468
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39EDDB",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 200.5319570640445,
+          "y": 56.73366938983608
+        },
+        "rotation_deg": 89.99999999999999,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39EDE3",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 182.53964756116363,
+          "y": 56.084517274807034
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39EDE6",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 182.53395703192177,
+          "y": 56.733669388738434
+        },
+        "rotation_deg": 89.99999999999999,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39EDEE",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 176.53916317019468,
+          "y": 56.08451727918659
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "39EDF1",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 176.53347264095282,
+          "y": 56.73366939311799
+        },
+        "rotation_deg": 89.99999999999999,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "3A058C",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 390.9255575568633,
+          "y": 98.51059837946744
+        },
+        "rotation_deg": 0.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "3A058F",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 390.9198670276214,
+          "y": 99.15975049339883
+        },
+        "rotation_deg": 89.99999999999999,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "3A0597",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 1613.2168586529335,
+          "y": -335.66273327809427
+        },
+        "rotation_deg": 180.0,
+        "attributes": []
+      },
+      {
+        "handle": "3A0599",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 1618.8668586505346,
+          "y": -335.66274350175684
+        },
+        "rotation_deg": 180.0,
+        "attributes": []
+      },
+      {
+        "handle": "3A059B",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 1637.2168586529338,
+          "y": -335.66271283301774
+        },
+        "rotation_deg": 180.0,
+        "attributes": []
+      },
+      {
+        "handle": "3A059D",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 1642.8668586505346,
+          "y": -335.66273327809427
+        },
+        "rotation_deg": 180.0,
+        "attributes": []
+      },
+      {
+        "handle": "3A059F",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 1661.2168586617745,
+          "y": -335.6627328942434
+        },
+        "rotation_deg": 180.0,
+        "attributes": []
+      },
+      {
+        "handle": "3A05A1",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 1666.8668586598214,
+          "y": -335.6627537236003
+        },
+        "rotation_deg": 180.0,
+        "attributes": []
+      },
+      {
+        "handle": "3A05A3",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 1685.2168586554264,
+          "y": -335.66273270231784
+        },
+        "rotation_deg": 180.0,
+        "attributes": []
+      },
+      {
+        "handle": "3A05A5",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 1690.8918586522268,
+          "y": -335.6627435021761
+        },
+        "rotation_deg": 180.0,
+        "attributes": []
+      },
+      {
+        "handle": "3A05A7",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 1709.2168586554258,
+          "y": -335.6627325103925
+        },
+        "rotation_deg": 180.0,
+        "attributes": []
+      },
+      {
+        "handle": "3A05A9",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 1714.8668586530266,
+          "y": -335.6627435076635
+        },
+        "rotation_deg": 180.0,
+        "attributes": []
+      },
+      {
+        "handle": "3A05CB",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": -1158.4025391634427,
+          "y": 481.43155678460806
+        },
+        "rotation_deg": 0.6126351479762587,
+        "attributes": []
+      },
+      {
+        "handle": "3A05CD",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": -1164.0504871429366,
+          "y": 481.43128491548055
+        },
+        "rotation_deg": 0.6126351479762586,
+        "attributes": []
+      },
+      {
+        "handle": "3A05CF",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": -1182.4254891636576,
+          "y": 481.43132158492335
+        },
+        "rotation_deg": 0.6126351479762586,
+        "attributes": []
+      },
+      {
+        "handle": "3A05D1",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": -1188.0754891616584,
+          "y": 481.4313216844914
+        },
+        "rotation_deg": 0.6126351479762586,
+        "attributes": []
+      },
+      {
+        "handle": "3A05D3",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": -1206.4108207481588,
+          "y": 481.4313216115181
+        },
+        "rotation_deg": 0.6126351479762586,
+        "attributes": []
+      },
+      {
+        "handle": "3A05D5",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": -1212.0754871456766,
+          "y": 481.43155678460806
+        },
+        "rotation_deg": 0.6126351479762586,
+        "attributes": []
+      },
+      {
+        "handle": "3A05D7",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": -1230.3990986589777,
+          "y": 481.43131137968146
+        },
+        "rotation_deg": 0.6126351479762586,
+        "attributes": []
+      },
+      {
+        "handle": "3A05D9",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": -1236.0504871460632,
+          "y": 481.4313096382999
+        },
+        "rotation_deg": 0.6126351479762586,
+        "attributes": []
+      },
+      {
+        "handle": "3A05DB",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": -1254.4004891665495,
+          "y": 481.4315567846081
+        },
+        "rotation_deg": 0.6126351479762586,
+        "attributes": []
+      },
+      {
+        "handle": "3A05DD",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": -1260.0504891641378,
+          "y": 481.43131005343423
+        },
+        "rotation_deg": 0.6126351479762586,
+        "attributes": []
+      },
+      {
+        "handle": "3A05DF",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": -135.037362871859,
+          "y": -1357.3779013042208
+        },
+        "rotation_deg": 90.61263514797626,
+        "attributes": []
+      },
+      {
+        "handle": "3A05E1",
+        "name": "Flash conventional",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": -135.03736287329872,
+          "y": -1359.440456165701
+        },
+        "rotation_deg": 90.61263514797626,
+        "attributes": []
+      },
+      {
+        "handle": "3A05E3",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 290.2098438820294,
+          "y": 82.1770564200766
+        },
+        "rotation_deg": 90.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "3A05E6",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 289.5606917680977,
+          "y": 82.17136589083503
+        },
+        "rotation_deg": 179.99999999999997,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "3A05EE",
+        "name": "FA-B1",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 290.20984400331054,
+          "y": 80.14219565497659
+        },
+        "rotation_deg": 90.0,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "handle": "3A05F1",
+        "name": "Sirena",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 289.5606918893788,
+          "y": 80.13650512573503
+        },
+        "rotation_deg": 179.99999999999997,
+        "attributes": [
+          {
+            "tag": "ADRESA",
+            "value": ""
+          }
+        ]
+      }
+    ],
+    "texts": [
+      {
+        "handle": "2E859B",
+        "value": "{\\fArial|b0|i0|c0|p34;Detector optic de fum adresabil}",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.18250263296994,
+          "y": 147.0230987424312
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E859C",
+        "value": "{\\fArial|b0|i0|c0|p34;Detector optic de fum adresabil, montat deasupra tavanului suspendat}",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.1787970735542,
+          "y": 146.40862930910097
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E859D",
+        "value": "{\\fArial|b0|i0|c0|p34;Detector multicriterial adresabil}",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.19526961537014,
+          "y": 144.9614987814048
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E859E",
+        "value": "{\\fArial|b0|i0|c0|p34;Buton de alarmare incendiu adresabil }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.2080544924758,
+          "y": 143.47274748448407
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E859F",
+        "value": "{\\fArial|b0|i0|c0|p34;Modul adresabil 4intrari / 2iesiri pe releu}",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.20372011547914,
+          "y": 140.837866580625
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E85A0",
+        "value": "{\\fArial|b0|i0|c0|p34;Sursa alimentare 24Vdc,3A , certificare EN54-4, prevazuta cu acumulatori 2x12Vdc 17Ah }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.15883867560314,
+          "y": 140.1164856830865
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E85A1",
+        "value": "{\\fArial|b0|i0|c0|p34;LEGENDA }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 336.58416728983974,
+          "y": 149.38798511279182
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E85B4",
+        "value": "{\\fArial CE|b0|i0|c0|p34;Motor electric de actionare a \\fArial|b0|i0|c0|p34;grilelor din fatada\\fArial CE|b0|i0|c0|p34;, tensiunea de functionare 24Vdc}",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.200573663473,
+          "y": 138.71071204721088
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E85B5",
+        "value": "{\\fArial|b0|i0|c0|p34;Sirena avertizare incendiu cu semnal acustic si luminos, conventionala de exterior IP65, \\Ppentru marcarea accesului fortelor de interventie}",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.1883329677683,
+          "y": 142.16459045724653
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E85B6",
+        "value": "{\\fArial|b0|i0|c0|p34;Centrala detectie, semnalizare si alarmare la incendiu adresabila, echipata cu carduri\\Pde bucla pentru 6 bucle, imprimanta inclusa, interfata de operare in limba romana}",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.17731472734357,
+          "y": 148.08799254847608
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E85B8",
+        "value": "{\\fArial|b0|i0|c0|p34;Detector liniar de temperatura }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.18047424639934,
+          "y": 139.42773581281702
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E85BA",
+        "value": "{\\fArial|b0|i0|c0|p34;Cablu senzorial de temperatura }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.2050966041796,
+          "y": 136.7957610002077
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E85BB",
+        "value": "{\\fArial|b0|i0|c0|p34;Tipuri de cabluri utilizate:}",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.23804926382655,
+          "y": 135.5062363871639
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E85BE",
+        "value": "{\\W1;JE-H(St)H 1x2x0,8 mm FE180-E30 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 334.81656873766843,
+          "y": 134.9646792167878
+        },
+        "height": 0.24999999999999997
+      },
+      {
+        "handle": "2E85BF",
+        "value": "{\\W1;JE-H(St)H 4x2x0,8 mm E30-FE180 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 334.80228478408463,
+          "y": 134.48122454877196
+        },
+        "height": 0.24999999999999997
+      },
+      {
+        "handle": "2E85C0",
+        "value": "{\\fArial|b0|i0|c0|p34;Codificare elemente detectie: \\La\\l.\\Lc\\l, unde:}",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.23804926382655,
+          "y": 133.02137223938195
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E85C1",
+        "value": "{\\fArial|b0|i0|c0|p34;\\La\\l = numarul buclei de detectie;}",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.23804926382655,
+          "y": 132.21860543352346
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E85C2",
+        "value": "{\\fArial|b0|i0|c0|p34;\\Lc\\l = ordinea de conexiune pe bucla respectiva;}",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.23804926382655,
+          "y": 131.39959801563606
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E85C4",
+        "value": "{\\W1;JE-H(St)H 2x2x0,8 mm E30-FE180 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 334.80228478408463,
+          "y": 134.0503520659359
+        },
+        "height": 0.24999999999999997
+      },
+      {
+        "handle": "2E85C9",
+        "value": "{\\fArial|b0|i0|c0|p34;Electromagnet de retinere a usii antifoc(intra in furnitura usii)}",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.22118714196966,
+          "y": 137.47292834091095
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E85CA",
+        "value": "{\\fArial|b0|i0|c0|p34;Buton inchidere usa antifoc, conventional, tip NC/COM/NO}",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.22284091961006,
+          "y": 138.13120027819284
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E85CB",
+        "value": "{\\fArial|b0|i0|c0|p34;Sirena de alarmare la incendiu incendiu }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.1934518226173,
+          "y": 142.81967905417113
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E85EA",
+        "value": "{\\fArial|b0|i0|c0|p34;Indicator optic}",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.2070555853708,
+          "y": 145.64823449023888
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E85EE",
+        "value": "{\\fArial|b0|i0|c0|p34;Detector optic de fum adresabil in tubulatura de ventialtie}",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.1731464493752,
+          "y": 144.27357309673343
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E85F0",
+        "value": "{\\fArial|b0|i0|c0|p34;Panou repetor}",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.18250263296994,
+          "y": 148.54809182547078
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E85F1",
+        "value": "{\\W0.9;Flash}",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.1676198142662,
+          "y": 141.2987504522474
+        },
+        "height": 0.25000000000000006
+      },
+      {
+        "handle": "2E9B07",
+        "value": "{\\fArial|b0|i0|c0|p34;Detector conventional de fum pentru usa}",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.2292542322763,
+          "y": 136.25580275073904
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "2E9F60",
+        "value": "{\\fArial|b0|i0|c0|p34;Buton de alarmare incendiu adresabil }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 331.2080544924758,
+          "y": 130.33148192211712
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED24",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 182.85104939054753,
+          "y": 104.94548342474181
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED26",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 182.81199053133486,
+          "y": 104.37828332585295
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED31",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 179.5821056523133,
+          "y": 104.94548342474181
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED32",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 179.54304679310061,
+          "y": 104.37828332585295
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED3C",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 200.8229885730985,
+          "y": 104.94548342474181
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED3D",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 200.78392971388584,
+          "y": 104.37828332585295
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED47",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 211.214717008174,
+          "y": 104.94548342474181
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED48",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 211.17565814896133,
+          "y": 104.37828332585295
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED52",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 224.8145667145878,
+          "y": 104.94548342474181
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED53",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 224.77550785537514,
+          "y": 104.37828332585295
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED5D",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 230.86761558210182,
+          "y": 104.94548342474181
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED5E",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 230.82855672288915,
+          "y": 104.37828332585295
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED68",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 248.82575984284512,
+          "y": 104.9454834206825
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED69",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 248.78670098363244,
+          "y": 104.37828332179365
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED73",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 254.82148657315514,
+          "y": 104.94548339748357
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED74",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 254.78242771394247,
+          "y": 104.37828329859471
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED7E",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 272.8247814211633,
+          "y": 104.94548339764512
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED7F",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 272.78572256195065,
+          "y": 104.37828329875626
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED89",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 278.8215057254844,
+          "y": 104.94548341883691
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED8A",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 278.78244686627175,
+          "y": 104.37828331994805
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED94",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 278.8655524547343,
+          "y": 56.44309924271629
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED95",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 278.82649359552164,
+          "y": 56.77438322574863
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39ED9F",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 272.8685979410206,
+          "y": 56.44309924277143
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39EDA0",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 272.8295390818079,
+          "y": 56.77438322580377
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39EDAA",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 254.8289300099845,
+          "y": 56.44309924293719
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39EDAB",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 254.78987115077183,
+          "y": 56.77438322596952
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39EDB5",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 248.8330498067357,
+          "y": 56.44309924373277
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39EDB6",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 248.793990947523,
+          "y": 56.7743832267651
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39EDC0",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 230.82507403455264,
+          "y": 56.443099243571446
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39EDC1",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 230.78601517533997,
+          "y": 56.77438322660378
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39EDCB",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 224.82167365801996,
+          "y": 56.443099243707756
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39EDCC",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 224.7826147988073,
+          "y": 56.77438322674009
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39EDD6",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 206.82367362589747,
+          "y": 56.44309924354598
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39EDD7",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 206.7846147666848,
+          "y": 56.774383226578315
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39EDE1",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 200.8235729172431,
+          "y": 56.44309924370764
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39EDE2",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 200.78451405803042,
+          "y": 56.77438322673998
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39EDEC",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 182.82557288512038,
+          "y": 56.443099242609996
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39EDED",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 182.7865140259077,
+          "y": 56.77438322564233
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39EDF7",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 176.82508849415143,
+          "y": 56.443099246989554
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "39EDF8",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 176.78602963493876,
+          "y": 56.77438323002189
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A0595",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 391.21148288082003,
+          "y": 98.8691803472704
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A0596",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 391.17242402160736,
+          "y": 99.20046433030274
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A0598",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;FL.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 178.50494763947094,
+          "y": 105.74054714889368
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A059A",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;FL.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 184.154947637072,
+          "y": 105.74053692523108
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A059C",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;FL.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 202.50494763947117,
+          "y": 105.74056759397023
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A059E",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;FL.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 208.154947637072,
+          "y": 105.74054714889368
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A05A0",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;FL.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 226.5049476483119,
+          "y": 105.74054753274456
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A05A2",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;FL.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 232.15494764635886,
+          "y": 105.74052670338764
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A05A4",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;FL.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 250.50494764196387,
+          "y": 105.74054772467011
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A05A6",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;FL.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 256.17994763876425,
+          "y": 105.74053692481183
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A05A8",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;FL.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 274.5049476419632,
+          "y": 105.74054791659543
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A05AA",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;FL.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 280.15494763956406,
+          "y": 105.74053691932446
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A05CC",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;FL.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 280.3070500060172,
+          "y": 55.65936401073212
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A05CE",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;FL.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 274.6591020265233,
+          "y": 55.6590921416046
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A05D0",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;FL.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 256.2841000058023,
+          "y": 55.65912881104741
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A05D2",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;FL.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 250.63410000780152,
+          "y": 55.65912891061548
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A05D4",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;FL.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 232.29876842130113,
+          "y": 55.65912883764217
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A05D6",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;FL.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 226.6341020237834,
+          "y": 55.65936401073212
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A05D8",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;FL.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 208.31049051048223,
+          "y": 55.65911860580549
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A05DA",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;FL.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 202.6591020233967,
+          "y": 55.65911686442398
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A05DC",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;FL.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 184.30910000291044,
+          "y": 55.659364010732176
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A05DE",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;FL.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 178.6591000053221,
+          "y": 55.65911727955829
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A05E0",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;FL.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 290.7452433308523,
+          "y": 81.70980252390534
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A05E2",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;FL.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 290.7452433294126,
+          "y": 79.64724766242516
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A05EC",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 290.32279038586853,
+          "y": 82.35087783977879
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A05ED",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 290.26115627925833,
+          "y": 82.0055266383999
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A05F7",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C256;BI.1.1 }",
+        "layer": "GI - INCENDIU",
+        "position": {
+          "x": 290.32279050714965,
+          "y": 80.31601707467878
+        },
+        "height": 0.25
+      },
+      {
+        "handle": "3A05F8",
+        "value": "{\\fArial|b0|i0|c0|p34;\\C3;SII.1.1 }",
+        "layer": "GI_INCENDIU",
+        "position": {
+          "x": 290.26115640053945,
+          "y": 79.9706658732999
+        },
+        "height": 0.25
+      }
+    ],
+    "lines": [
+      {
+        "handle": "2E85D2",
+        "layer": "GI - INCENDIU",
+        "start": {
+          "x": 330.010832283306,
+          "y": 145.56864010502167
+        },
+        "end": {
+          "x": 330.0445115739806,
+          "y": 145.6023193958218
+        }
+      },
+      {
+        "handle": "2E85D3",
+        "layer": "GI - INCENDIU",
+        "start": {
+          "x": 329.93337245938375,
+          "y": 145.6023193958218
+        },
+        "end": {
+          "x": 329.9670517501748,
+          "y": 145.56864010502167
+        }
+      },
+      {
+        "handle": "2E85D4",
+        "layer": "GI - INCENDIU",
+        "start": {
+          "x": 330.010832283306,
+          "y": 145.52485957179587
+        },
+        "end": {
+          "x": 330.0445115739806,
+          "y": 145.49118028099574
+        }
+      },
+      {
+        "handle": "2E85D8",
+        "layer": "GI - INCENDIU",
+        "start": {
+          "x": 329.93337245938375,
+          "y": 145.49118028099574
+        },
+        "end": {
+          "x": 329.9670517501748,
+          "y": 145.52485957179587
+        }
+      }
+    ],
+    "polylines": [
+      {
+        "handle": "2E85B9",
+        "layer": "GI - INCENDIU",
+        "closed": false,
+        "vertices": [
+          {
+            "x": 329.5810554069661,
+            "y": 136.68217891312545
+          },
+          {
+            "x": 330.6131030212113,
+            "y": 136.68217891312545
+          }
+        ]
+      },
+      {
+        "handle": "2E85BC",
+        "layer": "GI - INCENDIU",
+        "closed": false,
+        "vertices": [
+          {
+            "x": 331.3755439689783,
+            "y": 134.7690475325144
+          },
+          {
+            "x": 334.6327525852765,
+            "y": 134.7690475325144
+          }
+        ]
+      },
+      {
+        "handle": "2E85BD",
+        "layer": "GI - INCENDIU",
+        "closed": false,
+        "vertices": [
+          {
+            "x": 331.3755439689783,
+            "y": 134.33817504969286
+          },
+          {
+            "x": 334.6327525852765,
+            "y": 134.33817504969286
+          }
+        ]
+      },
+      {
+        "handle": "2E85C3",
+        "layer": "GI - INCENDIU",
+        "closed": false,
+        "vertices": [
+          {
+            "x": 331.3755439689783,
+            "y": 133.9073025668568
+          },
+          {
+            "x": 334.6327525852765,
+            "y": 133.9073025668568
+          }
+        ]
+      },
+      {
+        "handle": "2E85D7",
+        "layer": "GI - INCENDIU",
+        "closed": true,
+        "vertices": [
+          {
+            "x": 329.9889420167404,
+            "y": 145.64498386551085
+          },
+          {
+            "x": 329.9889420167404,
+            "y": 145.4485158113067
+          }
+        ]
+      },
+      {
+        "handle": "2E85D9",
+        "layer": "GI - INCENDIU",
+        "closed": true,
+        "vertices": [
+          {
+            "x": 329.9889420167404,
+            "y": 145.62533706004533
+          },
+          {
+            "x": 329.9889420167404,
+            "y": 145.46816261680132
+          }
+        ]
+      },
+      {
+        "handle": "2E85DB",
+        "layer": "GI - INCENDIU",
+        "closed": false,
+        "vertices": [
+          {
+            "x": 330.0871697331407,
+            "y": 145.5478633002759
+          },
+          {
+            "x": 330.1804507570435,
+            "y": 145.5478633002759
+          }
+        ]
+      },
+      {
+        "handle": "2E85DC",
+        "layer": "GI - INCENDIU",
+        "closed": false,
+        "vertices": [
+          {
+            "x": 329.79746662605095,
+            "y": 145.54395870951984
+          },
+          {
+            "x": 329.89074764995377,
+            "y": 145.54395870951984
+          }
+        ]
+      },
+      {
+        "handle": "2E85DD",
+        "layer": "GI - INCENDIU",
+        "closed": false,
+        "vertices": [
+          {
+            "x": 329.93024600775453,
+            "y": 145.62551977307803
+          },
+          {
+            "x": 329.8614065698442,
+            "y": 145.68438059447462
+          }
+        ]
+      },
+      {
+        "handle": "2E85DE",
+        "layer": "GI - INCENDIU",
+        "closed": false,
+        "vertices": [
+          {
+            "x": 329.9221247664048,
+            "y": 145.47474026174595
+          },
+          {
+            "x": 329.8683118053107,
+            "y": 145.40559508029864
+          }
+        ]
+      },
+      {
+        "handle": "2E85DF",
+        "layer": "GI - INCENDIU",
+        "closed": false,
+        "vertices": [
+          {
+            "x": 329.9889420167404,
+            "y": 145.4485158113067
+          },
+          {
+            "x": 329.9889420167404,
+            "y": 145.37000961179646
+          }
+        ]
+      },
+      {
+        "handle": "2E85E0",
+        "layer": "GI - INCENDIU",
+        "closed": false,
+        "vertices": [
+          {
+            "x": 330.0625617818535,
+            "y": 145.4817109710685
+          },
+          {
+            "x": 330.1458922481491,
+            "y": 145.42632726286055
+          }
+        ]
+      },
+      {
+        "handle": "2E85E1",
+        "layer": "GI - INCENDIU",
+        "closed": false,
+        "vertices": [
+          {
+            "x": 330.06618726918015,
+            "y": 145.60743834666673
+          },
+          {
+            "x": 330.1318700354407,
+            "y": 145.68298604322726
+          }
+        ]
+      },
+      {
+        "handle": "2E85E2",
+        "layer": "GI - INCENDIU",
+        "closed": false,
+        "vertices": [
+          {
+            "x": 329.8992513348442,
+            "y": 145.5868186000399
+          },
+          {
+            "x": 329.8237441103068,
+            "y": 145.62804819161929
+          }
+        ]
+      },
+      {
+        "handle": "2E85E3",
+        "layer": "GI - INCENDIU",
+        "closed": false,
+        "vertices": [
+          {
+            "x": 329.9029335732433,
+            "y": 145.49928962634212
+          },
+          {
+            "x": 329.83250237082603,
+            "y": 145.46015058151997
+          }
+        ]
+      },
+      {
+        "handle": "2E85E4",
+        "layer": "GI - INCENDIU",
+        "closed": false,
+        "vertices": [
+          {
+            "x": 329.9549735440035,
+            "y": 145.45457572637233
+          },
+          {
+            "x": 329.9347688873625,
+            "y": 145.37875908527994
+          }
+        ]
+      },
+      {
+        "handle": "2E85E5",
+        "layer": "GI - INCENDIU",
+        "closed": false,
+        "vertices": [
+          {
+            "x": 330.0308176910133,
+            "y": 145.45788841829844
+          },
+          {
+            "x": 330.07038073754876,
+            "y": 145.38534931809872
+          }
+        ]
+      },
+      {
+        "handle": "2E85E6",
+        "layer": "GI - INCENDIU",
+        "closed": false,
+        "vertices": [
+          {
+            "x": 330.0826365437918,
+            "y": 145.51723273037086
+          },
+          {
+            "x": 330.1706945368881,
+            "y": 145.48792735458582
+          }
+        ]
+      },
+      {
+        "handle": "2E85E7",
+        "layer": "GI - INCENDIU",
+        "closed": false,
+        "vertices": [
+          {
+            "x": 330.0818400593801,
+            "y": 145.5786853632445
+          },
+          {
+            "x": 330.1764977549995,
+            "y": 145.61774308694575
+          }
+        ]
+      },
+      {
+        "handle": "2E85E8",
+        "layer": "GI - INCENDIU",
+        "closed": false,
+        "vertices": [
+          {
+            "x": 329.9617142214068,
+            "y": 145.64113506625208
+          },
+          {
+            "x": 329.94255163160625,
+            "y": 145.71662770951943
+          }
+        ]
+      },
+      {
+        "handle": "2E85E9",
+        "layer": "GI - INCENDIU",
+        "closed": false,
+        "vertices": [
+          {
+            "x": 330.0259912412242,
+            "y": 145.6377293912893
+          },
+          {
+            "x": 330.05216513970873,
+            "y": 145.71121068911006
+          }
+        ]
+      },
+      {
+        "handle": "39ED0B",
+        "layer": "GRINZI",
+        "closed": true,
+        "vertices": [
+          {
+            "x": 169.3042310617786,
+            "y": 47.01577852566959
+          },
+          {
+            "x": 169.90423106177875,
+            "y": 47.01577852566959
+          },
+          {
+            "x": 169.90423106177877,
+            "y": 136.06756227169808
+          },
+          {
+            "x": 169.30423106177864,
+            "y": 136.06756227169808
+          }
+        ]
+      },
+      {
+        "handle": "39ED0C",
+        "layer": "GRINZI",
+        "closed": true,
+        "vertices": [
+          {
+            "x": 181.42923103305495,
+            "y": 47.01577852566959
+          },
+          {
+            "x": 182.02923103305508,
+            "y": 47.01577852566959
+          },
+          {
+            "x": 182.0292310330551,
+            "y": 136.06756227169808
+          },
+          {
+            "x": 181.42923103305498,
+            "y": 136.06756227169808
+          }
+        ]
+      },
+      {
+        "handle": "39ED0D",
+        "layer": "GRINZI",
+        "closed": true,
+        "vertices": [
+          {
+            "x": 193.42923103071664,
+            "y": 47.01577852566959
+          },
+          {
+            "x": 194.02923103071677,
+            "y": 47.01577852566959
+          },
+          {
+            "x": 194.0292310307168,
+            "y": 136.06756227169808
+          },
+          {
+            "x": 193.42923103071666,
+            "y": 136.06756227169808
+          }
+        ]
+      },
+      {
+        "handle": "39ED0E",
+        "layer": "GRINZI",
+        "closed": true,
+        "vertices": [
+          {
+            "x": 205.42923103071664,
+            "y": 47.01577852566959
+          },
+          {
+            "x": 206.02923103071677,
+            "y": 47.01577852566959
+          },
+          {
+            "x": 206.0292310307168,
+            "y": 136.06756227169808
+          },
+          {
+            "x": 205.42923103071666,
+            "y": 136.06756227169808
+          }
+        ]
+      },
+      {
+        "handle": "39ED0F",
+        "layer": "GRINZI",
+        "closed": true,
+        "vertices": [
+          {
+            "x": 217.42923103071664,
+            "y": 47.01577852566959
+          },
+          {
+            "x": 218.02923103071677,
+            "y": 47.01577852566959
+          },
+          {
+            "x": 218.0292310307168,
+            "y": 136.06756227169808
+          },
+          {
+            "x": 217.42923103071666,
+            "y": 136.06756227169808
+          }
+        ]
+      },
+      {
+        "handle": "39ED10",
+        "layer": "GRINZI",
+        "closed": true,
+        "vertices": [
+          {
+            "x": 229.42923103196264,
+            "y": 47.01577852455671
+          },
+          {
+            "x": 230.02923103196278,
+            "y": 47.01577852455671
+          },
+          {
+            "x": 230.0292310319628,
+            "y": 136.0675622705852
+          },
+          {
+            "x": 229.42923103196267,
+            "y": 136.0675622705852
+          }
+        ]
+      },
+      {
+        "handle": "39ED11",
+        "layer": "GRINZI",
+        "closed": true,
+        "vertices": [
+          {
+            "x": 241.4292310332082,
+            "y": 47.01577852566959
+          },
+          {
+            "x": 242.02923103320833,
+            "y": 47.01577852566959
+          },
+          {
+            "x": 242.02923103320836,
+            "y": 136.06756227169808
+          },
+          {
+            "x": 241.42923103320823,
+            "y": 136.06756227169808
+          }
+        ]
+      },
+      {
+        "handle": "39ED12",
+        "layer": "GRINZI",
+        "closed": true,
+        "vertices": [
+          {
+            "x": 253.4292310332082,
+            "y": 47.01577852566959
+          },
+          {
+            "x": 254.02923103320833,
+            "y": 47.01577852566959
+          },
+          {
+            "x": 254.02923103320836,
+            "y": 136.06756227169808
+          },
+          {
+            "x": 253.42923103320823,
+            "y": 136.06756227169808
+          }
+        ]
+      },
+      {
+        "handle": "39ED13",
+        "layer": "GRINZI",
+        "closed": true,
+        "vertices": [
+          {
+            "x": 265.4292310332082,
+            "y": 47.01577852566959
+          },
+          {
+            "x": 266.02923103320836,
+            "y": 47.01577852566959
+          },
+          {
+            "x": 266.02923103320836,
+            "y": 136.06756227169808
+          },
+          {
+            "x": 265.4292310332082,
+            "y": 136.06756227169808
+          }
+        ]
+      },
+      {
+        "handle": "39ED14",
+        "layer": "GRINZI",
+        "closed": true,
+        "vertices": [
+          {
+            "x": 277.4292310332082,
+            "y": 47.01577852566959
+          },
+          {
+            "x": 278.02923103320836,
+            "y": 47.01577852566959
+          },
+          {
+            "x": 278.02923103320836,
+            "y": 136.06756227169808
+          },
+          {
+            "x": 277.4292310332082,
+            "y": 136.06756227169808
+          }
+        ]
+      },
+      {
+        "handle": "39ED15",
+        "layer": "GRINZI",
+        "closed": true,
+        "vertices": [
+          {
+            "x": 289.5542310023102,
+            "y": 47.015778525669475
+          },
+          {
+            "x": 290.1542310023103,
+            "y": 47.015778525669475
+          },
+          {
+            "x": 290.1542310023103,
+            "y": 136.06756227169797
+          },
+          {
+            "x": 289.5542310023102,
+            "y": 136.06756227169797
+          }
+        ]
+      },
+      {
+        "handle": "39ED16",
+        "layer": "GRINZI",
+        "closed": true,
+        "vertices": [
+          {
+            "x": 152.81357144996582,
+            "y": 105.16621147625737
+          },
+          {
+            "x": 524.9901496670309,
+            "y": 105.16621147625733
+          },
+          {
+            "x": 524.9901496670309,
+            "y": 104.56621147625742
+          },
+          {
+            "x": 152.81357144996582,
+            "y": 104.56621147625746
+          }
+        ]
+      },
+      {
+        "handle": "39ED17",
+        "layer": "GRINZI",
+        "closed": true,
+        "vertices": [
+          {
+            "x": 152.8135922927928,
+            "y": 99.04121136891722
+          },
+          {
+            "x": 524.9901705098579,
+            "y": 99.04121136891717
+          },
+          {
+            "x": 524.9901705098579,
+            "y": 98.44121136891727
+          },
+          {
+            "x": 152.8135922927928,
+            "y": 98.44121136891731
+          }
+        ]
+      },
+      {
+        "handle": "39ED18",
+        "layer": "GRINZI",
+        "closed": true,
+        "vertices": [
+          {
+            "x": 152.81357144996593,
+            "y": 81.04121150731957
+          },
+          {
+            "x": 524.990149667031,
+            "y": 81.04121150731953
+          },
+          {
+            "x": 524.990149667031,
+            "y": 80.44121150731962
+          },
+          {
+            "x": 152.81357144996593,
+            "y": 80.44121150731966
+          }
+        ]
+      },
+      {
+        "handle": "39ED19",
+        "layer": "GRINZI",
+        "closed": true,
+        "vertices": [
+          {
+            "x": 152.8135714509674,
+            "y": 63.041211507697014
+          },
+          {
+            "x": 524.9901496680325,
+            "y": 63.04121150769697
+          },
+          {
+            "x": 524.9901496680325,
+            "y": 62.44121150769706
+          },
+          {
+            "x": 152.8135714509674,
+            "y": 62.441211507697105
+          }
+        ]
+      },
+      {
+        "handle": "39ED1A",
+        "layer": "GRINZI",
+        "closed": true,
+        "vertices": [
+          {
+            "x": 152.8135714512972,
+            "y": 56.91621153946339
+          },
+          {
+            "x": 524.9901496683623,
+            "y": 56.91621153946335
+          },
+          {
+            "x": 524.9901496683623,
+            "y": 56.31621153946344
+          },
+          {
+            "x": 152.8135714512972,
+            "y": 56.31621153946348
+          }
+        ]
+      }
+    ]
+  },
+  "messages": [
+    {
+      "role": "user",
+      "content": "Identifica blocuriile"
+    },
+    {
+      "role": "system",
+      "content": "Extracted DWG context for AI request."
+    },
+    {
+      "role": "user",
+      "content": "Identifica blocuriile"
+    }
+  ]
+}
