@@ -26,215 +26,212 @@ Flux:
 2. AI-ul genereaza actiuni structurate (tool calling).
 3. Plugin-ul executa actiunile in AutoCAD.
 
-## Milestone-uri esentiale
+## Milestone-uri viitoare
 
-### M0. Contracte JSON si reguli de validare (obligatoriu)
+Obiectivul urmatoarei etape este trecerea de la un planner monolitic la o arhitectura agentica modulara, capabila sa rezolve task-uri CAD complexe, cu verificare automata dupa executie.
 
-Scop:
+### Arhitectura tinta pentru planner
 
-- definirea schemelor JSON pentru context CAD (input) si actiuni (output);
-- validare stricta cu JSON Schema;
-- definirea regulilor minime de siguranta in executie (ce are voie sa ruleze).
+Flow recomandat:
 
-Livrabil:
+1. Intent Parser
+2. Planner
+3. Tool Selector
+4. Executor
+5. Verifier
+6. Memory
+7. Replanner (daca verificarea esueaza)
 
-- pachet de scheme versionate in `shared/schemas/`;
-- validator comun folosit de plugin si AI server.
+Model operational:
 
-Durata estimata:
+1. Think
+2. Act
+3. Observe
+4. Replan (cand este necesar)
 
-- 1-2 zile.
+### Principii de design
 
-Criteriu de acceptare:
+- Fiecare componenta are un singur rol.
+- Executorul executa, nu decide.
+- Planner-ul produce obiective si sub-obiective, nu doar actiuni plate.
+- Verifierul valideaza rezultatul in DWG si inchide bucla de feedback.
+- Memoria de sesiune permite comenzi contextuale de tipul "muta-l mai la stanga".
 
-- orice payload invalid este respins explicit, cu erori clare.
-
-### M1. Citire DWG (fundatia)
-
-Scop:
-
-- citire blocuri;
-- citire texte;
-- listare layere.
-
-Livrabil:
-
-- endpoint/command care returneaza JSON cu entitatile principale.
-
-Durata estimata:
-
-- 2-3 zile.
-
-Criteriu de acceptare:
-
-- datele extrase sunt corecte pe minim 5 desene reale (fixture set).
-
-### M2. AI local functional
+### Etapa 1: Executor complet (prioritatea maxima)
 
 Scop:
 
-- instalare Ollama;
-- rulare model Qwen2.5:7b local;
-- validare prompt simplu pentru analiza JSON.
+- finalizarea executiei CAD reale pentru tool-urile principale;
+- reducerea dependentei de raspunsuri pur descriptive.
 
-Nota:
+Actiuni tinta:
 
-- Qwen2.5:14b se adopta doar daca hardware-ul permite latenta buna in utilizare curenta.
+- insert_block
+- move_block
+- delete_block
+- copy_block
+- create_polyline
+- create_line
+- update_attribute
+- modify_text
+- zoom_to_entity
+- select_entities
 
-Livrabil:
-
-- AI server capabil sa primeasca context si sa returneze raspuns coerent.
-
-Durata estimata:
-
-- 1 zi.
-
-Criteriu de acceptare:
-
-- raspuns stabil la aceeasi intrare, fara dependente cloud.
-
-### M3. Integrare Plugin <-> AI Server
+### Etapa 2: Tool Registry unificat
 
 Scop:
 
-- comunicare HTTP intre plugin si FastAPI;
-- endpoint principal `POST /analyze`.
+- definirea unui catalog unic de tool-uri;
+- decuplarea planner-ului de detalii specifice AutoCAD.
 
-Livrabil:
+Exemple de tool-uri candidate:
 
-- request/response cap-coada functionale din AutoCAD.
+- find_room
+- find_block
+- find_text
+- find_nearest_wall
+- compute_room_center
+- compute_path
+- find_loop
+- find_layer
+- check_normative
 
-Durata estimata:
-
-- 2 zile.
-
-Criteriu de acceptare:
-
-- plugin trimite context si primeste actiuni JSON valide.
-
-### M3.1. Validation Gate intre AI si executor
-
-Scop:
-
-- nici o actiune AI nu este executata direct;
-- validare semantica inainte de executie:
-  - block exista in librarie;
-  - layer permis de reguli;
-  - coordonate in limite configurate;
-  - comenzi nepermise sunt blocate.
-
-Livrabil:
-
-- validator semantic + jurnal de decizie (acceptat/refuzat + motiv).
-
-Durata estimata:
-
-- 2-3 zile.
-
-Criteriu de acceptare:
-
-- actiunile invalide sunt respinse predictibil, fara efecte in desen.
-
-### M4. Primul tool real (valoare imediata)
+### Etapa 3: Goal Planner + Task Graph
 
 Scop:
 
-- comanda de tip: "insereaza bloc AMP pentru fiecare text tinta".
+- introducerea planificarii ierarhice (goal -> subgoal -> actions);
+- executie pe graf de task-uri, nu doar pe lista liniara.
 
-Livrabil:
+Exemplu de flow:
 
-- pipeline complet: analiza -> actiuni -> executie CAD.
+1. Find Rooms
+2. Find Existing Detectors
+3. Compare Coverage
+4. Insert Missing
+5. Verify Result
+6. Generate Report
 
-Durata estimata:
-
-- 3-5 zile.
-
-Criteriu de acceptare:
-
-- inserarile sunt corecte geometric si repetabile.
-
-### M5. Tool Calling standardizat
+### Etapa 4: Verifier + replanning automat
 
 Scop:
 
-- definirea tool-urilor CAD cu schema clara (JSON):
-  - `insert_block`
-  - `create_polyline`
-  - `update_attribute`
-  - `find_entities`
+- verificare post-executie direct din DWG;
+- relansare automata a planificarii cand exista gap-uri.
 
-Livrabil:
+Exemplu:
 
-- executor generic de actiuni + validare schema.
+1. Executor insereaza detectoare.
+2. Verifier reciteste DWG.
+3. Daca mai exista camere fara detector, planner-ul continua cu pasii lipsa.
 
-Durata estimata:
-
-- ~1 saptamana.
-
-Criteriu de acceptare:
-
-- AI-ul nu genereaza cod ad-hoc, ci apeleaza tool-uri standard.
-
-### M5.1. Teste de regresie pe fixture DWG
+### Etapa 5: Memory de sesiune si proiect
 
 Scop:
 
-- set de 5-10 desene etalon pentru verificare automata;
-- teste pentru extractie, plan de actiuni si executie.
+- persistenta contextului operational intre comenzi;
+- eliminarea re-cautarii complete la fiecare interactiune.
 
-Livrabil:
+Date utile in memorie:
 
-- suita de teste care ruleaza local si raporteaza regresii.
+- handle camera curenta
+- handle detector inserat
+- ultimele entitati modificate
+- ultima zona analizata
 
-Durata estimata:
+### Ce NU este prioritar acum
 
-- 2-4 zile initial, apoi mentenanta incrementala.
+- fine-tuning timpuriu al modelului LLM;
+- cresterea modelului fara consolidarea arhitecturii agentice.
 
-Criteriu de acceptare:
+Capabilitatile urmatoare vor veni in principal din designul planner-ului, tooling si bucla de verificare, nu din schimbarea prematura a modelului.
 
-- fiecare schimbare trece testele pe fixture-uri inainte de release.
+### Roadmap pe milestone-uri
 
-### M6. UI de chat in AutoCAD
+Milestone 1 (finalizat):
 
-Scop:
+- [x] citire DWG
+- [x] extragere entitati
+- [x] FastAPI + Ollama
+- [x] planner JSON
+- [x] validare schema + semantica
 
-- interfata de utilizare in AutoCAD (PaletteSet/WPF / WinForms).
+Milestone 2:
 
-Livrabil:
+- [x] executor complet
+- [x] tool registry
+- [x] tool selector
+- [x] session memory
 
-- panou chat pentru cereri, status si rezultate.
-- comanda AutoCAD `AI_CHAT` / `AI_OPEN_CHAT`.
-- lansare prompt + analiza + preview + executie din același panel.
-- sesiune persistată local în `ai_chat_session.json`.
+Milestone 3:
 
-Durata estimata:
+- [x] goal planner
+- [x] task graph
+- [x] verifier
+- [x] replanning automat
 
-- ~1 saptamana.
+### Stare curenta Milestone 3 (actualizat: 2026-07-26)
 
-Criteriu de acceptare:
+Implementat in acest moment:
 
-- utilizatorul poate lansa task-uri fara scripturi externe.
+- goal planner activ in server, cu subgoals generate automat;
+- task graph activ in server, inclusiv execution_order explicit;
+- executorul plugin ruleaza pe execution_order (nu doar pe lista liniara de actions);
+- raportul de executie include node_results cu status real pending -> running -> done/failed;
+- raportul de executie include goal status + subgoal status derivat din node_results;
+- chat panel afiseaza sumar de progres + tabel/lista compacta pentru subgoals.
 
-### M7. Memorie de proiect si reguli CAD
+Milestone 3 este inchis functional:
 
-Scop:
+- verifier minim activ pentru `insert_block` si `update_attribute` (bazat pe context_before/context_after + execution_report);
+- pluginul apeleaza `/verify` dupa `Execute`;
+- cand verifier returneaza `failed`, pluginul cere automat un plan incremental nou prin `/chat`.
 
-- adaugare reguli specifice proiectului:
-  - standarde de layer;
-  - blocuri uzuale;
-  - conventii interne.
+### Continuare recomandata in pasi mici (Milestone 4)
 
-Livrabil:
+Pas 1 (rapid): extindere verifier pe alte actiuni
 
-- mecanism de context persistent pentru decizii mai bune.
+- adauga verificari post-executie pentru:
+  - create_polyline;
+  - find_entities (consistenta cu context_after).
 
-Durata estimata:
+Pas 2: consolidare endpoint server pentru verificare
 
-- 1-2 saptamani.
+- pastreaza `/verify` ca poarta centrala si adauga coduri de verdict mai detaliate.
 
-Criteriu de acceptare:
+Pas 3: consolidare legatura in plugin
 
-- rezultate mai consistente intre sesiuni.
+- normalizeaza afisarea verifier in chat pe nivele info/warn/error;
+- adauga buton de retry pentru planul incremental rezultat din replanning.
+
+Pas 4: replanning avansat
+
+- adauga regula de deduplicare pentru a preveni repetarea actiunilor deja validate.
+
+### Checklist scurt pentru reluarea lucrului
+
+1. Porneste serverul local din ai-server.
+2. Ruleaza taskul Plugin: Build + Reload AutoCAD.
+3. In AutoCAD, NETLOAD pe ultimul DLL versionat daca reload automat nu merge.
+4. Testeaza fluxul: Analyze -> Preview -> Execute din AI_CHAT.
+5. Verifica in chat:
+   - overall status
+   - goal status
+   - subgoal status (compact sau tabel)
+6. Daca verifier da failed, verifica planul incremental nou din chat si ruleaza retry controlat.
+
+Milestone 4:
+
+- [ ] RAG cu normative
+- [ ] cautare semantica in DWG
+- [ ] planificare pe mai multe desene
+- [ ] agent autonom pe task-uri complexe
+
+Milestone 5:
+
+- [ ] asistent CAD aproape autonom
+- [ ] explicarea deciziilor
+- [ ] generare rapoarte de conformitate
 
 ## MVP minim realist
 

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import asyncio
+from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -8,28 +10,57 @@ from uuid import uuid4
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
+from knowledge_base import KnowledgeBaseRetriever
 from observability import ObservabilityStore
 from ollama_client import OllamaClient
 from planner import ActionPlanner
+from task_graph import enrich_action_plan_with_goal_graph
+from task_graph_runner import TaskGraphExecutionError, simulate_task_graph_execution
+from session_memory import SessionMemoryStore
 from semantic_validation import SemanticValidator
 from schema_validation import SchemaStore
+from verifier import verify_execution
 
 
 BASE_DIR = Path(__file__).resolve().parent
 SCHEMA_DIR = BASE_DIR.parent / "shared" / "schemas"
 PAYLOADS_DIR = BASE_DIR / "payloads"
+RAG_KB_DIR = BASE_DIR / "knowledge_base"
+RAG_LEGISLATION_DIR = BASE_DIR.parent / "fine-tuning" / "raw_data" / "legislation"
 
 CONTEXT_SCHEMA = "dwg-context.schema.json"
 ACTION_SCHEMA = "action-plan.schema.json"
 
 # Create payloads directory if it doesn't exist
 PAYLOADS_DIR.mkdir(exist_ok=True)
+RAG_KB_DIR.mkdir(exist_ok=True)
 
-app = FastAPI(title="AutoCAD AI Server", version="0.1.0")
+retriever = KnowledgeBaseRetriever(roots=[RAG_KB_DIR, RAG_LEGISLATION_DIR])
+planner = ActionPlanner(ollama=OllamaClient(), retriever=retriever)
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Yield immediately so server accepts requests right away.
+    # RAG indexing runs in a background task after startup.
+    async def _index_bg():
+        loop = asyncio.get_event_loop()
+        await loop.run_in_executor(None, lambda: retriever.index(force=False))
+
+    task = asyncio.create_task(_index_bg())
+    yield
+    task.cancel()
+    try:
+        await task
+    except (asyncio.CancelledError, Exception):
+        pass
+
+
+app = FastAPI(title="AutoCAD AI Server", version="0.1.0", lifespan=lifespan)
 schemas = SchemaStore(SCHEMA_DIR)
-planner = ActionPlanner(ollama=OllamaClient())
 semantic_validator = SemanticValidator()
 observability = ObservabilityStore(BASE_DIR)
+session_memory = SessionMemoryStore(BASE_DIR)
 
 
 def build_error(
@@ -97,9 +128,49 @@ def extract_audit_handles(action_plan: dict[str, Any]) -> list[str]:
     return sorted(handles)
 
 
+def resolve_session_key(context_payload: dict[str, Any], fallback_request_id: str) -> str:
+    drawing_name = ""
+    if isinstance(context_payload, dict):
+        drawing = context_payload.get("drawing", {})
+        if isinstance(drawing, dict):
+            drawing_name = str(drawing.get("name", "")).strip()
+
+    if drawing_name:
+        return drawing_name
+    return fallback_request_id
+
+
 @app.get("/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
+
+
+@app.get("/rag/status")
+def rag_status() -> dict[str, Any]:
+    return retriever.status()
+
+
+@app.post("/rag/reindex")
+def rag_reindex() -> dict[str, Any]:
+    result = retriever.index(force=True)
+    observability.log_event(
+        event="rag_reindex",
+        request_id="rag-system",
+        data=result,
+    )
+    return result
+
+
+@app.get("/rag/search")
+def rag_search(q: str, k: int = 4) -> dict[str, Any]:
+    top_k = min(max(k, 1), 10)
+    results = retriever.search(query=q, top_k=top_k)
+    return {
+        "query": q,
+        "top_k": top_k,
+        "count": len(results),
+        "results": results,
+    }
 
 
 @app.get("/replay/{request_id}")
@@ -115,6 +186,201 @@ def replay(request_id: str) -> JSONResponse:
             ),
         )
     return JSONResponse(status_code=200, content=payload)
+
+
+@app.post("/task-graph/simulate")
+async def task_graph_simulate(request: Request) -> JSONResponse:
+    payload = await request.json()
+
+    action_plan = payload.get("action_plan")
+    if not isinstance(action_plan, dict):
+        return JSONResponse(
+            status_code=422,
+            content=build_error(
+                request_id="unknown",
+                code="SCHEMA_INVALID",
+                message="Payload must include action_plan object.",
+            ),
+        )
+
+    request_id = str(action_plan.get("request_id", "")).strip() or f"req-{uuid4()}"
+    schema_version = str(action_plan.get("schema_version", "1.0.0")).strip() or "1.0.0"
+    user_command = str(payload.get("user_command", "")).strip()
+    fail_node_ids_raw = payload.get("fail_node_ids", [])
+
+    if not isinstance(fail_node_ids_raw, list):
+        return JSONResponse(
+            status_code=422,
+            content=build_error(
+                request_id=request_id,
+                code="SCHEMA_INVALID",
+                message="fail_node_ids must be an array of task node ids.",
+            ),
+        )
+
+    fail_node_ids = {
+        str(node_id).strip()
+        for node_id in fail_node_ids_raw
+        if isinstance(node_id, str) and node_id.strip()
+    }
+
+    action_plan["request_id"] = request_id
+    action_plan["schema_version"] = schema_version
+    action_plan = enrich_action_plan_with_goal_graph(action_plan, user_command)
+
+    action_issues = schemas.validate(ACTION_SCHEMA, action_plan)
+    if action_issues:
+        details = [{"path": i.path, "message": i.message} for i in action_issues]
+        return JSONResponse(
+            status_code=422,
+            content=build_error(
+                request_id=request_id,
+                code="SCHEMA_INVALID",
+                message="Action plan failed schema validation.",
+                details=details,
+            ),
+        )
+
+    try:
+        report = simulate_task_graph_execution(action_plan=action_plan, fail_node_ids=fail_node_ids)
+    except TaskGraphExecutionError as exc:
+        return JSONResponse(
+            status_code=422,
+            content=build_error(
+                request_id=request_id,
+                code="ACTION_ARGUMENT_INVALID",
+                message=str(exc),
+            ),
+        )
+
+    observability.log_event(
+        event="task_graph_simulation",
+        request_id=request_id,
+        data={
+            "status": report.get("status"),
+            "execution_order": report.get("execution_order", []),
+            "failed_nodes": report.get("failed_nodes", []),
+        },
+    )
+
+    return JSONResponse(
+        status_code=200,
+        content={
+            "request_id": request_id,
+            "action_plan": action_plan,
+            "simulation": report,
+        },
+    )
+
+
+@app.post("/verify")
+async def verify(request: Request) -> JSONResponse:
+    payload = await request.json()
+
+    action_plan = payload.get("action_plan")
+    context_before = payload.get("context_before")
+    context_after = payload.get("context_after")
+    execution_report = payload.get("execution_report")
+
+    if not isinstance(action_plan, dict):
+        return JSONResponse(
+            status_code=422,
+            content=build_error(
+                request_id="unknown",
+                code="SCHEMA_INVALID",
+                message="Payload must include action_plan object.",
+            ),
+        )
+
+    request_id = str(action_plan.get("request_id", "")).strip() or f"req-{uuid4()}"
+    schema_version = str(action_plan.get("schema_version", "1.0.0")).strip() or "1.0.0"
+    user_command = str(payload.get("user_command", "")).strip()
+
+    if not isinstance(context_before, dict) or not isinstance(context_after, dict):
+        return JSONResponse(
+            status_code=422,
+            content=build_error(
+                request_id=request_id,
+                code="SCHEMA_INVALID",
+                message="Payload must include context_before and context_after objects.",
+            ),
+        )
+
+    action_plan["request_id"] = request_id
+    action_plan["schema_version"] = schema_version
+    action_plan = enrich_action_plan_with_goal_graph(action_plan, user_command)
+
+    if not str(context_before.get("request_id", "")).strip():
+        context_before["request_id"] = request_id
+    if not str(context_before.get("schema_version", "")).strip():
+        context_before["schema_version"] = schema_version
+    if not str(context_after.get("request_id", "")).strip():
+        context_after["request_id"] = request_id
+    if not str(context_after.get("schema_version", "")).strip():
+        context_after["schema_version"] = schema_version
+
+    action_issues = schemas.validate(ACTION_SCHEMA, action_plan)
+    if action_issues:
+        details = [{"path": i.path, "message": i.message} for i in action_issues]
+        return JSONResponse(
+            status_code=422,
+            content=build_error(
+                request_id=request_id,
+                code="SCHEMA_INVALID",
+                message="Action plan failed schema validation.",
+                details=details,
+            ),
+        )
+
+    before_issues = schemas.validate(CONTEXT_SCHEMA, context_before)
+    if before_issues:
+        details = [{"path": i.path, "message": i.message} for i in before_issues]
+        return JSONResponse(
+            status_code=422,
+            content=build_error(
+                request_id=request_id,
+                code="SCHEMA_INVALID",
+                message="context_before failed schema validation.",
+                details=details,
+            ),
+        )
+
+    after_issues = schemas.validate(CONTEXT_SCHEMA, context_after)
+    if after_issues:
+        details = [{"path": i.path, "message": i.message} for i in after_issues]
+        return JSONResponse(
+            status_code=422,
+            content=build_error(
+                request_id=request_id,
+                code="SCHEMA_INVALID",
+                message="context_after failed schema validation.",
+                details=details,
+            ),
+        )
+
+    verification = verify_execution(
+        action_plan=action_plan,
+        context_before=context_before,
+        context_after=context_after,
+        execution_report=execution_report if isinstance(execution_report, dict) else None,
+    )
+
+    observability.log_event(
+        event="verification_completed",
+        request_id=request_id,
+        data={
+            "status": verification.get("status"),
+            "verified_nodes": len(verification.get("node_results", [])),
+        },
+    )
+
+    return JSONResponse(
+        status_code=200,
+        content={
+            "request_id": request_id,
+            "verification": verification,
+        },
+    )
 
 
 def build_safe_clarification_plan(
@@ -223,7 +489,10 @@ async def analyze(request: Request) -> JSONResponse:
             observability.log_event(
                 event="llm_response_received",
                 request_id=request_id,
-                data={"raw_response": model_raw_response[:4000]},
+                data={
+                    "raw_response": model_raw_response[:4000],
+                    "retrieved_knowledge": plan_result.retrieved_knowledge,
+                },
             )
         except Exception:
             action_plan = build_safe_clarification_plan(
@@ -251,6 +520,8 @@ async def analyze(request: Request) -> JSONResponse:
             "clarification_question"
         ].strip():
             action_plan["clarification_question"] = "Te rog clarifica exact actiunea dorita."
+
+    action_plan = enrich_action_plan_with_goal_graph(action_plan, user_command)
 
     action_issues = schemas.validate(ACTION_SCHEMA, action_plan)
     if action_issues:
@@ -352,9 +623,16 @@ async def analyze(request: Request) -> JSONResponse:
 @app.post("/chat")
 async def chat(request: Request) -> JSONResponse:
     payload = await request.json()
-    request_id = str(payload.get("request_id", "")).strip() or f"req-{uuid4()}"
-    schema_version = str(payload.get("schema_version", "1.0.0"))
     context_payload = payload.get("context")
+
+    context_request_id = ""
+    context_schema_version = ""
+    if isinstance(context_payload, dict):
+        context_request_id = str(context_payload.get("request_id", "")).strip()
+        context_schema_version = str(context_payload.get("schema_version", "")).strip()
+
+    request_id = str(payload.get("request_id", "")).strip() or context_request_id or f"req-{uuid4()}"
+    schema_version = str(payload.get("schema_version", "")).strip() or context_schema_version or "1.0.0"
     
     # Save incoming request payload
     save_payload("request", request_id, {
@@ -375,8 +653,10 @@ async def chat(request: Request) -> JSONResponse:
             ),
         )
 
-    context_payload["request_id"] = request_id
-    context_payload["schema_version"] = schema_version
+    if not str(context_payload.get("request_id", "")).strip():
+        context_payload["request_id"] = request_id
+    if not str(context_payload.get("schema_version", "")).strip():
+        context_payload["schema_version"] = schema_version
     messages = payload.get("messages")
     if not isinstance(messages, list):
         messages = []
@@ -387,6 +667,13 @@ async def chat(request: Request) -> JSONResponse:
             user_command = entry["content"].strip()
             if user_command:
                 break
+
+    session_key = resolve_session_key(context_payload, request_id)
+    memory_state = session_memory.load(session_key)
+    memory_fragment = SessionMemoryStore.to_prompt_fragment(memory_state)
+    planner_messages = list(messages)
+    if memory_fragment:
+        planner_messages.append({"role": "system", "content": memory_fragment})
 
     observability.log_event(
         event="chat_input_received",
@@ -445,13 +732,16 @@ async def chat(request: Request) -> JSONResponse:
         )
     else:
         try:
-            plan_result = await planner.plan(context_payload=context_payload, user_command=user_command, messages=messages)
+            plan_result = await planner.plan(context_payload=context_payload, user_command=user_command, messages=planner_messages)
             action_plan = plan_result.action_plan
             model_raw_response = plan_result.raw_response
             observability.log_event(
                 event="llm_response_received",
                 request_id=request_id,
-                data={"raw_response": model_raw_response[:4000]},
+                data={
+                    "raw_response": model_raw_response[:4000],
+                    "retrieved_knowledge": plan_result.retrieved_knowledge,
+                },
             )
         except Exception:
             action_plan = build_safe_clarification_plan(
@@ -476,6 +766,8 @@ async def chat(request: Request) -> JSONResponse:
         action_plan["actions"] = []
         if not isinstance(action_plan.get("clarification_question"), str) or not action_plan["clarification_question"].strip():
             action_plan["clarification_question"] = "Te rog clarifica exact actiunea dorita."
+
+    action_plan = enrich_action_plan_with_goal_graph(action_plan, user_command)
 
     action_issues = schemas.validate(ACTION_SCHEMA, action_plan)
     if action_issues:
@@ -572,6 +864,13 @@ async def chat(request: Request) -> JSONResponse:
             "planned_audit_handles": extract_audit_handles(action_plan),
             "execution_result": "not_executed_server_side",
         },
+    )
+
+    session_memory.update_from_plan(
+        session_key=session_key,
+        user_command=user_command,
+        action_plan=action_plan,
+        planned_audit_handles=extract_audit_handles(action_plan),
     )
 
     assistant_message = (

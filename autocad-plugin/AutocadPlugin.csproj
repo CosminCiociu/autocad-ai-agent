@@ -11,8 +11,8 @@
     </PropertyGroup>
 
     <!-- Post-build event to auto-reload plugin in AutoCAD -->
-    <Target Name="PostBuildReload" AfterTargets="Build">
-        <Exec Command="powershell.exe -NoProfile -ExecutionPolicy Bypass -File &quot;$(ProjectDir)reload-plugin.ps1&quot; -DllPath &quot;$(OutputPath)AutocadPlugin.dll&quot;" IgnoreExitCode="true" />
+    <Target Name="PostBuildReload" AfterTargets="Build" Condition="'$(SkipPostBuildReload)' != 'true'">
+        <Exec Command="powershell.exe -NoProfile -ExecutionPolicy Bypass -File &quot;$(ProjectDir)reload-plugin.ps1&quot; -SkipBuild -DllPath &quot;$(OutputPath)AutocadPlugin.dll&quot;" IgnoreExitCode="true" />
     </Target>
 
     <ItemGroup>

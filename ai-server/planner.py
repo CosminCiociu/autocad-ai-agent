@@ -4,7 +4,11 @@ import json
 from dataclasses import dataclass
 from typing import Any
 
+from knowledge_base import KnowledgeBaseRetriever
 from ollama_client import OllamaClient
+from task_graph import enrich_action_plan_with_goal_graph
+from tool_registry import ToolRegistry
+from tool_selector import ToolSelector
 
 
 ALLOWED_ACTION_PLAN_KEYS = {
@@ -14,20 +18,19 @@ ALLOWED_ACTION_PLAN_KEYS = {
     "needs_clarification",
     "clarification_question",
     "actions",
+    "goal_plan",
+    "task_graph",
 }
 
-ALLOWED_ACTION_TYPES = {
-    "insert_block",
-    "create_polyline",
-    "update_attribute",
-    "find_entities",
-}
+TOOL_REGISTRY = ToolRegistry()
+ALLOWED_ACTION_TYPES = TOOL_REGISTRY.allowed_action_types()
 
 
 @dataclass
 class PlanResult:
     action_plan: dict[str, Any]
     raw_response: str
+    retrieved_knowledge: list[dict[str, Any]]
 
 
 def _extract_json_object(text: str) -> dict[str, Any]:
@@ -50,7 +53,12 @@ def _extract_json_object(text: str) -> dict[str, Any]:
     return parsed
 
 
-def build_prompt(context_payload: dict[str, Any], user_command: str, messages: list[dict[str, Any]] | None = None) -> str:
+def build_prompt(
+    context_payload: dict[str, Any],
+    user_command: str,
+    messages: list[dict[str, Any]] | None = None,
+    rag_context: str = "",
+) -> str:
     context_json = json.dumps(context_payload, ensure_ascii=False)
     
     # Build chat history context if messages provided
@@ -66,6 +74,15 @@ def build_prompt(context_payload: dict[str, Any], user_command: str, messages: l
         if history_lines:
             history_context = "\n\nCONVERSATION HISTORY:\n" + "\n".join(history_lines)
             history_hint = "\n\nIMPORTANT: The current command may reference or depend on previous requests. Use conversation history for context."
+
+    kb_section = ""
+    kb_hint = ""
+    if rag_context:
+        kb_section = f"\n\nKNOWLEDGE_BASE_CONTEXT:\n{rag_context}"
+        kb_hint = (
+            "\n\nIMPORTANT: Use KNOWLEDGE_BASE_CONTEXT for legal/domain constraints "
+            "(e.g., P118, I7, EN54, block catalogs). If context conflicts, prefer explicit legal text."
+        )
     
     return (
         "You are a CAD planning assistant. "
@@ -73,26 +90,75 @@ def build_prompt(context_payload: dict[str, Any], user_command: str, messages: l
         "{schema_version:string, request_id:string, summary:string, "
         "needs_clarification:boolean, clarification_question?:string, actions:array}. "
         "Allowed action types: insert_block, create_polyline, update_attribute, find_entities. "
+        "Use only actions supported by the tool registry listed below. "
         "Do not echo or repeat DWG_CONTEXT_JSON. "
         "Do not add any extra top-level keys. "
         "When command is ambiguous or unsafe, set needs_clarification=true and actions=[]. "
         "When command may reference previous identified/created entities, infer the action from context."
+        "When the command is about regulation/compliance, use provided legal snippets for reasoning. "
         "Never include markdown or explanations outside JSON.\n\n"
+        f"TOOL_REGISTRY:\n{TOOL_REGISTRY.planner_catalog_text()}\n\n"
         f"DWG_CONTEXT_JSON:\n{context_json}"
+        f"{kb_section}"
         f"{history_context}"
+        f"{kb_hint}"
         f"{history_hint}"
         f"\n\nCURRENT_COMMAND:\n{user_command}"
     )
 
 
 class ActionPlanner:
-    def __init__(self, ollama: OllamaClient) -> None:
+    def __init__(self, ollama: OllamaClient, retriever: KnowledgeBaseRetriever | None = None) -> None:
         self.ollama = ollama
+        self.retriever = retriever
+        self.tool_selector = ToolSelector()
+
+    @staticmethod
+    def _attach_goal_task_graph(action_plan: dict[str, Any], user_command: str) -> dict[str, Any]:
+        return enrich_action_plan_with_goal_graph(action_plan=action_plan, user_command=user_command)
+
+    @staticmethod
+    def _is_count_intent(command_text: str) -> bool:
+        """Detect commands that ask for numeric totals, even if phrased with 'identifica'."""
+        count_keywords = (
+            "cate",
+            "numar",
+            "numarul",
+            "count",
+            "how many",
+            "total",
+        )
+        return any(keyword in command_text for keyword in count_keywords)
+
+    @staticmethod
+    def _requested_color_index(command_text: str) -> int | None:
+        """Map natural language color mentions to AutoCAD color index when possible."""
+        red_terms = ("rosu", "roșu", "rosie", "roșie", "red")
+        if any(term in command_text for term in red_terms):
+            return 1
+        return None
+
+    @staticmethod
+    def _effective_color_index(entity: dict[str, Any], layer_colors: dict[str, int]) -> int | None:
+        """Resolve effective color for entities that use BYLAYER/BYBLOCK style values."""
+        color_value = entity.get("color_index")
+        if isinstance(color_value, int):
+            if color_value == 256:
+                layer_name = entity.get("layer")
+                if isinstance(layer_name, str):
+                    return layer_colors.get(layer_name)
+                return None
+            if color_value == 0:
+                # BYBLOCK cannot be resolved reliably here without block ownership context.
+                return None
+            return color_value
+        return None
 
     @staticmethod
     def _build_identification_plan(context_payload: dict[str, Any], user_command: str) -> dict[str, Any]:
-        command_text = (user_command or "").strip().lower()
-        if not any(keyword in command_text for keyword in ("identifica", "identify", "obiecte", "objects")):
+        selector = ToolSelector()
+        selected_calls = selector.select(user_command, context_payload)
+        if not selected_calls:
             return {
                 "schema_version": context_payload.get("schema_version", "1.0.0"),
                 "request_id": context_payload.get("request_id", "unknown"),
@@ -102,26 +168,13 @@ class ActionPlanner:
                 "actions": [],
             }
 
-        entity_types = []
-        if context_payload.get("blocks"):
-            entity_types.append("block")
-        if context_payload.get("texts"):
-            entity_types.append("text")
-        if context_payload.get("lines"):
-            entity_types.append("line")
-        if context_payload.get("polylines"):
-            entity_types.append("polyline")
-
-        if not entity_types:
-            entity_types = ["block", "text", "line", "polyline"]
-
         actions = []
-        for index, entity_type in enumerate(entity_types, start=1):
+        for index, call in enumerate(selected_calls, start=1):
             actions.append(
                 {
                     "id": f"action-{index}",
-                    "type": "find_entities",
-                    "args": {"entity_type": entity_type},
+                    "type": call.tool,
+                    "args": call.args,
                 }
             )
 
@@ -137,10 +190,29 @@ class ActionPlanner:
     def _build_display_plan(context_payload: dict[str, Any], user_command: str) -> dict[str, Any] | None:
         """Handle display/reporting commands like 'Afiseaza numarul de blocuri'"""
         command_text = (user_command or "").strip().lower()
+        has_display_intent = any(
+            keyword in command_text
+            for keyword in ("afiseaza", "display", "arata", "show", "rezumat", "summary")
+        )
+        has_count_intent = ActionPlanner._is_count_intent(command_text)
+        if not (has_display_intent or has_count_intent):
+            return None
+
+        layer_colors: dict[str, int] = {}
+        drawing = context_payload.get("drawing", {})
+        if isinstance(drawing, dict):
+            for layer in drawing.get("layers", []):
+                if not isinstance(layer, dict):
+                    continue
+                layer_name = layer.get("name")
+                layer_color = layer.get("color_index")
+                if isinstance(layer_name, str) and isinstance(layer_color, int):
+                    layer_colors[layer_name] = layer_color
+
+        requested_color_index = ActionPlanner._requested_color_index(command_text)
         
         # Display block count
-        if any(keyword in command_text for keyword in ("afiseaza", "display", "arata", "show", "numar", "number", "count")) and \
-           any(keyword in command_text for keyword in ("bloc", "block", "blocuri", "blocks")):
+        if any(keyword in command_text for keyword in ("bloc", "block", "blocuri", "blocks")):
             block_count = len(context_payload.get("blocks", []))
             summary = f"Sunt {block_count} blocuri în desenul '{context_payload.get('drawing', {}).get('name', 'necunoscut')}'."
             return {
@@ -152,10 +224,31 @@ class ActionPlanner:
             }
         
         # Display text count
-        if any(keyword in command_text for keyword in ("afiseaza", "display", "arata", "show", "numar", "number", "count")) and \
-           any(keyword in command_text for keyword in ("text", "texte", "texts")):
-            text_count = len(context_payload.get("texts", []))
-            summary = f"Sunt {text_count} texte în desenul '{context_payload.get('drawing', {}).get('name', 'necunoscut')}'."
+        if any(keyword in command_text for keyword in ("text", "texte", "texts", "mtext", "txt")):
+            texts = context_payload.get("texts", [])
+            if requested_color_index is None:
+                text_count = len(texts)
+                summary = f"Sunt {text_count} texte în desenul '{context_payload.get('drawing', {}).get('name', 'necunoscut')}'."
+            else:
+                text_count = 0
+                unresolved_color_count = 0
+                for text_entity in texts:
+                    if not isinstance(text_entity, dict):
+                        continue
+                    effective_color = ActionPlanner._effective_color_index(text_entity, layer_colors)
+                    if effective_color == requested_color_index:
+                        text_count += 1
+                    elif effective_color is None:
+                        unresolved_color_count += 1
+                summary = (
+                    f"Sunt {text_count} texte de culoare roșie în desenul "
+                    f"'{context_payload.get('drawing', {}).get('name', 'necunoscut')}'."
+                )
+                if unresolved_color_count > 0:
+                    summary += (
+                        f" {unresolved_color_count} texte au culoare nerezolvabilă "
+                        "(de ex. BYBLOCK) în contextul curent."
+                    )
             return {
                 "schema_version": context_payload.get("schema_version", "1.0.0"),
                 "request_id": context_payload.get("request_id", "unknown"),
@@ -165,8 +258,7 @@ class ActionPlanner:
             }
         
         # Display line count
-        if any(keyword in command_text for keyword in ("afiseaza", "display", "arata", "show", "numar", "number", "count")) and \
-           any(keyword in command_text for keyword in ("linie", "line", "linii", "lines")):
+        if any(keyword in command_text for keyword in ("linie", "line", "linii", "lines")):
             line_count = len(context_payload.get("lines", []))
             summary = f"Sunt {line_count} linii în desenul '{context_payload.get('drawing', {}).get('name', 'necunoscut')}'."
             return {
@@ -178,8 +270,7 @@ class ActionPlanner:
             }
         
         # Display polyline count
-        if any(keyword in command_text for keyword in ("afiseaza", "display", "arata", "show", "numar", "number", "count")) and \
-           any(keyword in command_text for keyword in ("polilinie", "polyline", "polilinii", "polylines")):
+        if any(keyword in command_text for keyword in ("polilinie", "polyline", "polilinii", "polylines")):
             polyline_count = len(context_payload.get("polylines", []))
             summary = f"Sunt {polyline_count} polilinii în desenul '{context_payload.get('drawing', {}).get('name', 'necunoscut')}'."
             return {
@@ -191,7 +282,7 @@ class ActionPlanner:
             }
         
         # Display all counts
-        if any(keyword in command_text for keyword in ("afiseaza", "display", "arata", "show", "rezumat", "summary", "total")):
+        if has_display_intent or has_count_intent:
             counts = {
                 "blocks": len(context_payload.get("blocks", [])),
                 "texts": len(context_payload.get("texts", [])),
@@ -332,7 +423,41 @@ class ActionPlanner:
         return sanitized
 
     async def plan(self, context_payload: dict[str, Any], user_command: str, messages: list[dict[str, Any]] | None = None) -> PlanResult:
-        prompt = build_prompt(context_payload=context_payload, user_command=user_command, messages=messages)
+        # Deterministic routing for count/reporting requests avoids LLM drift to find_entities.
+        display_plan = self._build_display_plan(context_payload, user_command)
+        if display_plan is not None and display_plan.get("needs_clarification") is False:
+            return PlanResult(
+                action_plan=self._attach_goal_task_graph(display_plan, user_command),
+                raw_response='{"source":"deterministic_display_plan"}',
+                retrieved_knowledge=[],
+            )
+
+        # Deterministic selector for obvious identify intents.
+        selected_calls = self.tool_selector.select(user_command, context_payload)
+        if selected_calls:
+            identification_plan = self._build_identification_plan(context_payload, user_command)
+            if identification_plan.get("needs_clarification") is False:
+                return PlanResult(
+                    action_plan=self._attach_goal_task_graph(identification_plan, user_command),
+                    raw_response='{"source":"deterministic_tool_selector"}',
+                    retrieved_knowledge=[],
+                )
+
+        rag_context = ""
+        retrieved_knowledge: list[dict[str, Any]] = []
+        if self.retriever is not None:
+            rag_context, retrieved_knowledge = self.retriever.build_context(
+                query=user_command,
+                top_k=4,
+                max_chars=3200,
+            )
+
+        prompt = build_prompt(
+            context_payload=context_payload,
+            user_command=user_command,
+            messages=messages,
+            rag_context=rag_context,
+        )
         raw = await self.ollama.generate_json(prompt)
         parsed = _extract_json_object(raw)
         sanitized = self._sanitize_action_plan(parsed)
@@ -348,4 +473,8 @@ class ActionPlanner:
                 if identification_plan.get("needs_clarification") is False:
                     sanitized = identification_plan
 
-        return PlanResult(action_plan=sanitized, raw_response=raw)
+        return PlanResult(
+            action_plan=self._attach_goal_task_graph(sanitized, user_command),
+            raw_response=raw,
+            retrieved_knowledge=retrieved_knowledge,
+        )

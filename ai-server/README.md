@@ -14,6 +14,7 @@ FastAPI orchestrator for schema validation and local LLM planning.
   - Validates incoming DWG context.
   - Reads user command from `x-user-command` header.
   - Calls local Ollama model for action planning.
+  - Enriches plan with Milestone 3 skeleton fields: `goal_plan` and `task_graph`.
   - Validates generated action plan against `action-plan.schema.json`.
   - Runs semantic validation gate before returning executable actions:
     - block existence checks
@@ -27,6 +28,48 @@ FastAPI orchestrator for schema validation and local LLM planning.
   - Returns saved replay artifact for debugging.
   - Includes input payload, user command, model raw response, validation results, and action plan.
 
+- `POST /task-graph/simulate`:
+  - Simulates Milestone 3 task-graph execution in topological order.
+  - Accepts `action_plan` and optional `fail_node_ids` to inject task failures.
+  - Returns node execution order and per-node status without CAD execution.
+
+- `POST /verify`:
+  - Performs minimal post-execution verification for `insert_block` and `update_attribute`.
+  - Accepts `action_plan`, `context_before`, `context_after`, and optional `execution_report`.
+  - Returns per-action verification results and overall status (`done` or `failed`).
+
+- `GET /rag/status`:
+  - Returns local RAG index status (roots, files, chunks).
+
+- `POST /rag/reindex`:
+  - Rebuilds local RAG index from knowledge folders.
+
+- `GET /rag/search?q=...&k=4`:
+  - Debug endpoint to inspect retrieved knowledge chunks.
+
+## RAG Knowledge Base
+
+The server now loads legal/domain knowledge from:
+
+- `ai-server/knowledge_base/`
+- `fine-tuning/raw_data/legislation/`
+
+Supported file types:
+
+- `.md`, `.txt`, `.json`, `.csv`, `.log`, `.pdf`
+
+How retrieval is used:
+
+1. User command arrives.
+2. Retriever finds top matching chunks.
+3. Chunks are injected into prompt as `KNOWLEDGE_BASE_CONTEXT`.
+4. Planner generates JSON action plan using DWG context + conversation + legal/domain snippets.
+
+Notes:
+
+- PDF ingestion requires `pypdf` from `requirements.txt`.
+- If no KB files exist, planner continues normally (no retrieval context).
+
 ## Local run
 
 1. Install dependencies:
@@ -37,6 +80,12 @@ python -m venv .venv
 & .venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 pip install -r requirements.txt
+```
+
+Optional: reindex RAG manually after adding new documents:
+
+```bash
+curl -X POST http://127.0.0.1:8001/rag/reindex
 ```
 
 2. Optional env config:
@@ -90,4 +139,4 @@ uvicorn main:app --reload --host 127.0.0.1 --port 8001
 - Current server scope is planning/validation only, so `execution_result` is recorded as `not_executed_server_side`.
 
 #Uselfull commands
-Set-Location 'E:\Ai agent'; dotnet build "e:\Ai agent\autocad-plugin\AutocadPlugin.csproj" -p:OutputPath='E:\AiAgentBuild\' -p:AppendTargetFrameworkToOutputPath=false
+python.exe -m uvicorn main:app --host 127.0.0.1 --port 8000

@@ -23,6 +23,9 @@ namespace AutoCADPlugin
 
     public class ChatPanel : Form
     {
+        private const bool TestMode = true;
+        private static readonly bool CompactSubgoalStatusMode = true;
+
         private readonly TextBox _inputBox;
         private readonly Button _sendButton;
         private readonly Button _analyzeButton;
@@ -78,7 +81,7 @@ namespace AutoCADPlugin
             {
                 Location = new Point(12, 340),
                 Size = new Size(520, 24),
-                Text = "http://127.0.0.1:8001",
+                Text = "http://127.0.0.1:8000",
                 Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right
             };
             Controls.Add(_serverUrlBox);
@@ -141,6 +144,16 @@ namespace AutoCADPlugin
             };
             _healthButton.Click += HealthButton_Click;
             Controls.Add(_healthButton);
+
+            if (TestMode)
+            {
+                // Keep only the Send button visible in test mode.
+                _analyzeButton.Visible = false;
+                _previewButton.Visible = false;
+                _executeButton.Visible = false;
+                _copyButton.Visible = false;
+                _healthButton.Visible = false;
+            }
 
             var serverLabel = new Label
             {
@@ -430,6 +443,7 @@ namespace AutoCADPlugin
             var ctx = BlockReader.ExtractContext();
             var report = ActionExecutor.ExecuteActionPlan(_lastActionPlan, ctx, previewOnly: true);
             LogSystemMessage("Preview generat.");
+            LogGoalProgressSummary(report);
             LogSystemMessage(JsonConvert.SerializeObject(report, Formatting.Indented) ?? string.Empty);
         }
 
@@ -441,10 +455,263 @@ namespace AutoCADPlugin
                 return;
             }
 
-            var ctx = BlockReader.ExtractContext();
-            var report = ActionExecutor.ExecuteActionPlan(_lastActionPlan, ctx, previewOnly: false);
+            var serverUrl = _serverUrlBox.Text?.Trim() ?? string.Empty;
+            var normalizedServerUrl = NormalizeServerUrl(serverUrl);
+            var contextBefore = BlockReader.ExtractContext();
+            var report = ActionExecutor.ExecuteActionPlan(_lastActionPlan, contextBefore, previewOnly: false);
+            var contextAfter = BlockReader.ExtractContext();
+
             LogSystemMessage("Execuție completă generată.");
+            LogGoalProgressSummary(report);
             LogSystemMessage(JsonConvert.SerializeObject(report, Formatting.Indented) ?? string.Empty);
+
+            if (string.IsNullOrWhiteSpace(normalizedServerUrl))
+            {
+                LogSystemMessage("⚠️ Verificarea post-execuție a fost omisă: URL server lipsă.");
+                return;
+            }
+
+            var lastUserCommand = GetLastUserPrompt();
+            try
+            {
+                using var client = new AiServerClient(normalizedServerUrl);
+                var verifyResponse = client.Verify(
+                    _lastActionPlan,
+                    contextBefore,
+                    contextAfter,
+                    report,
+                    lastUserCommand
+                );
+
+                LogVerificationSummary(verifyResponse.Verification);
+
+                if (string.Equals(verifyResponse.Verification.Status, "failed", StringComparison.OrdinalIgnoreCase))
+                {
+                    LogSystemMessage("🔁 Verifier a detectat gap-uri. Pornesc replanning automat...");
+                    var replanResponse = SendAutoReplanRequest(
+                        normalizedServerUrl,
+                        contextAfter,
+                        verifyResponse.Verification,
+                        lastUserCommand
+                    );
+
+                    if (replanResponse != null)
+                    {
+                        _lastActionPlan = replanResponse.ActionPlan;
+                        LogChatMessage("AI", replanResponse.AssistantMessage ?? string.Empty);
+                        LogSystemMessage("📋 Plan incremental nou generat după verificare.");
+                        LogSystemMessage(JsonConvert.SerializeObject(replanResponse.ActionPlan, Formatting.Indented) ?? string.Empty);
+                    }
+                    else
+                    {
+                        LogSystemMessage("⚠️ Replanning automat nu a produs un plan nou.");
+                    }
+                }
+                else
+                {
+                    LogSystemMessage("✅ Verificare post-execuție: toate acțiunile minime au fost validate.");
+                }
+            }
+            catch (Exception ex)
+            {
+                LogSystemMessage($"⚠️ Verificarea post-execuție a eșuat: {ex.Message}");
+            }
+        }
+
+        private void LogVerificationSummary(VerificationResult verification)
+        {
+            if (verification == null)
+            {
+                return;
+            }
+
+            var status = string.IsNullOrWhiteSpace(verification.Status) ? "unknown" : verification.Status;
+            var verifiedTypes = verification.VerifiedActionTypes != null && verification.VerifiedActionTypes.Count > 0
+                ? string.Join(", ", verification.VerifiedActionTypes)
+                : "none";
+            LogSystemMessage($"Verification summary: status={status}, rules={verifiedTypes}");
+
+            if (verification.NodeResults == null || verification.NodeResults.Count == 0)
+            {
+                LogSystemMessage("Verification nodes: none");
+                return;
+            }
+
+            foreach (var node in verification.NodeResults)
+            {
+                var nodeStatus = string.IsNullOrWhiteSpace(node.Status) ? "pending" : node.Status;
+                var actionType = string.IsNullOrWhiteSpace(node.ActionType) ? "unknown" : node.ActionType;
+                var code = string.IsNullOrWhiteSpace(node.Code) ? "n/a" : node.Code;
+                LogSystemMessage($"Verify [{nodeStatus}] {node.ActionId} ({actionType}) code={code} - {node.Message}");
+            }
+        }
+
+        private string GetLastUserPrompt()
+        {
+            var last = _messages.LastOrDefault(m => string.Equals(m.Role, "user", StringComparison.OrdinalIgnoreCase));
+            if (last == null || string.IsNullOrWhiteSpace(last.Content))
+            {
+                return "Executa doar pasii lipsa detectati de verificare.";
+            }
+
+            return last.Content;
+        }
+
+        private ChatResponse? SendAutoReplanRequest(
+            string normalizedServerUrl,
+            DwgContext contextAfter,
+            VerificationResult verification,
+            string originalCommand)
+        {
+            try
+            {
+                var failedNodes = verification.NodeResults?
+                    .Where(n => string.Equals(n.Status, "failed", StringComparison.OrdinalIgnoreCase))
+                    .Select(n => $"- action_id={n.ActionId}, type={n.ActionType}, code={n.Code}, message={n.Message}")
+                    .ToList() ?? new List<string>();
+
+                var failSummary = failedNodes.Count > 0
+                    ? string.Join(Environment.NewLine, failedNodes)
+                    : "- verifier reported failed status without detailed failed nodes";
+
+                var replanPrompt =
+                    "Replanifica incremental pe baza verificarii post-executie. " +
+                    "Nu repeta pasii reusiti. Returneaza doar actiuni pentru gap-urile ramase." +
+                    Environment.NewLine + Environment.NewLine +
+                    "Comanda originala:" + Environment.NewLine +
+                    originalCommand + Environment.NewLine + Environment.NewLine +
+                    "Rezultate verifier (failed):" + Environment.NewLine +
+                    failSummary;
+
+                using var client = new AiServerClient(normalizedServerUrl);
+                var history = _messages
+                    .Where(m => m.Role == "user" || m.Role == "assistant" || m.Role == "system")
+                    .Select(m => new ChatHistoryEntry(m.Role, m.Content))
+                    .ToList();
+                history.Add(new ChatHistoryEntry("user", replanPrompt));
+
+                var requestPayload = new
+                {
+                    request_id = contextAfter.RequestId,
+                    timestamp = DateTime.Now.ToString("o"),
+                    schema_version = contextAfter.SchemaVersion,
+                    context = contextAfter,
+                    messages = history
+                };
+                SavePayload("replan_request", contextAfter.RequestId, requestPayload);
+
+                var response = client.Chat(contextAfter, history);
+                if (response != null)
+                {
+                    var responsePayload = new
+                    {
+                        request_id = response.RequestId,
+                        timestamp = DateTime.Now.ToString("o"),
+                        assistant_message = response.AssistantMessage,
+                        action_plan = response.ActionPlan
+                    };
+                    SavePayload("replan_response", response.RequestId, responsePayload);
+                }
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                LogSystemMessage($"⚠️ Replanning automat a eșuat: {ex.Message}");
+                return null;
+            }
+        }
+
+        private void LogGoalProgressSummary(ExecutionReport report)
+        {
+            if (report == null)
+            {
+                return;
+            }
+
+            var overall = string.IsNullOrWhiteSpace(report.OverallStatus) ? "unknown" : report.OverallStatus;
+            var goal = string.IsNullOrWhiteSpace(report.GoalStatus) ? "n/a" : report.GoalStatus;
+            var nodeCount = report.NodeResults?.Count ?? 0;
+            var actionCount = report.Actions?.Count ?? 0;
+
+            LogSystemMessage($"Progress summary: overall={overall}, goal={goal}, actions={actionCount}, nodes={nodeCount}");
+
+            if (report.SubgoalResults != null && report.SubgoalResults.Count > 0)
+            {
+                LogSystemMessage(BuildSubgoalStatusTable(report.SubgoalResults));
+                foreach (var subgoal in report.SubgoalResults)
+                {
+                    var subgoalStatus = string.IsNullOrWhiteSpace(subgoal.Status) ? "pending" : subgoal.Status;
+                    var subgoalKind = string.IsNullOrWhiteSpace(subgoal.Kind) ? "unknown" : subgoal.Kind;
+                    var subgoalTitle = string.IsNullOrWhiteSpace(subgoal.Title) ? subgoal.SubgoalId : subgoal.Title;
+                    LogSystemMessage($"Subgoal [{subgoalKind}] {subgoalTitle}: {subgoalStatus}");
+                }
+            }
+        }
+
+        private static string BuildSubgoalStatusTable(IReadOnlyList<GoalSubgoalExecutionRecord> subgoals)
+        {
+            if (subgoals == null || subgoals.Count == 0)
+            {
+                return "Subgoal status table: no subgoals.";
+            }
+
+            if (CompactSubgoalStatusMode)
+            {
+                return BuildCompactSubgoalStatusLines(subgoals);
+            }
+
+            const int statusWidth = 9;
+            const int kindWidth = 13;
+            const int titleWidth = 42;
+            const int actionWidth = 12;
+
+            string Pad(string value, int width)
+            {
+                var text = value ?? string.Empty;
+                if (text.Length <= width)
+                {
+                    return text.PadRight(width);
+                }
+
+                return text.Substring(0, Math.Max(0, width - 1)) + "~";
+            }
+
+            var separator = new string('-', statusWidth + kindWidth + titleWidth + actionWidth + 13);
+            var lines = new List<string>
+            {
+                "Subgoal status table:",
+                separator,
+                $"| {Pad("STATUS", statusWidth)} | {Pad("KIND", kindWidth)} | {Pad("TITLE", titleWidth)} | {Pad("ACTION_ID", actionWidth)} |",
+                separator
+            };
+
+            foreach (var subgoal in subgoals)
+            {
+                var status = string.IsNullOrWhiteSpace(subgoal.Status) ? "pending" : subgoal.Status;
+                var kind = string.IsNullOrWhiteSpace(subgoal.Kind) ? "unknown" : subgoal.Kind;
+                var title = string.IsNullOrWhiteSpace(subgoal.Title) ? subgoal.SubgoalId : subgoal.Title;
+                var actionId = string.IsNullOrWhiteSpace(subgoal.ActionId) ? "-" : (subgoal.ActionId ?? "-");
+                lines.Add($"| {Pad(status, statusWidth)} | {Pad(kind, kindWidth)} | {Pad(title, titleWidth)} | {Pad(actionId, actionWidth)} |");
+            }
+
+            lines.Add(separator);
+            return string.Join(Environment.NewLine, lines);
+        }
+
+        private static string BuildCompactSubgoalStatusLines(IReadOnlyList<GoalSubgoalExecutionRecord> subgoals)
+        {
+            var lines = new List<string> { "Subgoal status (compact):" };
+            foreach (var subgoal in subgoals)
+            {
+                var status = string.IsNullOrWhiteSpace(subgoal.Status) ? "pending" : subgoal.Status;
+                var kind = string.IsNullOrWhiteSpace(subgoal.Kind) ? "unknown" : subgoal.Kind;
+                var title = string.IsNullOrWhiteSpace(subgoal.Title) ? subgoal.SubgoalId : subgoal.Title;
+                var actionId = string.IsNullOrWhiteSpace(subgoal.ActionId) ? "-" : (subgoal.ActionId ?? "-");
+                lines.Add($"- [{status}] ({kind}) {title} | action_id={actionId}");
+            }
+
+            return string.Join(Environment.NewLine, lines);
         }
 
         private ActionPlan? LoadActionPlanFromPrompt()

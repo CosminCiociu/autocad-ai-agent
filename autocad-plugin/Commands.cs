@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Reflection;
 using Newtonsoft.Json;
 using AutocadAiAgent.SchemaValidation;
 
@@ -16,6 +17,33 @@ namespace AutoCADPlugin
         {
             Console.WriteLine("AI plugin alive and ready.");
             return 0;
+        }
+
+        // Entry point called by user: AI_VERSION
+        // Prints where the loaded assembly comes from and when it was built.
+        public static int AiVersion()
+        {
+            try
+            {
+                var asm = typeof(Commands).Assembly;
+                var location = asm.Location;
+                var fileVersion = asm.GetCustomAttribute<AssemblyFileVersionAttribute>()?.Version ?? "unknown";
+                var informational = asm.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "unknown";
+                var lastWrite = File.Exists(location)
+                    ? File.GetLastWriteTime(location).ToString("yyyy-MM-dd HH:mm:ss")
+                    : "unknown";
+
+                Console.WriteLine($"AI plugin assembly: {location}");
+                Console.WriteLine($"AI plugin file version: {fileVersion}");
+                Console.WriteLine($"AI plugin info version: {informational}");
+                Console.WriteLine($"AI plugin dll timestamp: {lastWrite}");
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"AiVersion failed: {ex}");
+                return 2;
+            }
         }
 
         // Entry point called by user: AI_EXTRACT

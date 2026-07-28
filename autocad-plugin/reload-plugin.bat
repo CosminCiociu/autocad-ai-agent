@@ -1,32 +1,30 @@
 @echo off
-REM Quick reload script for AutoCAD plugin
-REM Run this batch file to reload the plugin after building
+REM One-command build and reload script for AutoCAD plugin
 
 setlocal enabledelayedexpansion
 
-set "DLL_PATH=E:\AiAgentBuild\AutocadPlugin.dll"
-set "OLD_DLL=e:\Ai agent\autocad-plugin\bin\Debug\net48\AutocadPlugin.dll"
+set "PROJECT_PATH=E:\Ai agent\autocad-plugin\AutocadPlugin.csproj"
+set "OUTPUT_DIR=E:\Ai agent\autocad-plugin\bin\Debug\net48"
+set "DLL_PATH=E:\Ai agent\autocad-plugin\bin\Debug\net48\AutocadPlugin.dll"
 
-echo Attempting to reload AutoCAD plugin...
+echo Building and reloading AutoCAD plugin...
 echo DLL: %DLL_PATH%
 echo.
 
-REM Try to reload using PowerShell script
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0reload-plugin.ps1" -DllPath "%DLL_PATH%"
+REM Build and reload using PowerShell script
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0reload-plugin.ps1" -ProjectPath "%PROJECT_PATH%" -OutputDir "%OUTPUT_DIR%" -DllPath "%DLL_PATH%"
 
 if errorlevel 1 (
     echo.
-    echo MANUAL RELOAD STEPS:
-    echo 1. In AutoCAD, type: UNLOAD
-    echo 2. Select: %OLD_DLL%
-    echo 3. In AutoCAD, type: NETLOAD
-    echo 4. Select: %DLL_PATH%
+    echo Build or reload failed.
+    echo If build succeeded and AutoCAD is open, run in AutoCAD:
+    echo 1. NETLOAD
+    echo 2. %DLL_PATH%
     echo.
     pause
 ) else (
     echo.
-    echo Plugin reload initiated successfully!
-    echo Wait a few seconds in AutoCAD for the reload to complete.
+    echo Plugin build + reload initiated successfully.
 )
 
 endlocal

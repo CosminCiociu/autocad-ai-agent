@@ -15,6 +15,17 @@ obj/
 logs/
 ai-server/logs/
 ai-server/replay/
+ai-server/payloads/
+
+# Large/generated data folders
+fine-tuning/models/
+fine-tuning/processed_data/
+fine-tuning/results/
+autocad-plugin/build_temp/
+
+# Local KB payload data (keep docs)
+ai-server/knowledge_base/*
+!ai-server/knowledge_base/README.md
 
 # OS / Editor
 .DS_Store

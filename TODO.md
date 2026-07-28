@@ -127,11 +127,6 @@ Acest TODO operationalizeaza arhitectura din README in pasi concreti, executabil
   - [x] preview `Preview`
   - [x] execuție `Execute`
 - [x] Salveaza sesiunea de chat local în `ai_chat_session.json`.
-- [ ] Păstrează pluginul reutilizabil pentru alte versiuni AutoCAD prin:
-  - [ ] abstractizarea API-ului AutoCAD într-un strat de integrare
-  - [ ] minimizarea codului specific `AcMgd/AcDbMgd` în logica de chat
-  - [ ] configurare externă a cailor de referință și a versiunii runtime
-- [ ] Documentează schema de mesaje chat și contractul endpoint-ului AI.
 
 ### Chat UI imediat
 

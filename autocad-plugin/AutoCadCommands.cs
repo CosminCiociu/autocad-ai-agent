@@ -11,6 +11,12 @@ namespace AutoCADPlugin
             Commands.AiPing();
         }
 
+        [CommandMethod("AI_VERSION")]
+        public void AiVersionCommand()
+        {
+            Commands.AiVersion();
+        }
+
         [CommandMethod("AI_EXTRACT")]
         public void AiExtractCommand(string? outPath = null)
         {
